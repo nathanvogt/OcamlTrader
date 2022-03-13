@@ -6,14 +6,14 @@ build:
 utop:
 	OCAMLRUNPARAM=b dune utop src
 
-# test:
-# 	OCAMLRUNPARAM=b dune exec test/main.exe
+test:
+	OCAMLRUNPARAM=b dune exec test/michael.exe
 
 # test_nathan:
 # 	OCAMLRUNPARAM=b dune exec test/nathan.exe
 
-test_michael:
- 	OCAMLRUNPARAM=b dune exec test/michael.exe
+# test_michael:
+#  	OCAMLRUNPARAM=b dune exec test/michael.exe
 
 # test_juntao:
 # 	OCAMLRUNPARAM=b dune exec test/juntao.exe
