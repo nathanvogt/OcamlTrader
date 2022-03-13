@@ -48,4 +48,17 @@ let rec sma (lst : float list) (n : int) : float list =
    avg (sublist i (i + n) lst) in if i + n >= len then acc else tail ::
    acc *)
 
+let rec ema_recurse (lst : float list) (n : int) (yesterday : float) :
+    float list =
+  match lst with
+  | [] -> []
+  | h :: t ->
+      let alpha = float_of_int smoothing /. float_of_int (n + 1) in
+      let ema_today = (alpha *. h) +. ((1. -. alpha) *. yesterday) in
+      ema_today :: ema_recurse t n ema_today
+
 (** [ema lst n] is the *)
+let ema lst n =
+  match lst with
+  | [] -> []
+  | h :: t -> h :: ema_recurse t n h
