@@ -1,88 +1,81 @@
 # dune build
 # OCAMLPARAM: unset
-# Workspace root: /home/michael/cs3110/OcamlFinal
-$ /usr/bin/nproc > /tmp/dune3f3658.output 2> /dev/null
+# Shared cache: disabled
+# Workspace root: /Users/jren/Desktop/GitHub/OcamlFinal
 # Auto-detected concurrency: 8
-# disable binary cache
-$ /home/michael/.opam/cs3110-2022sp/bin/ocamlc.opt -config > /tmp/duneb12e4e.output
+$ /Users/jren/.opam/ocamlfinal/bin/ocamlc.opt -config > /var/folders/0v/dkd872rs4ws2v6r52nf7m5p40000gn/T/dune_c558f0_output
 # Dune context:
 #  { name = "default"
 #  ; kind = "default"
-#  ; profile = Dyn
+#  ; profile = Dev
 #  ; merlin = true
 #  ; for_host = None
 #  ; fdo_target_exe = None
 #  ; build_dir = "default"
-#  ; toplevel_path =
-#      Some External "/home/michael/.opam/cs3110-2022sp/lib/toplevel"
-#  ; ocaml_bin = External "/home/michael/.opam/cs3110-2022sp/bin"
-#  ; ocaml = Ok External "/home/michael/.opam/cs3110-2022sp/bin/ocaml"
-#  ; ocamlc = External "/home/michael/.opam/cs3110-2022sp/bin/ocamlc.opt"
-#  ; ocamlopt =
-#      Ok External "/home/michael/.opam/cs3110-2022sp/bin/ocamlopt.opt"
-#  ; ocamldep =
-#      Ok External "/home/michael/.opam/cs3110-2022sp/bin/ocamldep.opt"
-#  ; ocamlmklib =
-#      Ok External "/home/michael/.opam/cs3110-2022sp/bin/ocamlmklib.opt"
+#  ; toplevel_path = Some External "/Users/jren/.opam/ocamlfinal/lib/toplevel"
+#  ; ocaml_bin = External "/Users/jren/.opam/ocamlfinal/bin"
+#  ; ocaml = Ok External "/Users/jren/.opam/ocamlfinal/bin/ocaml"
+#  ; ocamlc = External "/Users/jren/.opam/ocamlfinal/bin/ocamlc.opt"
+#  ; ocamlopt = Ok External "/Users/jren/.opam/ocamlfinal/bin/ocamlopt.opt"
+#  ; ocamldep = Ok External "/Users/jren/.opam/ocamlfinal/bin/ocamldep.opt"
+#  ; ocamlmklib = Ok External "/Users/jren/.opam/ocamlfinal/bin/ocamlmklib.opt"
 #  ; env =
 #      map
-#        { "DUNE_OCAML_HARDCODED" : "/home/michael/.opam/cs3110-2022sp/lib"
-#        ; "DUNE_OCAML_STDLIB" : "/home/michael/.opam/cs3110-2022sp/lib/ocaml"
-#        ; "DUNE_SOURCEROOT" : "/home/michael/cs3110/OcamlFinal"
-#        ; "INSIDE_DUNE" : "/home/michael/cs3110/OcamlFinal/_build/default"
+#        { "DUNE_OCAML_HARDCODED" : "/Users/jren/.opam/ocamlfinal/lib"
+#        ; "DUNE_OCAML_STDLIB" : "/Users/jren/.opam/ocamlfinal/lib/ocaml"
+#        ; "DUNE_SOURCEROOT" : "/Users/jren/Desktop/GitHub/OcamlFinal"
+#        ; "INSIDE_DUNE" :
+#            "/Users/jren/Desktop/GitHub/OcamlFinal/_build/default"
 #        ; "OCAMLFIND_IGNORE_DUPS_IN" :
-#            "/home/michael/cs3110/OcamlFinal/_build/install/default/lib"
+#            "/Users/jren/Desktop/GitHub/OcamlFinal/_build/install/default/lib"
 #        ; "OCAMLPATH" :
-#            "/home/michael/cs3110/OcamlFinal/_build/install/default/lib"
+#            "/Users/jren/Desktop/GitHub/OcamlFinal/_build/install/default/lib"
 #        ; "OCAMLTOP_INCLUDE_PATH" :
-#            "/home/michael/cs3110/OcamlFinal/_build/install/default/lib/toplevel"
+#            "/Users/jren/Desktop/GitHub/OcamlFinal/_build/install/default/lib/toplevel"
 #        ; "OCAML_COLOR" : "always"
 #        ; "OPAMCOLOR" : "always"
 #        }
-#  ; findlib_path = [ External "/home/michael/.opam/cs3110-2022sp/lib" ]
+#  ; findlib_path = [ External "/Users/jren/.opam/ocamlfinal/lib" ]
 #  ; arch_sixtyfour = true
 #  ; natdynlink_supported = true
 #  ; supports_shared_libraries = true
 #  ; ocaml_config =
 #      { version = "4.12.0"
-#      ; standard_library_default =
-#          "/home/michael/.opam/cs3110-2022sp/lib/ocaml"
-#      ; standard_library = "/home/michael/.opam/cs3110-2022sp/lib/ocaml"
+#      ; standard_library_default = "/Users/jren/.opam/ocamlfinal/lib/ocaml"
+#      ; standard_library = "/Users/jren/.opam/ocamlfinal/lib/ocaml"
 #      ; standard_runtime = "the_standard_runtime_variable_was_deleted"
 #      ; ccomp_type = "cc"
-#      ; c_compiler = "gcc"
-#      ; ocamlc_cflags = [ "-O2"; "-fno-strict-aliasing"; "-fwrapv"; "-fPIC" ]
+#      ; c_compiler = "cc"
+#      ; ocamlc_cflags = [ "-O2"; "-fno-strict-aliasing"; "-fwrapv" ]
 #      ; ocamlc_cppflags = [ "-D_FILE_OFFSET_BITS=64"; "-D_REENTRANT" ]
-#      ; ocamlopt_cflags =
-#          [ "-O2"; "-fno-strict-aliasing"; "-fwrapv"; "-fPIC" ]
+#      ; ocamlopt_cflags = [ "-O2"; "-fno-strict-aliasing"; "-fwrapv" ]
 #      ; ocamlopt_cppflags = [ "-D_FILE_OFFSET_BITS=64"; "-D_REENTRANT" ]
 #      ; bytecomp_c_compiler =
-#          [ "gcc"
+#          [ "cc"
 #          ; "-O2"
 #          ; "-fno-strict-aliasing"
 #          ; "-fwrapv"
-#          ; "-fPIC"
 #          ; "-D_FILE_OFFSET_BITS=64"
 #          ; "-D_REENTRANT"
 #          ]
-#      ; bytecomp_c_libraries = [ "-lm"; "-ldl"; "-lpthread" ]
+#      ; bytecomp_c_libraries = [ "-lm"; "-lpthread" ]
 #      ; native_c_compiler =
-#          [ "gcc"
+#          [ "cc"
 #          ; "-O2"
 #          ; "-fno-strict-aliasing"
 #          ; "-fwrapv"
-#          ; "-fPIC"
 #          ; "-D_FILE_OFFSET_BITS=64"
 #          ; "-D_REENTRANT"
 #          ]
-#      ; native_c_libraries = [ "-lm"; "-ldl" ]
+#      ; native_c_libraries = [ "-lm" ]
+#      ; native_pack_linker = [ "ld"; "-r"; "-o" ]
 #      ; cc_profile = []
-#      ; architecture = "amd64"
+#      ; architecture = "arm64"
 #      ; model = "default"
 #      ; int_size = 63
 #      ; word_size = 64
-#      ; system = "linux"
-#      ; asm = [ "as" ]
+#      ; system = "macosx"
+#      ; asm = [ "clang"; "-c"; "-Wno-trigraphs" ]
 #      ; asm_cfi_supported = true
 #      ; with_frame_pointers = false
 #      ; ext_exe = ""
@@ -93,8 +86,8 @@ $ /home/michael/.opam/cs3110-2022sp/bin/ocamlc.opt -config > /tmp/duneb12e4e.out
 #      ; os_type = "Unix"
 #      ; default_executable_name = "a.out"
 #      ; systhread_supported = true
-#      ; host = "x86_64-pc-linux-gnu"
-#      ; target = "x86_64-pc-linux-gnu"
+#      ; host = "aarch64-apple-darwin21.3.0"
+#      ; target = "aarch64-apple-darwin21.3.0"
 #      ; profiling = false
 #      ; flambda = false
 #      ; spacetime = false
