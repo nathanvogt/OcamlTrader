@@ -1,0 +1,3 @@
+(library
+ (name indicators)
+ (libraries yojson ANSITerminal))

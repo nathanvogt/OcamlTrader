@@ -1,0 +1,2 @@
+(** @canonical Indicators.Author *)
+module Author = Indicators__Author
