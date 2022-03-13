@@ -27,3 +27,9 @@ clean:
 
 doc:
 	dune build @doc
+
+check:
+	@bash check.sh
+
+finalcheck:
+	@bash check.sh final
