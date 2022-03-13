@@ -10,5 +10,4 @@ type day = {
 let smoothing = 2
 
 let sma lst = 
-  let sum = List.fold_right (fun total x -> total + x) lst 0 in 
-  float_of_int sum /. float_of_int (List.length lst)
+  let sum = List.fold_right (fun total x -> total +. x) lst 0. in sum /. float_of_int (List.length lst)
