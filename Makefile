@@ -8,6 +8,8 @@ utop:
 
 test:
 	OCAMLRUNPARAM=b dune exec test/michael.exe
+# OCAMLRUNPARAM=b dune exec test/nathan.exe
+# OCAMLRUNPARAM=b dune exec test/juntao.exe
 
 # test_nathan:
 # 	OCAMLRUNPARAM=b dune exec test/nathan.exe
