@@ -1,4 +1,5 @@
 open OUnit2
+open Indicator
 open Indicators
 
 (** [sma_test name input expected_output] constructs an OUnit test named
