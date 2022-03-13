@@ -1,6 +1,0 @@
-(** @canonical Indicators.Author *)
-module Author = Indicators__Author
-
-
-(** @canonical Indicators.State *)
-module State = Indicators__State
