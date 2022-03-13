@@ -1,4 +1,3 @@
 (library
- (name game)
- (public_name Game)
+ (name indicators)
  (libraries yojson ANSITerminal))
