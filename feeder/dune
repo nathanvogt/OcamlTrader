@@ -1,0 +1,11 @@
+(library
+ (name feeder)
+ (public_name Feeder)
+ (foreign_stubs
+  (language c)
+  (names test)
+  (flags -I/blah/include)))
+
+; (library
+;  (name feeder)
+;   (public_name Feeder))

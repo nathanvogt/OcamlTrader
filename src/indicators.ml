@@ -1,3 +1,6 @@
+
+(* let vag = bruh *)
+
 type day = {
   date : int * int * int;
   open_price : float;
