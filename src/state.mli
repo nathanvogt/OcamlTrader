@@ -6,8 +6,13 @@
     /feeder as JSON and calls the indicator calculators. *)
 
 type t
-(** The abstract type of values representing the indicator state. *)
+(** The abstract type of values containing information on prices,
+    indicators, and trader. *)
 
-val from_json : Yojson.Basic.t -> string -> t
-(** [from_json j coin] is the indicator record of [coin] from [j].
-    Requires: [j] is a valid JSON adventure representation. *)
+exception InvalidIndicator of string
+(** Raised when an unknown indicator name is encountered. *)
+
+val init_state : string list -> float -> Yojson.Basic.t -> t
+(** [init_state indic_names budget json] initializes state [t] based on
+    the passed in parameters. In this state, no positions are held,
+    profits are zero, and initial cash is equal to [budget]. *)
