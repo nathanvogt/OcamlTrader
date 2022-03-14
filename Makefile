@@ -7,16 +7,18 @@ utop:
 	OCAMLRUNPARAM=b dune utop src
 
 test:
-	OCAMLRUNPARAM=b dune exec test/main.exe
+	OCAMLRUNPARAM=b dune exec test/michael.exe
+# OCAMLRUNPARAM=b dune exec test/nathan.exe
+# OCAMLRUNPARAM=b dune exec test/juntao.exe
 
-test_nathan:
-	OCAMLRUNPARAM=b dune exec test/nathan_test.exe
+# test_nathan:
+# 	OCAMLRUNPARAM=b dune exec test/nathan.exe
 
-test_michael:
-	OCAMLRUNPARAM=b dune exec test/michael_test.exe
+# test_michael:
+#  	OCAMLRUNPARAM=b dune exec test/michael.exe
 
-test_juntao:
-	OCAMLRUNPARAM=b dune exec test/juntao_test.exe
+# test_juntao:
+# 	OCAMLRUNPARAM=b dune exec test/juntao.exe
 
 play:
 	OCAMLRUNPARAM=b dune exec bin/main.exe
@@ -27,3 +29,9 @@ clean:
 
 doc:
 	dune build @doc
+
+check:
+	@bash check.sh
+
+finalcheck:
+	@bash check.sh final

@@ -4,7 +4,7 @@
 
 (** CS 3110 Spring 2022 Ocaml Final Project
 
-    @author Juntao Ren (jlr429) 
+    @author Juntao Ren (jlr429)
     @author Michael Wei (mw756)
     @author Nathan Vogt (ncv7) *)
 
@@ -25,5 +25,5 @@
 
  ************************************************************)
 
- val hours_worked : int
- (** [hours_worked] is the number of hours you worked on this assignment. *)
+val hours_worked : int
+(** [hours_worked] is the number of hours you worked on this assignment. *)
