@@ -36,6 +36,9 @@ type t = {
 (* ------ getting raw data ------*)
 open Yojson.Basic.Util
 
+exception InvalidCoin of string
+
+(* helper function getting data for specific coin *)
 let data_of_json j =
   {
     op = j |> member "open" |> to_float;
@@ -44,6 +47,16 @@ let data_of_json j =
     close = j |> member "close" |> to_float;
     volume = j |> member "volume" |> to_int;
   }
+
+(* helper function making sure coin name is valid by checking length of
+   filter list*)
+let is_valid_coin coin_name j =
+  if List.length j > 0 then j else raise (InvalidCoin coin_name)
+
+(* TODO: could be buggy, should get coin_specfic data *)
+let data_of_coin coin_name j =
+  j |> member "coins" |> to_list |> filter_member coin_name
+  |> is_valid_coin coin_name |> List.hd |> data_of_json
 
 (* ------ initializing indicators ------ *)
 exception InvalidIndicator of string
@@ -78,9 +91,9 @@ let init_account budget =
   }
 
 (* ------ initalizing actual state *)
-let init_state indic_names budget json =
+let init_state indic_names budget json coin_name =
   {
-    data = data_of_json json;
+    data = data_of_coin coin_name json;
     indicators = initiate_indicators indic_names;
     acc_info = init_account budget;
   }
