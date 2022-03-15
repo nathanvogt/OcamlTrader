@@ -12,7 +12,7 @@ exception UninitializedReader
 external init_reader : unit -> unit = "initReader"
 external read_next_day : unit -> string = "nextDay"
 
-let next_day () =
+(* let next_day () =
   (*can optimize into single pass function*)
   let l = String.split_on_char ',' (read_next_day ()) in
   {
@@ -22,13 +22,19 @@ let next_day () =
     low = Float.of_string @@ List.nth l 3;
     volume = Float.of_string @@ List.nth l 6;
     date = List.nth l 0;
+  } *)
+let next_day () = let s = read_next_day () in 
+  if s = "UR" then raise UninitializedReader else
+    if s = "EOF" then None else
+      let l = String.split_on_char ',' s in Some
+    {
+    open_price = Float.of_string @@ List.nth l 1;
+    close_price = Float.of_string @@ List.nth l 4;
+    high = Float.of_string @@ List.nth l 2;
+    low = Float.of_string @@ List.nth l 3;
+    volume = Float.of_string @@ List.nth l 6;
+    date = List.nth l 0;
   }
-(* let next_day () = match (read_next_day ()) with unit -> raise
-   UninitializedReader | s -> let l = String.split_on_chat ',' in {
-   open_price = Float.of_string @@ List.nth l 1; close_price =
-   Float.of_string @@ List.nth l 4; high = Float.of_string @@ List.nth l
-   2; low = Float.of_string @@ List.nth l 3; volume = int_of_string @@
-   List.nth l 6 } *)
 
 let open_price d = d.open_price
 let close_price d = d.close_price
