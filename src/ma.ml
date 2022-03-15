@@ -1,12 +1,3 @@
-type day = {
-  date : int * int * int;
-  open_price : float;
-  high : float;
-  low : float;
-  close : float;
-  volume : int;
-}
-
 (** [smoothing] is the integer value 2; the commonly accepeted smoothing
     value in the finance industry *)
 let smoothing = 2
@@ -41,12 +32,6 @@ let rec sma (lst : float list) (n : int) : float list =
   | h :: t ->
       if List.length lst < n then []
       else avg (sublist 0 (n - 1) lst) :: sma t n
-(* match lst with | [] -> [] | h :: t -> let tail = if List.length lst <
-   n then [] else sma t n in if List.length lst < n then tail else avg
-   (sublist 0 n lst) :: tail *)
-(* let i = 0 in let len = List.length lst in let acc = [] in let tail =
-   avg (sublist i (i + n) lst) in if i + n >= len then acc else tail ::
-   acc *)
 
 let rec ema_recurse (lst : float list) (n : int) (yesterday : float) :
     float list =

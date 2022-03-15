@@ -1,4 +1,4 @@
 (library
- (name indicators)
+ (name indicator)
  (public_name Indicators)
  (libraries yojson ounit2))
