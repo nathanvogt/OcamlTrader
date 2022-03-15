@@ -1,6 +1,6 @@
 include Indicator
 include Feeder
 
-let fuck = Feeder.bruh
+let main = fun _ -> Feeder.test ()
 
-let () = Feeder.print_int fuck
+let () = main ()
