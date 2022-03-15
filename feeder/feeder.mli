@@ -24,7 +24,7 @@ day of historical data [d] as a float *)
 val volume : t -> int
 (** [volume d] returns the volume of trades
 from the day of historical data [d] as an int*)
-val date : t -> string
+val date : t -> float
 (** [date d] returns the date of the day 
 of the historical data [d] *)
 val coin_name : t -> string
