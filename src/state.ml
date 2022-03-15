@@ -6,6 +6,7 @@ type feeder_data = {
   low : float;
   close : float;
   volume : int;
+  date : string;
 }
 
 type indicator_type =
@@ -32,7 +33,14 @@ exception InvalidCoin of string
 
 (* helper function initiating data in first step *)
 let init_data =
-  { op = 0.0; high = 0.0; low = 0.0; close = 0.0; volume = 0 }
+  {
+    op = 0.0;
+    high = 0.0;
+    low = 0.0;
+    close = 0.0;
+    volume = 0;
+    date = "";
+  }
 
 (* helper function getting data for specific coin *)
 let feeder_data f =
@@ -42,6 +50,7 @@ let feeder_data f =
     low = Feeder.low f;
     close = Feeder.high f;
     volume = Feeder.volume f;
+    date = Feeder.date f;
   }
 
 (* helper function making sure coin name is valid by checking length of
@@ -58,6 +67,7 @@ let is_valid_coin coin_name j =
 exception InvalidIndicator of string
 
 (* recursive helpfer function to initiate indicators *)
+(* TODO hard coded for now *)
 let rec initiate_indicators_aux = function
   | [] -> []
   | h :: t ->
