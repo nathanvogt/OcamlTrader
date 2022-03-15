@@ -1,4 +1,4 @@
 (library
  (name indicator)
- (public_name Indicators)
- (libraries yojson ounit2))
+ (public_name Indicator)
+ (libraries yojson ounit2 ANSITerminal))
