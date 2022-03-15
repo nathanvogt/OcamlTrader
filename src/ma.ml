@@ -16,9 +16,6 @@ let avg lst =
   let sum = List.fold_right (fun total x -> total +. x) lst 0. in
   sum /. float_of_int (List.length lst)
 
-(** [sma lst n] is the simple point average with groups of [n]
-    consecutive days; it takes in a float list and returns the averages
-    of [n] days as a float list *)
 let rec sma (lst : float list) (n : int) : float list =
   match lst with
   | [] -> []
@@ -35,8 +32,9 @@ let rec ema_recurse (lst : float list) (n : int) (yesterday : float) :
       let ema_today = (alpha *. h) +. ((1. -. alpha) *. yesterday) in
       ema_today :: ema_recurse t n ema_today
 
-(** [ema lst n] is the *)
 let ema lst n =
   match lst with
   | [] -> []
-  | h :: t -> h :: ema_recurse t n h
+  | _ ->
+      let first = avg (sublist 0 (n - 1) lst) in
+      first :: ema_recurse (sublist n (List.length lst - 1) lst) n first
