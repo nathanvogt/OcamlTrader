@@ -1,14 +1,7 @@
-(** [smoothing] is the integer value 2; the commonly accepeted smoothing
-    value in the finance industry *)
 let smoothing = 2
 
 exception OutOfRange
-(** exception [OutOfRange] is thrown when the [sublist] method attempts
-    to access an element of a list that is out of bounds *)
 
-(** [sublist start stop lst] takes in a list [lst] along with the
-    [start] and [stop] index locations; returns the resulting sublist;
-    method altered from {{:https://stackoverflow.com/a/2717815} here} *)
 let rec sublist start stop lst =
   match lst with
   | [] -> raise OutOfRange
