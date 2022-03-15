@@ -6,7 +6,7 @@ data before [init_reader] has been called *)
 external init_reader : unit -> unit = "initReader"
 (** Initializes the file reader that reads raw historical data *)
 
-val next_day : unit -> t 
+val next_day : unit -> t option 
 (** Returuns the next day of historical data *)
 
 val open_price : t -> float

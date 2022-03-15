@@ -4,5 +4,5 @@
  (libraries yojson)
  (foreign_stubs
   (language c)
-  (names test)
+  (names feeder)
   (flags -I/blah/include)))
