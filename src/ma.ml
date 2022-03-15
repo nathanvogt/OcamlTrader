@@ -11,7 +11,6 @@ let rec sublist start stop lst =
       in
       if start > 0 then tail else h :: tail
 
-(** [avg lst] is the [float] average of a given [float list] *)
 let avg lst =
   let sum = List.fold_right (fun total x -> total +. x) lst 0. in
   sum /. float_of_int (List.length lst)
@@ -38,3 +37,16 @@ let ema lst n =
   | _ ->
       let first = avg (sublist 0 (n - 1) lst) in
       first :: ema_recurse (sublist n (List.length lst - 1) lst) n first
+
+let rec diff lst =
+  match lst with
+  | [] -> []
+  | [ h ] -> []
+  | h :: i :: t -> (i -. h) :: diff (i :: t)
+
+let rec gain_loss lst (gain, loss) =
+  match lst with
+  | [] -> (gain, loss)
+  | h :: t ->
+      if h >= 0. then gain_loss t (h +. gain, loss)
+      else gain_loss t (gain, h +. loss)

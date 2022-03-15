@@ -35,3 +35,12 @@ val ema : float list -> int -> float list
     yesterday [yesterday], and applies the [ema_recurse] function for
     days after the first day; takes in a given time internal [n], which
     accounts for the specified time interval *)
+
+val diff : float list -> float list
+(** [diff lst] takes in a list [lst] of size [n] and returns the
+    differences of each pair of elements, resulting in [n-1] elements *)
+
+val gain_loss : float list -> float * float -> float * float
+(** [gain_loss lst (gain, loss)] takes in list [lst]; for each element
+    in [lst] it adds it to [gain] if it has a value >= 0.; eotherwise it
+    adds it to [loss] *)
