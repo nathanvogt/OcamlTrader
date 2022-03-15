@@ -1,6 +1,14 @@
 include Indicator
 include Feeder
 
-let main = fun _ -> Feeder.test ()
+let main () = 
+  let data = Feeder.next_day () in 
+    print_endline @@ Yojson.Basic.pretty_to_string data
+  
 
-let () = main ()
+let start () = 
+  Feeder.init_reader ();
+  main ()
+  
+
+let () = start ()

@@ -8,6 +8,7 @@
 FILE* f;
 
 CAMLprim value initReader() {
+    if(f != NULL){return Val_unit;}
     f = fopen("data/ETH-USD.csv", "r");
     if( f == NULL )  {
       printf ("Error opening file");
