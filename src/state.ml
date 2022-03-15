@@ -123,4 +123,4 @@ let update_data st json coin_name =
   }
 (* later can add update acc_info as we buy/sell*)
 
-let indicator_values st = st.indicators
+let indicator_values st = st.indicators.indic_list
