@@ -11,12 +11,6 @@ type indicator_type =
   | RSI of float
   | MACD of float
 
-(* sub type containing record of all indicators *)
-type indicator = {
-  indic_list : indicator_type list;
-      (* list so it's easier to just add new types*)
-}
-
 (* sub type containing information about trader itself *)
 (* later: which of these might benefit from mutable? *)
 type account = {
@@ -28,7 +22,7 @@ type account = {
 
 type t = {
   data : feeder_data;
-  indicators : indicator;
+  indicators : indicator_type list;
   acc_info : account;
 }
 

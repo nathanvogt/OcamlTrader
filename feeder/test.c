@@ -16,16 +16,6 @@ CAMLprim value initReader() {
    }
     return Val_unit;
 }
-
-int bruh = 0;
-CAMLprim value test( value v )
-{
-    int i = Int_val(v);
-    i += bruh;
-    bruh = i+50;
-    printf("%d\n", i);
-    return Val_unit;
-}
 CAMLprim value nextDay(){
     char buff[255];
     fscanf(f, "%s", buff);

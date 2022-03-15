@@ -1,6 +1,8 @@
 type t
 (** Representation of a day of raw historical data *)
-
+exception UninitializedReader
+(** Exception for when attempting to retrieve historical
+data before [init_reader] has been called *)
 external init_reader : unit -> unit = "initReader"
 (** Initializes the file reader that reads raw historical data *)
 
@@ -22,3 +24,9 @@ day of historical data [d] as a float *)
 val volume : t -> int
 (** [volume d] returns the volume of trades
 from the day of historical data [d] as an int*)
+val date : t -> string
+(** [date d] returns the date of the day 
+of the historical data [d] *)
+val coin_name : t -> string
+(** [coin_name d] returns the name of the cryptocurrency
+associated with historical data [d] *)
