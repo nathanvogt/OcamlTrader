@@ -7,16 +7,9 @@ type feeder_data = {
   volume : int;
 }
 
-(* indicator type *)
 type indicator_type =
   | RSI of float
   | MACD of float
-
-(* sub type containing record of all indicators *)
-type indicator = {
-  indic_list : indicator_type list;
-      (* list so it's easier to just add new types*)
-}
 
 (* sub type containing information about trader itself *)
 (* later: which of these might benefit from mutable? *)
@@ -29,7 +22,7 @@ type account = {
 
 type t = {
   data : feeder_data;
-  indicators : indicator;
+  indicators : indicator_type list;
   acc_info : account;
 }
 
@@ -37,6 +30,10 @@ type t = {
 open Yojson.Basic.Util
 
 exception InvalidCoin of string
+
+(* helper function initiating data in first step *)
+let init_data =
+  { op = 0.0; high = 0.0; low = 0.0; close = 0.0; volume = 0 }
 
 (* helper function getting data for specific coin *)
 let data_of_json j =
@@ -61,10 +58,6 @@ let data_of_coin coin_name j =
 (* ------ initializing indicators ------ *)
 exception InvalidIndicator of string
 
-(* "globaly" variables deciding beginning budget for ease of
-   adjustment *)
-let init_budget = 100000.0
-
 (* recursive helpfer function to initiate indicators *)
 let rec initiate_indicators_aux = function
   | [] -> []
@@ -85,15 +78,43 @@ let initiate_indicators indic_names =
 let init_account budget =
   {
     market_value = 0.0;
-    cash_balance = (if budget = -1.0 then init_budget else budget);
+    cash_balance = budget;
     positions = [];
     p_l = 0.0;
   }
 
-(* ------ initalizing actual state *)
+(* ------ initalizing actual state ------*)
 let init_state indic_names budget json coin_name =
   {
-    data = data_of_coin coin_name json;
+    data = init_data;
     indicators = initiate_indicators indic_names;
     acc_info = init_account budget;
   }
+
+(* ------- functions to be used by main ------- *)
+(* helper function pattern matching against indic_list and calling
+   expressions from other indicator modules *)
+let new_indic_val data = function
+  | RSI m -> RSI m (* (RSI Rsi.update_val data) *)
+  | MACD m -> MACD m
+(* (MACD Macd.update_val data) *)
+
+(* helper function receiving new data and calling indicator functions to
+   update indicator field *)
+let rec update_indicators data = function
+  | [] -> []
+  | h :: t -> new_indic_val data h :: update_indicators data t
+
+let update_data st json coin_name =
+  let new_data = data_of_coin coin_name json in
+  {
+    st with
+    data = new_data;
+    indicators =
+      {
+        indic_list = update_indicators new_data st.indicators.indic_list;
+      };
+  }
+(* later can add update acc_info as we buy/sell*)
+
+let indicator_values st = st.indicators.indic_list
