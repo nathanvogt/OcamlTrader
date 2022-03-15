@@ -34,11 +34,21 @@ let weight_indicators st =
   indicator_values st |> indication_naive 0.0
   |> average @@ float_of_int (List.length indicators)
 
-(* evaluation of action based on what weighted indicator value *)
+(* helper function receiving decision and taking corresponding action
+
+   later need to make this smarter: don't sell when we don't have
+   position sizes control the total budget it buys and sells -jun *)
 let evaluate_indicators weight =
   if weight <= 30. then print_string "sell!"
   else if weight <= 70. then print_string "wait!"
   else print_string "buy!"
+
+(* TODO: late need to add helper function taking in record of indicators
+   and outputing normalized metric to decide whether to buy or sell
+   returns [0..100].
+
+   later on, we can make this smarter by having the computer computer
+   can the amount of money it invests based on its confidence level*)
 
 (* ------ main loop ------ *)
 
