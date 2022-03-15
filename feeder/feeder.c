@@ -7,7 +7,7 @@
 
 FILE* f;
 char eof[] = "EOF";
-char ui[] = "UI";
+char ur[] = "UR";
 
 CAMLprim value initReader() {
     if(f != NULL){return Val_unit;}
@@ -19,7 +19,7 @@ CAMLprim value initReader() {
     return Val_unit;
 }
 CAMLprim value nextDay(){
-    if(f == NULL){return caml_copy_string(ui);}
+    if(f == NULL){return caml_copy_string(ur);}
     char buff[255];
     int res = fscanf(f, "%s", buff);
     if(res == -1){ //end of file

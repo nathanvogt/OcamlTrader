@@ -24,7 +24,7 @@ external read_next_day : unit -> string = "nextDay"
     date = List.nth l 0;
   } *)
 let next_day () = let s = read_next_day () in 
-  if s = "UI" then raise UninitializedReader else
+  if s = "UR" then raise UninitializedReader else
     if s = "EOF" then None else
       let l = String.split_on_char ',' s in Some
     {
