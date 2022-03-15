@@ -4,9 +4,10 @@ include Feeder
 (* ------ global variables ------ *)
 
 (** Global list of indicators. Requires that indicators spelled
-    correctly *)
+    correctly. Some, like coin_name, are hard coded for now *)
 let indicators = [ "RSI"; "MACD" ]
 
+let coin_name = "ETH"
 let budget = 10000.00
 
 (* ------ connect with feeder ------ *)
@@ -58,7 +59,7 @@ let evaluate_indicators weight =
     new data from feeder and passes new state *)
 let rec main_loop st =
   print_string "\n\n";
-  print_string @@ State.data_print st;
+  print_string @@ State.data_print coin_name st;
   weight_indicators st |> evaluate_indicators
   (* can add buy/sell action later *);
   Feeder.next_day () |> State.update_data st |> main_loop

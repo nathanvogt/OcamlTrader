@@ -21,10 +21,10 @@ day of historical data [d] as a float *)
 val low : t -> float
 (** [low d] returns the lowest price from the 
 day of historical data [d] as a float *)
-val volume : t -> int
+val volume : t -> float
 (** [volume d] returns the volume of trades
 from the day of historical data [d] as an int*)
-val date : t -> float
+val date : t -> string
 (** [date d] returns the date of the day 
 of the historical data [d] *)
 val coin_name : t -> string

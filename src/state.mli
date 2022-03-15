@@ -18,6 +18,9 @@ type t
 exception InvalidIndicator of string
 (** Raised when an unknown indicator name is encountered. *)
 
+exception NoSuchCoin of string
+(** Raised when an unknown string name for coin is encountered *)
+
 val init_state : string list -> float -> Feeder.t -> t
 (** [init_state indic_names budget json] initializes state [t] based on
     the passed in parameters. In this state, no positions are held,
@@ -31,6 +34,6 @@ val indicator_values : t -> indicator_type list
 (** [indicator_value st] returns the field of state containing list of
     indicators*)
 
-val data_print : t -> string
+val data_print : string -> t -> string
 (** [data_print st] returns string value representation of the data
     record in [st]*)
