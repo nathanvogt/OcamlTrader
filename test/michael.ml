@@ -1,6 +1,7 @@
 open OUnit2
 open Indicator
 open Ma
+open Ethdata
 
 (** [sma_test name input expected_output] constructs an OUnit test named
     [name] that asserts the quality of [expected_output] with
