@@ -14,7 +14,8 @@ let next_day () = (*can optimize into single pass function*)
       close_price = Float.of_string @@ List.nth l 4;
       high = Float.of_string @@ List.nth l 2;
       low = Float.of_string @@ List.nth l 3;
-      volume = int_of_string @@ List.nth l 6
+      volume = int_of_string @@ List.nth l 6;
+      date = List.nth l 0
     }
 (* let next_day () = match (read_next_day ()) with
   unit -> raise UninitializedReader
