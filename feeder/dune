@@ -1,0 +1,8 @@
+(library
+ (name feeder)
+ (public_name Feeder)
+ (libraries yojson)
+ (foreign_stubs
+  (language c)
+  (names test)
+  (flags -I/blah/include)))
