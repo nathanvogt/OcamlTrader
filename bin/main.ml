@@ -62,17 +62,23 @@ let rec main_loop st =
   print_string @@ State.data_print coin_name st;
   weight_indicators st |> evaluate_indicators
   (* can add buy/sell action later *);
-  Feeder.next_day () |> State.update_data st |> main_loop
+  match Feeder.next_day () with
+  | None ->
+      print_string "This is the end of the file.";
+      exit 0
+  | Some new_data -> State.update_data st new_data |> main_loop
 
 (** [main ()] prompts for the game to play, then starts it. *)
 let main () =
   ANSITerminal.print_string [ ANSITerminal.red ]
     "\n\nStarting crypto trader \n";
   Feeder.init_reader ();
-  let starting_state =
-    Feeder.next_day () |> State.init_state indicators budget
-  in
-  main_loop starting_state
+  match Feeder.next_day () with
+  | None ->
+      print_string "This is the end of the file.";
+      exit 0
+  | Some new_data ->
+      State.init_state indicators budget new_data |> main_loop
 
 (* Execute the game engine. *)
 let () = main ()
