@@ -27,6 +27,10 @@ clean:
 	dune clean
 	rm -f adventure.zip
 
+zip:
+	rm -f ocamlfinal.zip
+	zip -r ocamlfinal.zip . -x@exclude.lst
+
 doc:
 	dune build @doc
 
