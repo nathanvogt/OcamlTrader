@@ -1,1 +1,8 @@
 currently no external libraries needed
+
+to run main loop:
+1. make build
+2. make play 
+
+to run test suite:
+3. make test
