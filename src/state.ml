@@ -38,9 +38,9 @@ exception NoSuchCoin of string
 let feeder_data f =
   {
     op = Feeder.open_price f;
-    high = Feeder.close_price f;
+    high = Feeder.high f;
     low = Feeder.low f;
-    close = Feeder.high f;
+    close = Feeder.close_price f;
     volume = Feeder.volume f;
     date = Feeder.date f;
   }
@@ -64,7 +64,7 @@ let rec initiate_indicators_aux = function
   | [] -> []
   | h :: t ->
       if h = "RSI" then RSI 80.0 :: initiate_indicators_aux t
-      else if h = "MACD" then MACD 30.0 :: initiate_indicators_aux t
+      else if h = "MACD" then MACD 80.0 :: initiate_indicators_aux t
       else raise (InvalidIndicator h)
 
 (* helper function taking in string list of indicators and returning
