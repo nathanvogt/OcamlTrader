@@ -9,6 +9,8 @@ let indicators = [ "RSI"; "MACD" ]
 
 let coin_name = "ETH"
 let budget = 10000.00
+let report = ref @@ "Report of " ^ coin_name ^ " purchases: \n"
+(* string representation of report meant to be printed to file *)
 
 (* ------ connect with feeder ------ *)
 (* TODO: insert any things conncting to C feeder here *)
@@ -41,9 +43,17 @@ let weight_indicators st =
    later need to make this smarter: don't sell when we don't have
    position sizes control the total budget it buys and sells -jun *)
 let evaluate_indicators weight =
-  if weight <= 30. then print_string "sell!"
-  else if weight <= 70. then print_string "wait!"
-  else print_string "buy!"
+  if weight <= 30. then "sell!"
+  else if weight <= 70. then "wait!"
+  else "buy!"
+
+(* helper function printing ansiterminal color unit of decision *)
+let ansiterminal_print decision =
+  if decision = "sell!" then
+    ANSITerminal.print_string [ ANSITerminal.red ] "sell!\n"
+  else if decision = "buy!" then
+    ANSITerminal.print_string [ ANSITerminal.green ] "buy!\n"
+  else print_string "wait!\n"
 
 (* TODO: late need to add helper function taking in record of indicators
    and outputing normalized metric to decide whether to buy or sell
@@ -59,12 +69,17 @@ let evaluate_indicators weight =
     new data from feeder and passes new state *)
 let rec main_loop st =
   print_string "\n\n";
-  print_string @@ State.data_print coin_name st;
-  weight_indicators st |> evaluate_indicators
-  (* can add buy/sell action later *);
+  let data = State.data_print coin_name st in
+  print_string @@ data;
+  let decision = evaluate_indicators @@ weight_indicators st in
+  ansiterminal_print decision (* can add buy/sell action later *);
+  report := !report ^ data ^ decision ^ "\n\n";
+  (* update report *)
   match Feeder.next_day () with
   | None ->
-      print_string "This is the end of the file.";
+      ANSITerminal.print_string [ ANSITerminal.red ]
+        "This is the end of the file. \n";
+      Printf.fprintf (open_out "report.txt") "%s" !report;
       exit 0
   | Some new_data -> State.update_data st new_data |> main_loop
 

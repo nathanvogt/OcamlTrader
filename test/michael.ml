@@ -7,10 +7,7 @@ open Rsi
 (** [sma_test name input expected_output] constructs an OUnit test named
     [name] that asserts the quality of [expected_output] with
     [sma input]. *)
-let sma_test
-    (name : string)
-    (lst : float list)
-    (n : int)
+let sma_test (name : string) (lst : float list) (n : int)
     (expected_output : float list) : test =
   name >:: fun _ -> assert_equal expected_output (sma lst n)
 
@@ -25,9 +22,7 @@ let sma_tests =
 
 (** [rsi_test name lst expected_output] constructs an OUnit test named
     [name] that asserts the quality of [expected_output] with [rsi lst]. *)
-let rsi_test
-    (name : string)
-    (lst : float list)
+let rsi_test (name : string) (lst : float list)
     (expected_output : float list) : test =
   name >:: fun _ -> assert_equal expected_output (rsi lst)
 
