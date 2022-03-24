@@ -11,6 +11,14 @@ type indicator_type =
   | RSI of float
   | MACD of float
 
+(** Deicsion type to be passed after evaluation on training metrics, and
+    for account to be updated accordingly. This is exposed by the state
+    module so that it can be accessed by both main and state itself *)
+type decision =
+  | Buy
+  | Wait
+  | Sell
+
 type t
 (** The abstract type of values containing information on prices,
     indicators, and trader. *)
@@ -37,3 +45,9 @@ val indicator_values : t -> indicator_type list
 val data_print : string -> t -> string
 (** [data_print st] returns string value representation of the data
     record in [st]*)
+
+val decision_action : t -> decision -> t * string
+(** [decision_action st decision] takes in a type decision as decided by
+    indicators from the main loops. Based on this decision, it returns a
+    tuple with the first element being new state, and the second being a
+    string representation of action executed *)

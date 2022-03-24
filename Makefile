@@ -25,7 +25,7 @@ play:
 
 clean:
 	dune clean
-	rm -f adventure.zip
+	rm -f ocamlfinal.zip
 
 zip:
 	rm -f ocamlfinal.zip

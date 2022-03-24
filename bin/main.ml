@@ -1,5 +1,6 @@
 include Indicator
 include Feeder
+include State
 
 (* ------ global variables ------ *)
 
@@ -9,8 +10,9 @@ let indicators = [ "RSI"; "MACD" ]
 
 let coin_name = "ETH"
 let budget = 10000.00
-let report = ref @@ "Report of " ^ coin_name ^ " purchases: \n"
+
 (* string representation of report meant to be printed to file *)
+let report = ref @@ "Report of " ^ coin_name ^ " purchases: \n"
 
 (* ------ connect with feeder ------ *)
 (* TODO: insert any things conncting to C feeder here *)
@@ -43,24 +45,23 @@ let weight_indicators st =
    later need to make this smarter: don't sell when we don't have
    position sizes control the total budget it buys and sells -jun *)
 let evaluate_indicators weight =
-  if weight <= 30. then "sell!"
-  else if weight <= 70. then "wait!"
-  else "buy!"
+  if weight <= 30. then State.Sell
+  else if weight <= 70. then State.Wait
+  else State.Buy
 
 (* helper function printing ansiterminal color unit of decision *)
 let ansiterminal_print decision =
-  if decision = "sell!" then
-    ANSITerminal.print_string [ ANSITerminal.red ] "sell!\n"
-  else if decision = "buy!" then
-    ANSITerminal.print_string [ ANSITerminal.green ] "buy!\n"
-  else print_string "wait!\n"
+  if decision = State.Sell then
+    ANSITerminal.print_string [ ANSITerminal.red ] "SELL!\n"
+  else if decision = State.Buy then
+    ANSITerminal.print_string [ ANSITerminal.green ] "BUY!\n"
+  else ANSITerminal.print_string [ ANSITerminal.magenta ] "WAIT!\n"
 
-(* TODO: late need to add helper function taking in record of indicators
-   and outputing normalized metric to decide whether to buy or sell
-   returns [0..100].
-
-   later on, we can make this smarter by having the computer computer
-   can the amount of money it invests based on its confidence level*)
+(* helper function turning decision type to string *)
+let deicision_to_string = function
+  | State.Sell -> "SELL!\n"
+  | State.Buy -> "BUY!\n"
+  | State.Wait -> "WAIT!\n"
 
 (* ------ main loop ------ *)
 
@@ -68,20 +69,34 @@ let ansiterminal_print decision =
     [state] from previous timestep and makes a decision, then receives
     new data from feeder and passes new state *)
 let rec main_loop st =
+  (* formatting *)
   print_string "\n\n";
+
+  (* storing data in value to be later concatenated in report *)
   let data = State.data_print coin_name st in
   print_string @@ data;
+
+  (* storing decision in value to be later passed into State *)
   let decision = evaluate_indicators @@ weight_indicators st in
   ansiterminal_print decision (* can add buy/sell action later *);
-  report := !report ^ data ^ decision ^ "\n\n";
+
+  (* tuple with first element being new state, second being string
+     representation of action executed *)
+  let state_action_tup = State.decision_action st decision in
+  report :=
+    !report ^ data
+    ^ deicision_to_string decision
+    ^ snd state_action_tup ^ "\n\n";
+  print_string @@ snd state_action_tup ^ "\n";
   (* update report *)
   match Feeder.next_day () with
   | None ->
-      ANSITerminal.print_string [ ANSITerminal.red ]
+      ANSITerminal.print_string [ ANSITerminal.yellow ]
         "This is the end of the file. \n";
       Printf.fprintf (open_out "report.txt") "%s" !report;
       exit 0
-  | Some new_data -> State.update_data st new_data |> main_loop
+  | Some new_data ->
+      State.update_data (fst state_action_tup) new_data |> main_loop
 
 (** [main ()] prompts for the game to play, then starts it. *)
 let main () =
