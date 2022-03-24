@@ -240,7 +240,7 @@ let decision_action st = function
         }
       in
       (* TODO later when moved to online need current price *)
-      (buy_state, account_to_string st.acc_info)
+      (buy_state, account_to_string buy_state.acc_info)
   | Sell ->
       let sell_state =
         {
@@ -250,5 +250,5 @@ let decision_action st = function
               (get_closing_price coin_name st.data);
         }
       in
-      (sell_state, account_to_string st.acc_info)
+      (sell_state, account_to_string sell_state.acc_info)
   | Wait -> (st, account_to_string st.acc_info)
