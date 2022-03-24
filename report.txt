@@ -20,9 +20,9 @@ High: 1889.196655
 Low: 1749.606323
 Close: 1791.702271
 Volume: 26244738810.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 1791.702271
 Profits and Loss: 
 0.
 
@@ -34,9 +34,9 @@ High: 1817.060181
 Low: 1720.053223
 Close: 1806.971802
 Volume: 23828509590.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 1791.702271
 Profits and Loss: 
 0.
 
@@ -50,9 +50,9 @@ Close: 1823.449341
 Volume: 24512917348.
 SELL!
 Current positions: 
-Bought ETH at 1806.971802
+
 Profits and Loss: 
-0.
+31.74707
 
 
 Coin: ETH
@@ -62,11 +62,11 @@ High: 1848.646118
 Low: 1705.716064
 Close: 1782.855103
 Volume: 23263845504.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 1782.855103
 Profits and Loss: 
-16.477539
+31.74707
 
 
 Coin: ETH
@@ -76,11 +76,11 @@ High: 1841.196045
 Low: 1746.473389
 Close: 1817.624146
 Volume: 21249297710.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 1782.855103
 Profits and Loss: 
-16.477539
+31.74707
 
 
 Coin: ETH
@@ -92,9 +92,9 @@ Close: 1812.634644
 Volume: 22677674970.
 SELL!
 Current positions: 
-Bought ETH at 1817.624146
+
 Profits and Loss: 
-16.477539
+61.526611
 
 
 Coin: ETH
@@ -104,11 +104,11 @@ High: 1823.353027
 Low: 1764.139282
 Close: 1788.217041
 Volume: 22977404620.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 1788.217041
 Profits and Loss: 
-11.488037
+61.526611
 
 
 Coin: ETH
@@ -118,11 +118,11 @@ High: 1811.968262
 Low: 1674.299805
 Close: 1691.333984
 Volume: 23599296129.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 1788.217041
 Profits and Loss: 
-11.488037
+61.526611
 
 
 Coin: ETH
@@ -134,9 +134,9 @@ Close: 1678.650146
 Volume: 21998237965.
 SELL!
 Current positions: 
-Bought ETH at 1691.333984
+
 Profits and Loss: 
-11.488037
+-48.040284
 
 
 Coin: ETH
@@ -146,11 +146,11 @@ High: 1740.428223
 Low: 1570.787964
 Close: 1593.413452
 Volume: 31228051473.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 1593.413452
 Profits and Loss: 
--1.195801
+-48.040284
 
 
 Coin: ETH
@@ -160,11 +160,11 @@ High: 1625.911499
 Low: 1560.370483
 Close: 1595.359253
 Volume: 29650328701.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 1593.413452
 Profits and Loss: 
--1.195801
+-48.040284
 
 
 Coin: ETH
@@ -176,9 +176,9 @@ Close: 1702.842041
 Volume: 22548516548.
 SELL!
 Current positions: 
-Bought ETH at 1595.359253
+
 Profits and Loss: 
--1.195801
+61.388305
 
 
 Coin: ETH
@@ -188,11 +188,11 @@ High: 1732.824341
 Low: 1674.319336
 Close: 1716.494629
 Volume: 18102277710.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 1716.494629
 Profits and Loss: 
-106.286987
+61.388305
 
 
 Coin: ETH
@@ -202,11 +202,11 @@ High: 1728.584106
 Low: 1672.6604
 Close: 1691.355957
 Volume: 16599472938.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 1716.494629
 Profits and Loss: 
-106.286987
+61.388305
 
 
 Coin: ETH
@@ -218,9 +218,9 @@ Close: 1819.684937
 Volume: 22796570548.
 SELL!
 Current positions: 
-Bought ETH at 1691.355957
+
 Profits and Loss: 
-106.286987
+164.578613
 
 
 Coin: ETH
@@ -230,11 +230,11 @@ High: 1860.974731
 Low: 1793.922363
 Close: 1846.033691
 Volume: 22512781703.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 1846.033691
 Profits and Loss: 
-234.615967
+164.578613
 
 
 Coin: ETH
@@ -244,11 +244,11 @@ High: 1947.837769
 Low: 1793.002197
 Close: 1918.362061
 Volume: 30226902621.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 1846.033691
 Profits and Loss: 
-234.615967
+164.578613
 
 
 Coin: ETH
@@ -260,9 +260,9 @@ Close: 1977.276855
 Volume: 30914259795.
 SELL!
 Current positions: 
-Bought ETH at 1918.362061
+
 Profits and Loss: 
-234.615967
+295.821777
 
 
 Coin: ETH
@@ -272,11 +272,11 @@ High: 2152.451904
 Low: 1960.678711
 Close: 2143.225586
 Volume: 34862511022.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 2143.225586
 Profits and Loss: 
-293.530761
+295.821777
 
 
 Coin: ETH
@@ -286,11 +286,11 @@ High: 2144.962402
 Low: 2028.422485
 Close: 2028.422485
 Volume: 32011518871.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 2143.225586
 Profits and Loss: 
-293.530761
+295.821777
 
 
 Coin: ETH
@@ -302,9 +302,9 @@ Close: 2093.122803
 Volume: 26006501902.
 SELL!
 Current positions: 
-Bought ETH at 2028.422485
+
 Profits and Loss: 
-293.530761
+245.718994
 
 
 Coin: ETH
@@ -314,11 +314,11 @@ High: 2140.985352
 Low: 2032.387695
 Close: 2107.887207
 Volume: 28889391170.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 2107.887207
 Profits and Loss: 
-358.231079
+245.718994
 
 
 Coin: ETH
@@ -328,11 +328,11 @@ High: 2151.223389
 Low: 2057.609131
 Close: 2118.378906
 Volume: 29222865881.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 2107.887207
 Profits and Loss: 
-358.231079
+245.718994
 
 
 Coin: ETH
@@ -344,9 +344,9 @@ Close: 1971.077271
 Volume: 36116271935.
 SELL!
 Current positions: 
-Bought ETH at 2118.378906
+
 Profits and Loss: 
-358.231079
+108.909058
 
 
 Coin: ETH
@@ -356,11 +356,11 @@ High: 2091.516357
 Low: 1959.079468
 Close: 2088.57373
 Volume: 25312956529.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 2088.57373
 Profits and Loss: 
-210.929444
+108.909058
 
 
 Coin: ETH
@@ -370,11 +370,11 @@ High: 2102.873779
 Low: 2055.16333
 Close: 2072.108887
 Volume: 19812472092.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 2088.57373
 Profits and Loss: 
-210.929444
+108.909058
 
 
 Coin: ETH
@@ -386,9 +386,9 @@ Close: 2135.942139
 Volume: 24986243611.
 SELL!
 Current positions: 
-Bought ETH at 2072.108887
+
 Profits and Loss: 
-210.929444
+156.277467
 
 
 Coin: ETH
@@ -398,11 +398,11 @@ High: 2165.191406
 Low: 2119.865723
 Close: 2157.656982
 Volume: 19692836132.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 2157.656982
 Profits and Loss: 
-274.762696
+156.277467
 
 
 Coin: ETH
@@ -412,11 +412,11 @@ High: 2199.71875
 Low: 2110.368896
 Close: 2139.353271
 Volume: 21727936609.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 2157.656982
 Profits and Loss: 
-274.762696
+156.277467
 
 
 Coin: ETH
@@ -428,9 +428,9 @@ Close: 2299.187744
 Volume: 29456642939.
 SELL!
 Current positions: 
-Bought ETH at 2139.353271
+
 Profits and Loss: 
-274.762696
+297.808229
 
 
 Coin: ETH
@@ -440,11 +440,11 @@ High: 2449.6875
 Low: 2284.563721
 Close: 2435.10498
 Volume: 35592822986.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 2435.10498
 Profits and Loss: 
-434.597169
+297.808229
 
 
 Coin: ETH
@@ -454,11 +454,11 @@ High: 2544.267334
 Low: 2409.924072
 Close: 2519.116211
 Volume: 32325606817.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 2435.10498
 Profits and Loss: 
-434.597169
+297.808229
 
 
 Coin: ETH
@@ -470,9 +470,9 @@ Close: 2431.946533
 Volume: 36196928256.
 SELL!
 Current positions: 
-Bought ETH at 2519.116211
+
 Profits and Loss: 
-434.597169
+294.649782
 
 
 Coin: ETH
@@ -482,11 +482,11 @@ High: 2497.385254
 Low: 2333.682861
 Close: 2344.89502
 Volume: 32349808978.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 2344.89502
 Profits and Loss: 
-347.427491
+294.649782
 
 
 Coin: ETH
@@ -496,11 +496,11 @@ High: 2365.460449
 Low: 2011.766846
 Close: 2237.136963
 Volume: 50696368718.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 2344.89502
 Profits and Loss: 
-347.427491
+294.649782
 
 
 Coin: ETH
@@ -512,9 +512,9 @@ Close: 2166.188721
 Volume: 34060654971.
 SELL!
 Current positions: 
-Bought ETH at 2237.136963
+
 Profits and Loss: 
-347.427491
+115.943483
 
 
 Coin: ETH
@@ -524,11 +524,11 @@ High: 2345.834961
 Low: 2060.143799
 Close: 2330.210938
 Volume: 39433483315.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 2330.210938
 Profits and Loss: 
-276.479249
+115.943483
 
 
 Coin: ETH
@@ -538,11 +538,11 @@ High: 2467.200684
 Low: 2238.366943
 Close: 2364.751709
 Volume: 38899067643.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 2330.210938
 Profits and Loss: 
-276.479249
+115.943483
 
 
 Coin: ETH
@@ -554,9 +554,9 @@ Close: 2403.535156
 Volume: 53575904724.
 SELL!
 Current positions: 
-Bought ETH at 2364.751709
+
 Profits and Loss: 
-276.479249
+189.267701
 
 
 Coin: ETH
@@ -566,11 +566,11 @@ High: 2439.537109
 Low: 2117.039551
 Close: 2363.586182
 Volume: 55413933925.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 2363.586182
 Profits and Loss: 
-315.262696
+189.267701
 
 
 Coin: ETH
@@ -580,11 +580,11 @@ High: 2367.740967
 Low: 2163.693115
 Close: 2211.625732
 Volume: 31854226936.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 2363.586182
 Profits and Loss: 
-315.262696
+189.267701
 
 
 Coin: ETH
@@ -596,9 +596,9 @@ Close: 2316.05957
 Volume: 31814355546.
 SELL!
 Current positions: 
-Bought ETH at 2211.625732
+
 Profits and Loss: 
-315.262696
+141.741089
 
 
 Coin: ETH
@@ -608,11 +608,11 @@ High: 2536.337402
 Low: 2308.315186
 Close: 2534.481689
 Volume: 35208325408.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 2534.481689
 Profits and Loss: 
-419.696534
+141.741089
 
 
 Coin: ETH
@@ -622,11 +622,11 @@ High: 2676.392822
 Low: 2485.375
 Close: 2662.865234
 Volume: 32275969215.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 2534.481689
 Profits and Loss: 
-419.696534
+141.741089
 
 
 Coin: ETH
@@ -638,9 +638,9 @@ Close: 2746.380127
 Volume: 34269031076.
 SELL!
 Current positions: 
-Bought ETH at 2662.865234
+
 Profits and Loss: 
-419.696534
+353.639527
 
 
 Coin: ETH
@@ -650,11 +650,11 @@ High: 2797.972412
 Low: 2672.106689
 Close: 2756.876953
 Volume: 32578127990.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 2756.876953
 Profits and Loss: 
-503.211427
+353.639527
 
 
 Coin: ETH
@@ -664,11 +664,11 @@ High: 2796.054932
 Low: 2728.169922
 Close: 2773.207031
 Volume: 29777179889.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 2756.876953
 Profits and Loss: 
-503.211427
+353.639527
 
 
 Coin: ETH
@@ -680,9 +680,9 @@ Close: 2945.892822
 Volume: 28726205272.
 SELL!
 Current positions: 
-Bought ETH at 2773.207031
+
 Profits and Loss: 
-503.211427
+542.655396
 
 
 Coin: ETH
@@ -692,11 +692,11 @@ High: 2984.891846
 Low: 2860.526123
 Close: 2952.056152
 Volume: 28032013047.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 2952.056152
 Profits and Loss: 
-675.897218
+542.655396
 
 
 Coin: ETH
@@ -706,11 +706,11 @@ High: 3450.037842
 Low: 2951.175781
 Close: 3431.086182
 Volume: 49174290212.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 2952.056152
 Profits and Loss: 
-675.897218
+542.655396
 
 
 Coin: ETH
@@ -722,9 +722,9 @@ Close: 3253.629395
 Volume: 62402045158.
 SELL!
 Current positions: 
-Bought ETH at 3431.086182
+
 Profits and Loss: 
-675.897218
+844.228639
 
 
 Coin: ETH
@@ -734,11 +734,11 @@ High: 3541.462646
 Low: 3213.101563
 Close: 3522.783203
 Volume: 48334198383.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 3522.783203
 Profits and Loss: 
-498.440431
+844.228639
 
 
 Coin: ETH
@@ -748,11 +748,11 @@ High: 3598.895996
 Low: 3386.23999
 Close: 3490.880371
 Volume: 44300394788.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 3522.783203
 Profits and Loss: 
-498.440431
+844.228639
 
 
 Coin: ETH
@@ -764,9 +764,9 @@ Close: 3484.729004
 Volume: 39607240515.
 SELL!
 Current positions: 
-Bought ETH at 3490.880371
+
 Profits and Loss: 
-498.440431
+806.17444
 
 
 Coin: ETH
@@ -776,11 +776,11 @@ High: 3950.165039
 Low: 3453.768555
 Close: 3902.647705
 Volume: 50208491286.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 3902.647705
 Profits and Loss: 
-492.289064
+806.17444
 
 
 Coin: ETH
@@ -790,11 +790,11 @@ High: 3981.259033
 Low: 3743.989014
 Close: 3928.844727
 Volume: 50568290278.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 3902.647705
 Profits and Loss: 
-492.289064
+806.17444
 
 
 Coin: ETH
@@ -806,9 +806,9 @@ Close: 3952.293945
 Volume: 62691789007.
 SELL!
 Current positions: 
-Bought ETH at 3928.844727
+
 Profits and Loss: 
-492.289064
+855.82068
 
 
 Coin: ETH
@@ -818,11 +818,11 @@ High: 4178.208984
 Low: 3783.889404
 Close: 4168.701172
 Volume: 52679737865.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 4168.701172
 Profits and Loss: 
-515.738282
+855.82068
 
 
 Coin: ETH
@@ -832,11 +832,11 @@ High: 4362.350586
 Low: 3785.848633
 Close: 3785.848633
 Volume: 69023382175.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 4168.701172
 Profits and Loss: 
-515.738282
+855.82068
 
 
 Coin: ETH
@@ -848,9 +848,9 @@ Close: 3715.148438
 Volume: 78398214539.
 SELL!
 Current positions: 
-Bought ETH at 3785.848633
+
 Profits and Loss: 
-515.738282
+402.267946
 
 
 Coin: ETH
@@ -860,11 +860,11 @@ High: 4171.01709
 Low: 3703.399902
 Close: 4079.057373
 Volume: 48174271215.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 4079.057373
 Profits and Loss: 
-445.038087
+402.267946
 
 
 Coin: ETH
@@ -874,11 +874,11 @@ High: 4129.185547
 Low: 3638.12207
 Close: 3638.12207
 Volume: 42422321751.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 4079.057373
 Profits and Loss: 
-445.038087
+402.267946
 
 
 Coin: ETH
@@ -890,9 +890,9 @@ Close: 3587.506104
 Volume: 47359478734.
 SELL!
 Current positions: 
-Bought ETH at 3638.12207
+
 Profits and Loss: 
-445.038087
+-89.283323
 
 
 Coin: ETH
@@ -902,11 +902,11 @@ High: 3587.765625
 Low: 3129.008789
 Close: 3282.397705
 Volume: 54061732774.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 3282.397705
 Profits and Loss: 
-394.422121
+-89.283323
 
 
 Coin: ETH
@@ -916,11 +916,11 @@ High: 3562.465088
 Low: 3246.404053
 Close: 3380.070068
 Volume: 40416525218.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 3282.397705
 Profits and Loss: 
-394.422121
+-89.283323
 
 
 Coin: ETH
@@ -932,9 +932,9 @@ Close: 2460.679199
 Volume: 84482912776.
 SELL!
 Current positions: 
-Bought ETH at 3380.070068
+
 Profits and Loss: 
-394.422121
+-911.001829
 
 
 Coin: ETH
@@ -944,11 +944,11 @@ High: 2993.145264
 Low: 2170.229004
 Close: 2784.294189
 Volume: 67610826680.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 2784.294189
 Profits and Loss: 
--524.968748
+-911.001829
 
 
 Coin: ETH
@@ -958,11 +958,11 @@ High: 2938.205078
 Low: 2113.347168
 Close: 2430.621338
 Volume: 53774070802.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 2784.294189
 Profits and Loss: 
--524.968748
+-911.001829
 
 
 Coin: ETH
@@ -974,9 +974,9 @@ Close: 2295.705566
 Volume: 42089937660.
 SELL!
 Current positions: 
-Bought ETH at 2430.621338
+
 Profits and Loss: 
--524.968748
+-1399.590452
 
 
 Coin: ETH
@@ -986,11 +986,11 @@ High: 2384.411621
 Low: 1737.46875
 Close: 2109.579834
 Volume: 56005721977.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 2109.579834
 Profits and Loss: 
--659.88452
+-1399.590452
 
 
 Coin: ETH
@@ -1000,11 +1000,11 @@ High: 2672.595703
 Low: 2090.639648
 Close: 2643.591064
 Volume: 53697121740.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 2109.579834
 Profits and Loss: 
--659.88452
+-1399.590452
 
 
 Coin: ETH
@@ -1016,9 +1016,9 @@ Close: 2706.628906
 Volume: 49558333256.
 SELL!
 Current positions: 
-Bought ETH at 2643.591064
+
 Profits and Loss: 
--659.88452
+-802.54138
 
 
 Coin: ETH
@@ -1028,11 +1028,11 @@ High: 2911.735596
 Low: 2652.094482
 Close: 2888.69873
 Volume: 42499766020.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 2888.69873
 Profits and Loss: 
--596.846678
+-802.54138
 
 
 Coin: ETH
@@ -1042,11 +1042,11 @@ High: 2888.752441
 Low: 2642.60791
 Close: 2736.488525
 Volume: 33373635283.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 2888.69873
 Profits and Loss: 
--596.846678
+-802.54138
 
 
 Coin: ETH
@@ -1058,9 +1058,9 @@ Close: 2419.90625
 Volume: 39999114805.
 SELL!
 Current positions: 
-Bought ETH at 2736.488525
+
 Profits and Loss: 
--596.846678
+-1271.33386
 
 
 Coin: ETH
@@ -1070,11 +1070,11 @@ High: 2566.938477
 Low: 2208.490967
 Close: 2279.51416
 Volume: 33773720220.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 2279.51416
 Profits and Loss: 
--913.428953
+-1271.33386
 
 
 Coin: ETH
@@ -1084,11 +1084,11 @@ High: 2472.187744
 Low: 2188.834473
 Close: 2390.30542
 Volume: 25876619428.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 2279.51416
 Profits and Loss: 
--913.428953
+-1271.33386
 
 
 Coin: ETH
@@ -1100,9 +1100,9 @@ Close: 2714.945313
 Volume: 31007383150.
 SELL!
 Current positions: 
-Bought ETH at 2390.30542
+
 Profits and Loss: 
--913.428953
+-835.902707
 
 
 Coin: ETH
@@ -1112,11 +1112,11 @@ High: 2739.737549
 Low: 2531.160645
 Close: 2633.518311
 Volume: 27363223090.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 2633.518311
 Profits and Loss: 
--588.78906
+-835.902707
 
 
 Coin: ETH
@@ -1126,11 +1126,11 @@ High: 2801.392334
 Low: 2555.401367
 Close: 2706.125
 Volume: 27723267359.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 2633.518311
 Profits and Loss: 
--588.78906
+-835.902707
 
 
 Coin: ETH
@@ -1142,9 +1142,9 @@ Close: 2855.126465
 Volume: 30038207402.
 SELL!
 Current positions: 
-Bought ETH at 2706.125
+
 Profits and Loss: 
--588.78906
+-614.294553
 
 
 Coin: ETH
@@ -1154,11 +1154,11 @@ High: 2857.165527
 Low: 2562.637451
 Close: 2688.195068
 Volume: 34173841611.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 2688.195068
 Profits and Loss: 
--439.787595
+-614.294553
 
 
 Coin: ETH
@@ -1168,11 +1168,11 @@ High: 2817.484863
 Low: 2558.233643
 Close: 2630.576904
 Volume: 30496672724.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 2688.195068
 Profits and Loss: 
--439.787595
+-614.294553
 
 
 Coin: ETH
@@ -1184,9 +1184,9 @@ Close: 2715.092773
 Volume: 25311639414.
 SELL!
 Current positions: 
-Bought ETH at 2630.576904
+
 Profits and Loss: 
--439.787595
+-587.396848
 
 
 Coin: ETH
@@ -1196,11 +1196,11 @@ High: 2845.185059
 Low: 2583.995117
 Close: 2590.263184
 Volume: 30600111277.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 2590.263184
 Profits and Loss: 
--355.271726
+-587.396848
 
 
 Coin: ETH
@@ -1210,11 +1210,11 @@ High: 2620.846191
 Low: 2315.546631
 Close: 2517.438721
 Volume: 41909736778.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 2590.263184
 Profits and Loss: 
--355.271726
+-587.396848
 
 
 Coin: ETH
@@ -1226,9 +1226,9 @@ Close: 2608.26709
 Volume: 36075832186.
 SELL!
 Current positions: 
-Bought ETH at 2517.438721
+
 Profits and Loss: 
--355.271726
+-569.392942
 
 
 Coin: ETH
@@ -1238,11 +1238,11 @@ High: 2619.957764
 Low: 2435.401611
 Close: 2471.518555
 Volume: 28753626390.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 2471.518555
 Profits and Loss: 
--264.443357
+-569.392942
 
 
 Coin: ETH
@@ -1252,11 +1252,11 @@ High: 2495.414795
 Low: 2326.869629
 Close: 2353.768799
 Volume: 24832564195.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 2471.518555
 Profits and Loss: 
--264.443357
+-569.392942
 
 
 Coin: ETH
@@ -1268,9 +1268,9 @@ Close: 2372.484375
 Volume: 25724364410.
 SELL!
 Current positions: 
-Bought ETH at 2353.768799
+
 Profits and Loss: 
--264.443357
+-668.427122
 
 
 Coin: ETH
@@ -1280,11 +1280,11 @@ High: 2547.36792
 Low: 2312.640137
 Close: 2508.391602
 Volume: 27092945370.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 2508.391602
 Profits and Loss: 
--245.727781
+-668.427122
 
 
 Coin: ETH
@@ -1294,11 +1294,11 @@ High: 2606.432861
 Low: 2469.388184
 Close: 2537.891113
 Volume: 26964576331.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 2508.391602
 Profits and Loss: 
--245.727781
+-668.427122
 
 
 Coin: ETH
@@ -1310,9 +1310,9 @@ Close: 2610.936768
 Volume: 29005279219.
 SELL!
 Current positions: 
-Bought ETH at 2537.891113
+
 Profits and Loss: 
--245.727781
+-565.881956
 
 
 Coin: ETH
@@ -1322,11 +1322,11 @@ High: 2554.628906
 Low: 2354.350586
 Close: 2367.663574
 Volume: 24101926180.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 2367.663574
 Profits and Loss: 
--172.682126
+-565.881956
 
 
 Coin: ETH
@@ -1336,11 +1336,11 @@ High: 2457.175537
 Low: 2312.301514
 Close: 2372.001953
 Volume: 21871633186.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 2367.663574
 Profits and Loss: 
--172.682126
+-565.881956
 
 
 Coin: ETH
@@ -1352,9 +1352,9 @@ Close: 2231.733154
 Volume: 22752818388.
 SELL!
 Current positions: 
-Bought ETH at 2372.001953
+
 Profits and Loss: 
--172.682126
+-701.812376
 
 
 Coin: ETH
@@ -1364,11 +1364,11 @@ High: 2278.415039
 Low: 2168.88501
 Close: 2178.499023
 Volume: 18765854896.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 2178.499023
 Profits and Loss: 
--312.950925
+-701.812376
 
 
 Coin: ETH
@@ -1378,11 +1378,11 @@ High: 2275.382813
 Low: 2049.962646
 Close: 2246.364502
 Volume: 22535930423.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 2178.499023
 Profits and Loss: 
--312.950925
+-701.812376
 
 
 Coin: ETH
@@ -1394,9 +1394,9 @@ Close: 1888.44751
 Volume: 33745173825.
 SELL!
 Current positions: 
-Bought ETH at 2246.364502
+
 Profits and Loss: 
--312.950925
+-991.863889
 
 
 Coin: ETH
@@ -1406,11 +1406,11 @@ High: 1993.15979
 Low: 1707.600586
 Close: 1874.950073
 Volume: 35547251725.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 1874.950073
 Profits and Loss: 
--670.867917
+-991.863889
 
 
 Coin: ETH
@@ -1420,11 +1420,11 @@ High: 2043.530396
 Low: 1827.571533
 Close: 1989.736328
 Volume: 28408659206.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 1874.950073
 Profits and Loss: 
--670.867917
+-991.863889
 
 
 Coin: ETH
@@ -1436,9 +1436,9 @@ Close: 1988.456299
 Volume: 20272845769.
 SELL!
 Current positions: 
-Bought ETH at 1989.736328
+
 Profits and Loss: 
--670.867917
+-878.357663
 
 
 Coin: ETH
@@ -1448,11 +1448,11 @@ High: 2017.759521
 Low: 1794.400391
 Close: 1813.217285
 Volume: 22774334998.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 1813.217285
 Profits and Loss: 
--672.147946
+-878.357663
 
 
 Coin: ETH
@@ -1462,11 +1462,11 @@ High: 1850.17981
 Low: 1719.559448
 Close: 1829.239258
 Volume: 20637542361.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 1813.217285
 Profits and Loss: 
--672.147946
+-878.357663
 
 
 Coin: ETH
@@ -1478,9 +1478,9 @@ Close: 1978.894653
 Volume: 19885474742.
 SELL!
 Current positions: 
-Bought ETH at 1829.239258
+
 Profits and Loss: 
--672.147946
+-712.680295
 
 
 Coin: ETH
@@ -1490,11 +1490,11 @@ High: 2139.80542
 Low: 1963.615479
 Close: 2079.657471
 Volume: 25514602841.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 2079.657471
 Profits and Loss: 
--522.492551
+-712.680295
 
 
 Coin: ETH
@@ -1504,11 +1504,11 @@ High: 2242.23877
 Low: 2076.240234
 Close: 2160.768311
 Volume: 24815124419.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 2079.657471
 Profits and Loss: 
--522.492551
+-712.680295
 
 
 Coin: ETH
@@ -1520,9 +1520,9 @@ Close: 2274.547607
 Volume: 25828056268.
 SELL!
 Current positions: 
-Bought ETH at 2160.768311
+
 Profits and Loss: 
--522.492551
+-517.790159
 
 
 Coin: ETH
@@ -1532,11 +1532,11 @@ High: 2274.397461
 Low: 2081.081055
 Close: 2113.605469
 Volume: 29061701793.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 2113.605469
 Profits and Loss: 
--408.713255
+-517.790159
 
 
 Coin: ETH
@@ -1546,11 +1546,11 @@ High: 2155.596436
 Low: 2021.824829
 Close: 2150.040283
 Volume: 31796212554.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 2113.605469
 Profits and Loss: 
--408.713255
+-517.790159
 
 
 Coin: ETH
@@ -1562,9 +1562,9 @@ Close: 2226.114258
 Volume: 17433361641.
 SELL!
 Current positions: 
-Bought ETH at 2150.040283
+
 Profits and Loss: 
--408.713255
+-405.28137
 
 
 Coin: ETH
@@ -1574,11 +1574,11 @@ High: 2384.286865
 Low: 2190.837646
 Close: 2321.724121
 Volume: 18787107473.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 2321.724121
 Profits and Loss: 
--332.63928
+-405.28137
 
 
 Coin: ETH
@@ -1588,11 +1588,11 @@ High: 2321.922852
 Low: 2163.041504
 Close: 2198.58252
 Volume: 20103794829.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 2321.724121
 Profits and Loss: 
--332.63928
+-405.28137
 
 
 Coin: ETH
@@ -1604,9 +1604,9 @@ Close: 2324.679443
 Volume: 20891861314.
 SELL!
 Current positions: 
-Bought ETH at 2198.58252
+
 Profits and Loss: 
--332.63928
+-402.326048
 
 
 Coin: ETH
@@ -1616,11 +1616,11 @@ High: 2403.773438
 Low: 2298.026855
 Close: 2315.161865
 Volume: 22398345285.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 2315.161865
 Profits and Loss: 
--206.542357
+-402.326048
 
 
 Coin: ETH
@@ -1630,11 +1630,11 @@ High: 2324.006836
 Low: 2089.414307
 Close: 2120.026367
 Volume: 23188123689.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 2315.161865
 Profits and Loss: 
--206.542357
+-402.326048
 
 
 Coin: ETH
@@ -1646,9 +1646,9 @@ Close: 2146.692383
 Volume: 23029574602.
 SELL!
 Current positions: 
-Bought ETH at 2120.026367
+
 Profits and Loss: 
--206.542357
+-570.79553
 
 
 Coin: ETH
@@ -1658,11 +1658,11 @@ High: 2190.124023
 Low: 2081.923584
 Close: 2111.403564
 Volume: 17581542471.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 2111.403564
 Profits and Loss: 
--179.876341
+-570.79553
 
 
 Coin: ETH
@@ -1672,11 +1672,11 @@ High: 2172.65332
 Low: 2083.803711
 Close: 2139.664795
 Volume: 14705386138.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 2111.403564
 Profits and Loss: 
--179.876341
+-570.79553
 
 
 Coin: ETH
@@ -1688,9 +1688,9 @@ Close: 2036.721069
 Volume: 17768129077.
 SELL!
 Current positions: 
-Bought ETH at 2139.664795
+
 Profits and Loss: 
--179.876341
+-645.478025
 
 
 Coin: ETH
@@ -1700,11 +1700,11 @@ High: 2040.693604
 Low: 1922.577881
 Close: 1940.083984
 Volume: 16621628658.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 1940.083984
 Profits and Loss: 
--282.820067
+-645.478025
 
 
 Coin: ETH
@@ -1714,11 +1714,11 @@ High: 2015.107422
 Low: 1869.223145
 Close: 1994.331299
 Volume: 17342819679.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 1940.083984
 Profits and Loss: 
--282.820067
+-645.478025
 
 
 Coin: ETH
@@ -1730,9 +1730,9 @@ Close: 1911.175659
 Volume: 15688092552.
 SELL!
 Current positions: 
-Bought ETH at 1994.331299
+
 Profits and Loss: 
--282.820067
+-674.38635
 
 
 Coin: ETH
@@ -1742,11 +1742,11 @@ High: 1959.696289
 Low: 1853.590332
 Close: 1880.382935
 Volume: 14884569147.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 1880.382935
 Profits and Loss: 
--365.975707
+-674.38635
 
 
 Coin: ETH
@@ -1756,11 +1756,11 @@ High: 1917.5979
 Low: 1855.59082
 Close: 1898.825195
 Volume: 13364282076.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 1880.382935
 Profits and Loss: 
--365.975707
+-674.38635
 
 
 Coin: ETH
@@ -1772,9 +1772,9 @@ Close: 1895.552124
 Volume: 13791868728.
 SELL!
 Current positions: 
-Bought ETH at 1898.825195
+
 Profits and Loss: 
--365.975707
+-659.217161
 
 
 Coin: ETH
@@ -1784,11 +1784,11 @@ High: 1916.118042
 Low: 1807.909912
 Close: 1817.296631
 Volume: 14157735481.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 1817.296631
 Profits and Loss: 
--369.248778
+-659.217161
 
 
 Coin: ETH
@@ -1798,11 +1798,11 @@ High: 1836.998047
 Low: 1722.050781
 Close: 1787.510742
 Volume: 17368597636.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 1817.296631
 Profits and Loss: 
--369.248778
+-659.217161
 
 
 Coin: ETH
@@ -1814,9 +1814,9 @@ Close: 1990.970825
 Volume: 21253359756.
 SELL!
 Current positions: 
-Bought ETH at 1787.510742
+
 Profits and Loss: 
--369.248778
+-485.542967
 
 
 Coin: ETH
@@ -1826,11 +1826,11 @@ High: 2044.116455
 Low: 1954.297852
 Close: 2025.202759
 Volume: 17495480331.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 2025.202759
 Profits and Loss: 
--165.788695
+-485.542967
 
 
 Coin: ETH
@@ -1840,11 +1840,11 @@ High: 2129.441162
 Low: 2000.436279
 Close: 2124.776611
 Volume: 16200392492.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 2025.202759
 Profits and Loss: 
--165.788695
+-485.542967
 
 
 Coin: ETH
@@ -1856,9 +1856,9 @@ Close: 2189.21875
 Volume: 16057446601.
 SELL!
 Current positions: 
-Bought ETH at 2124.776611
+
 Profits and Loss: 
--165.788695
+-321.526976
 
 
 Coin: ETH
@@ -1868,11 +1868,11 @@ High: 2194.438232
 Low: 2108.829834
 Close: 2191.373779
 Volume: 14566483636.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 2191.373779
 Profits and Loss: 
--101.346556
+-321.526976
 
 
 Coin: ETH
@@ -1882,11 +1882,11 @@ High: 2428.817139
 Low: 2177.32959
 Close: 2233.366699
 Volume: 29614324233.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 2191.373779
 Profits and Loss: 
--101.346556
+-321.526976
 
 
 Coin: ETH
@@ -1898,9 +1898,9 @@ Close: 2298.333496
 Volume: 23067480378.
 SELL!
 Current positions: 
-Bought ETH at 2233.366699
+
 Profits and Loss: 
--101.346556
+-214.567259
 
 
 Coin: ETH
@@ -1910,11 +1910,11 @@ High: 2341.777832
 Low: 2250.914063
 Close: 2296.54541
 Volume: 18991302378.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 2296.54541
 Profits and Loss: 
--36.379759
+-214.567259
 
 
 Coin: ETH
@@ -1924,11 +1924,11 @@ High: 2396.451904
 Low: 2273.404785
 Close: 2380.956787
 Volume: 16313373113.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 2296.54541
 Profits and Loss: 
--36.379759
+-214.567259
 
 
 Coin: ETH
@@ -1940,9 +1940,9 @@ Close: 2466.961426
 Volume: 20212848934.
 SELL!
 Current positions: 
-Bought ETH at 2380.956787
+
 Profits and Loss: 
--36.379759
+-44.151243
 
 
 Coin: ETH
@@ -1952,11 +1952,11 @@ High: 2551.161133
 Low: 2423.816162
 Close: 2536.209961
 Volume: 18001710283.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 2536.209961
 Profits and Loss: 
-49.62488
+-44.151243
 
 
 Coin: ETH
@@ -1966,11 +1966,11 @@ High: 2695.429443
 Low: 2520.931885
 Close: 2561.852051
 Volume: 22697987055.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 2536.209961
 Profits and Loss: 
-49.62488
+-44.151243
 
 
 Coin: ETH
@@ -1982,9 +1982,9 @@ Close: 2610.15332
 Volume: 22162754104.
 SELL!
 Current positions: 
-Bought ETH at 2561.852051
+
 Profits and Loss: 
-49.62488
+29.792116
 
 
 Coin: ETH
@@ -1994,11 +1994,11 @@ High: 2630.314209
 Low: 2449.353516
 Close: 2502.349609
 Volume: 22696753413.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 2502.349609
 Profits and Loss: 
-97.926149
+29.792116
 
 
 Coin: ETH
@@ -2008,11 +2008,11 @@ High: 2764.443604
 Low: 2463.469482
 Close: 2724.619873
 Volume: 25038698173.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 2502.349609
 Profits and Loss: 
-97.926149
+29.792116
 
 
 Coin: ETH
@@ -2024,9 +2024,9 @@ Close: 2827.328857
 Volume: 31057928075.
 SELL!
 Current positions: 
-Bought ETH at 2724.619873
+
 Profits and Loss: 
-97.926149
+354.771364
 
 
 Coin: ETH
@@ -2036,11 +2036,11 @@ High: 2944.90332
 Low: 2727.792725
 Close: 2890.94165
 Volume: 26528577879.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 2890.94165
 Profits and Loss: 
-200.635133
+354.771364
 
 
 Coin: ETH
@@ -2050,11 +2050,11 @@ High: 3170.229736
 Low: 2868.535645
 Close: 3157.23877
 Volume: 33081467129.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 2890.94165
 Profits and Loss: 
-200.635133
+354.771364
 
 
 Coin: ETH
@@ -2066,9 +2066,9 @@ Close: 3013.732666
 Volume: 28433638008.
 SELL!
 Current positions: 
-Bought ETH at 3157.23877
+
 Profits and Loss: 
-200.635133
+477.56238
 
 
 Coin: ETH
@@ -2078,11 +2078,11 @@ High: 3185.701172
 Low: 2900.926025
 Close: 3167.856201
 Volume: 31983260936.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 3167.856201
 Profits and Loss: 
-57.129029
+477.56238
 
 
 Coin: ETH
@@ -2092,11 +2092,11 @@ High: 3228.940674
 Low: 3059.229004
 Close: 3141.691162
 Volume: 27605221710.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 3167.856201
 Profits and Loss: 
-57.129029
+477.56238
 
 
 Coin: ETH
@@ -2108,9 +2108,9 @@ Close: 3164.245117
 Volume: 26729035052.
 SELL!
 Current positions: 
-Bought ETH at 3141.691162
+
 Profits and Loss: 
-57.129029
+473.951296
 
 
 Coin: ETH
@@ -2120,11 +2120,11 @@ High: 3236.314697
 Low: 2984.166992
 Close: 3043.414307
 Volume: 25403699845.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 3043.414307
 Profits and Loss: 
-79.682984
+473.951296
 
 
 Coin: ETH
@@ -2134,11 +2134,11 @@ High: 3324.671631
 Low: 3037.676025
 Close: 3322.21167
 Volume: 23868866254.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 3043.414307
 Profits and Loss: 
-79.682984
+473.951296
 
 
 Coin: ETH
@@ -2150,9 +2150,9 @@ Close: 3265.443359
 Volume: 19860862133.
 SELL!
 Current positions: 
-Bought ETH at 3322.21167
+
 Profits and Loss: 
-79.682984
+695.980348
 
 
 Coin: ETH
@@ -2162,11 +2162,11 @@ High: 3320.084229
 Low: 3117.791748
 Close: 3310.50415
 Volume: 22166205051.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 3310.50415
 Profits and Loss: 
-22.914673
+695.980348
 
 
 Coin: ETH
@@ -2176,11 +2176,11 @@ High: 3333.994873
 Low: 3139.778564
 Close: 3156.509521
 Volume: 23080039949.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 3310.50415
 Profits and Loss: 
-22.914673
+695.980348
 
 
 Coin: ETH
@@ -2192,9 +2192,9 @@ Close: 3014.845947
 Volume: 25509056745.
 SELL!
 Current positions: 
-Bought ETH at 3156.509521
+
 Profits and Loss: 
-22.914673
+400.322145
 
 
 Coin: ETH
@@ -2204,11 +2204,11 @@ High: 3124.976074
 Low: 2959.02832
 Close: 3020.089844
 Volume: 21539248425.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 3020.089844
 Profits and Loss: 
--118.748901
+400.322145
 
 
 Coin: ETH
@@ -2218,11 +2218,11 @@ High: 3184.435547
 Low: 2963.150146
 Close: 3182.702148
 Volume: 19546290360.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 3020.089844
 Profits and Loss: 
--118.748901
+400.322145
 
 
 Coin: ETH
@@ -2234,9 +2234,9 @@ Close: 3286.935303
 Volume: 20885619828.
 SELL!
 Current positions: 
-Bought ETH at 3182.702148
+
 Profits and Loss: 
--118.748901
+667.167604
 
 
 Coin: ETH
@@ -2246,11 +2246,11 @@ High: 3307.351563
 Low: 3209.866211
 Close: 3226.083984
 Volume: 18113977628.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 3226.083984
 Profits and Loss: 
--14.515746
+667.167604
 
 
 Coin: ETH
@@ -2260,11 +2260,11 @@ High: 3272.733154
 Low: 3142.00708
 Close: 3242.115479
 Volume: 15983278460.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 3226.083984
 Profits and Loss: 
--14.515746
+667.167604
 
 
 Coin: ETH
@@ -2276,9 +2276,9 @@ Close: 3319.257324
 Volume: 20511110509.
 SELL!
 Current positions: 
-Bought ETH at 3242.115479
+
 Profits and Loss: 
--14.515746
+760.340944
 
 
 Coin: ETH
@@ -2288,11 +2288,11 @@ High: 3358.688232
 Low: 3154.121338
 Close: 3172.456299
 Volume: 20131028906.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 3172.456299
 Profits and Loss: 
-62.626099
+760.340944
 
 
 Coin: ETH
@@ -2302,11 +2302,11 @@ High: 3248.727295
 Low: 3086.11499
 Close: 3224.915283
 Volume: 18902728235.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 3172.456299
 Profits and Loss: 
-62.626099
+760.340944
 
 
 Coin: ETH
@@ -2318,9 +2318,9 @@ Close: 3100.325439
 Volume: 17405668117.
 SELL!
 Current positions: 
-Bought ETH at 3224.915283
+
 Profits and Loss: 
-62.626099
+688.210084
 
 
 Coin: ETH
@@ -2330,11 +2330,11 @@ High: 3281.840576
 Low: 3064.485107
 Close: 3270.60083
 Volume: 18489602004.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 3270.60083
 Profits and Loss: 
--61.963745
+688.210084
 
 
 Coin: ETH
@@ -2344,11 +2344,11 @@ High: 3284.845947
 Low: 3217.403564
 Close: 3244.40332
 Volume: 13709633698.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 3270.60083
 Profits and Loss: 
--61.963745
+688.210084
 
 
 Coin: ETH
@@ -2360,9 +2360,9 @@ Close: 3227.002686
 Volume: 13296586731.
 SELL!
 Current positions: 
-Bought ETH at 3244.40332
+
 Profits and Loss: 
--61.963745
+644.61194
 
 
 Coin: ETH
@@ -2372,11 +2372,11 @@ High: 3346.581055
 Low: 3151.44458
 Close: 3224.374268
 Volume: 19306924485.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 3224.374268
 Profits and Loss: 
--79.364379
+644.61194
 
 
 Coin: ETH
@@ -2386,11 +2386,11 @@ High: 3466.992188
 Low: 3195.216553
 Close: 3433.732666
 Volume: 27280502987.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 3224.374268
 Profits and Loss: 
--79.364379
+644.61194
 
 
 Coin: ETH
@@ -2402,9 +2402,9 @@ Close: 3834.828125
 Volume: 30070890104.
 SELL!
 Current positions: 
-Bought ETH at 3433.732666
+
 Profits and Loss: 
--79.364379
+1255.065797
 
 
 Coin: ETH
@@ -2414,11 +2414,11 @@ High: 3830.711426
 Low: 3726.750488
 Close: 3790.98999
 Volume: 24387397330.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 3790.98999
 Profits and Loss: 
-321.73108
+1255.065797
 
 
 Coin: ETH
@@ -2428,11 +2428,11 @@ High: 4022.469238
 Low: 3712.678223
 Close: 3940.614746
 Volume: 26207765094.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 3790.98999
 Profits and Loss: 
-321.73108
+1255.065797
 
 
 Coin: ETH
@@ -2444,9 +2444,9 @@ Close: 3887.828369
 Volume: 20806963328.
 SELL!
 Current positions: 
-Bought ETH at 3940.614746
+
 Profits and Loss: 
-321.73108
+1351.904176
 
 
 Coin: ETH
@@ -2456,11 +2456,11 @@ High: 3979.186523
 Low: 3838.487305
 Close: 3952.133545
 Volume: 18371468576.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 3952.133545
 Profits and Loss: 
-268.944703
+1351.904176
 
 
 Coin: ETH
@@ -2470,11 +2470,11 @@ High: 3968.426514
 Low: 3868.994385
 Close: 3928.379395
 Volume: 18674691198.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 3952.133545
 Profits and Loss: 
-268.944703
+1351.904176
 
 
 Coin: ETH
@@ -2486,9 +2486,9 @@ Close: 3426.394287
 Volume: 39131346397.
 SELL!
 Current positions: 
-Bought ETH at 3928.379395
+
 Profits and Loss: 
-268.944703
+826.164918
 
 
 Coin: ETH
@@ -2498,11 +2498,11 @@ High: 3559.121338
 Low: 3224.764893
 Close: 3497.315186
 Volume: 31738430771.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 3497.315186
 Profits and Loss: 
--233.040405
+826.164918
 
 
 Coin: ETH
@@ -2512,11 +2512,11 @@ High: 3562.992676
 Low: 3400.51709
 Close: 3427.340088
 Volume: 24118055831.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 3497.315186
 Profits and Loss: 
--233.040405
+826.164918
 
 
 Coin: ETH
@@ -2528,9 +2528,9 @@ Close: 3211.505859
 Volume: 22355974097.
 SELL!
 Current positions: 
-Bought ETH at 3427.340088
+
 Profits and Loss: 
--233.040405
+540.355591
 
 
 Coin: ETH
@@ -2540,11 +2540,11 @@ High: 3346.526367
 Low: 3208.961914
 Close: 3270.278076
 Volume: 18627122934.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 3270.278076
 Profits and Loss: 
--448.874634
+540.355591
 
 
 Coin: ETH
@@ -2554,11 +2554,11 @@ High: 3462.468262
 Low: 3235.109375
 Close: 3410.134521
 Volume: 16810411424.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 3270.278076
 Profits and Loss: 
--448.874634
+540.355591
 
 
 Coin: ETH
@@ -2570,9 +2570,9 @@ Close: 3285.511719
 Volume: 22721552948.
 SELL!
 Current positions: 
-Bought ETH at 3410.134521
+
 Profits and Loss: 
--448.874634
+555.589234
 
 
 Coin: ETH
@@ -2582,11 +2582,11 @@ High: 3429.169678
 Low: 3273.630859
 Close: 3429.169678
 Volume: 19125420848.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 3429.169678
 Profits and Loss: 
--573.497436
+555.589234
 
 
 Coin: ETH
@@ -2596,11 +2596,11 @@ High: 3615.282715
 Low: 3365.913086
 Close: 3615.282715
 Volume: 17548551804.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 3429.169678
 Profits and Loss: 
--573.497436
+555.589234
 
 
 Coin: ETH
@@ -2612,9 +2612,9 @@ Close: 3571.294922
 Volume: 20093903064.
 SELL!
 Current positions: 
-Bought ETH at 3615.282715
+
 Profits and Loss: 
--573.497436
+697.714478
 
 
 Coin: ETH
@@ -2624,11 +2624,11 @@ High: 3589.305176
 Low: 3356.449951
 Close: 3398.538818
 Volume: 17722363229.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 3398.538818
 Profits and Loss: 
--617.485229
+697.714478
 
 
 Coin: ETH
@@ -2638,11 +2638,11 @@ High: 3540.807617
 Low: 3371.892334
 Close: 3432.018311
 Volume: 15995220233.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 3398.538818
 Profits and Loss: 
--617.485229
+697.714478
 
 
 Coin: ETH
@@ -2654,9 +2654,9 @@ Close: 3329.447998
 Volume: 14257609743.
 SELL!
 Current positions: 
-Bought ETH at 3432.018311
+
 Profits and Loss: 
--617.485229
+628.623658
 
 
 Coin: ETH
@@ -2666,11 +2666,11 @@ High: 3343.325439
 Low: 2940.839111
 Close: 2958.993408
 Volume: 27371684581.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 2958.993408
 Profits and Loss: 
--720.055542
+628.623658
 
 
 Coin: ETH
@@ -2680,11 +2680,11 @@ High: 3101.69751
 Low: 2676.407471
 Close: 2764.431152
 Volume: 30405062665.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 2958.993408
 Profits and Loss: 
--720.055542
+628.623658
 
 
 Coin: ETH
@@ -2696,9 +2696,9 @@ Close: 3077.86792
 Volume: 23742102645.
 SELL!
 Current positions: 
-Bought ETH at 2764.431152
+
 Profits and Loss: 
--720.055542
+747.49817
 
 
 Coin: ETH
@@ -2708,11 +2708,11 @@ High: 3173.544678
 Low: 3038.0979
 Close: 3155.523682
 Volume: 18516291047.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 3155.523682
 Profits and Loss: 
--406.618774
+747.49817
 
 
 Coin: ETH
@@ -2722,11 +2722,11 @@ High: 3159.644043
 Low: 2747.337646
 Close: 2931.669189
 Volume: 25595422789.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 3155.523682
 Profits and Loss: 
--406.618774
+747.49817
 
 
 Coin: ETH
@@ -2738,9 +2738,9 @@ Close: 2925.565674
 Volume: 18932786754.
 SELL!
 Current positions: 
-Bought ETH at 2931.669189
+
 Profits and Loss: 
--406.618774
+517.540162
 
 
 Coin: ETH
@@ -2750,11 +2750,11 @@ High: 3114.857422
 Low: 2744.583008
 Close: 3062.265381
 Volume: 21172766310.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 3062.265381
 Profits and Loss: 
--412.722289
+517.540162
 
 
 Coin: ETH
@@ -2764,11 +2764,11 @@ High: 3163.665039
 Low: 2932.692871
 Close: 2934.138916
 Volume: 19164053681.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 3062.265381
 Profits and Loss: 
--412.722289
+517.540162
 
 
 Coin: ETH
@@ -2780,9 +2780,9 @@ Close: 2807.296631
 Volume: 16895079070.
 SELL!
 Current positions: 
-Bought ETH at 2934.138916
+
 Profits and Loss: 
--412.722289
+262.571412
 
 
 Coin: ETH
@@ -2792,11 +2792,11 @@ High: 2946.881348
 Low: 2786.988281
 Close: 2853.143311
 Volume: 15763456158.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 2853.143311
 Profits and Loss: 
--539.564574
+262.571412
 
 
 Coin: ETH
@@ -2806,11 +2806,11 @@ High: 3046.519531
 Low: 2840.289551
 Close: 3001.678955
 Volume: 17661065099.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 2853.143311
 Profits and Loss: 
--539.564574
+262.571412
 
 
 Coin: ETH
@@ -2822,9 +2822,9 @@ Close: 3307.516113
 Volume: 22307625573.
 SELL!
 Current positions: 
-Bought ETH at 3001.678955
+
 Profits and Loss: 
--539.564574
+716.944214
 
 
 Coin: ETH
@@ -2834,11 +2834,11 @@ High: 3464.837402
 Low: 3260.027588
 Close: 3391.694336
 Volume: 19202671704.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 3391.694336
 Profits and Loss: 
--233.727416
+716.944214
 
 
 Coin: ETH
@@ -2848,11 +2848,11 @@ High: 3484.605713
 Low: 3348.120117
 Close: 3418.358643
 Volume: 15516566862.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 3391.694336
 Profits and Loss: 
--233.727416
+716.944214
 
 
 Coin: ETH
@@ -2864,9 +2864,9 @@ Close: 3380.089111
 Volume: 17747154101.
 SELL!
 Current positions: 
-Bought ETH at 3418.358643
+
 Profits and Loss: 
--233.727416
+705.338989
 
 
 Coin: ETH
@@ -2876,11 +2876,11 @@ High: 3541.45166
 Low: 3365.817627
 Close: 3518.518555
 Volume: 16632591670.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 3518.518555
 Profits and Loss: 
--271.996948
+705.338989
 
 
 Coin: ETH
@@ -2890,11 +2890,11 @@ High: 3622.55127
 Low: 3354.469727
 Close: 3580.562012
 Volume: 21855226591.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 3518.518555
 Profits and Loss: 
--271.996948
+705.338989
 
 
 Coin: ETH
@@ -2906,9 +2906,9 @@ Close: 3587.974854
 Volume: 19090322927.
 SELL!
 Current positions: 
-Bought ETH at 3580.562012
+
 Profits and Loss: 
--271.996948
+774.795288
 
 
 Coin: ETH
@@ -2918,11 +2918,11 @@ High: 3667.95752
 Low: 3547.828125
 Close: 3563.759277
 Volume: 16222029488.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 3563.759277
 Profits and Loss: 
--264.584106
+774.795288
 
 
 Coin: ETH
@@ -2932,11 +2932,11 @@ High: 3628.237305
 Low: 3544.640381
 Close: 3575.716797
 Volume: 12707036942.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 3563.759277
 Profits and Loss: 
--264.584106
+774.795288
 
 
 Coin: ETH
@@ -2948,9 +2948,9 @@ Close: 3425.852783
 Volume: 16171746693.
 SELL!
 Current positions: 
-Bought ETH at 3575.716797
+
 Profits and Loss: 
--264.584106
+636.888794
 
 
 Coin: ETH
@@ -2960,11 +2960,11 @@ High: 3622.289551
 Low: 3385.761719
 Close: 3545.354004
 Volume: 18579189588.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 3545.354004
 Profits and Loss: 
--414.44812
+636.888794
 
 
 Coin: ETH
@@ -2974,11 +2974,11 @@ High: 3546.477783
 Low: 3407.338135
 Close: 3492.573242
 Volume: 18109578443.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 3545.354004
 Profits and Loss: 
--414.44812
+636.888794
 
 
 Coin: ETH
@@ -2990,9 +2990,9 @@ Close: 3606.20166
 Volume: 16211275589.
 SELL!
 Current positions: 
-Bought ETH at 3492.573242
+
 Profits and Loss: 
--414.44812
+697.73645
 
 
 Coin: ETH
@@ -3002,11 +3002,11 @@ High: 3819.258545
 Low: 3590.275146
 Close: 3786.01416
 Volume: 19443499909.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 3786.01416
 Profits and Loss: 
--300.819702
+697.73645
 
 
 Coin: ETH
@@ -3016,11 +3016,11 @@ High: 3895.466309
 Low: 3735.363525
 Close: 3862.634766
 Volume: 20966841512.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 3786.01416
 Profits and Loss: 
--300.819702
+697.73645
 
 
 Coin: ETH
@@ -3032,9 +3032,9 @@ Close: 3830.38208
 Volume: 16578095629.
 SELL!
 Current positions: 
-Bought ETH at 3862.634766
+
 Profits and Loss: 
--300.819702
+742.10437
 
 
 Coin: ETH
@@ -3044,11 +3044,11 @@ High: 3914.897949
 Low: 3660.723389
 Close: 3847.104492
 Volume: 15908090346.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 3847.104492
 Profits and Loss: 
--333.072388
+742.10437
 
 
 Coin: ETH
@@ -3058,11 +3058,11 @@ High: 3888.209229
 Low: 3686.750488
 Close: 3748.760254
 Volume: 17386204158.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 3847.104492
 Profits and Loss: 
--333.072388
+742.10437
 
 
 Coin: ETH
@@ -3074,9 +3074,9 @@ Close: 3877.650879
 Volume: 15998757133.
 SELL!
 Current positions: 
-Bought ETH at 3748.760254
+
 Profits and Loss: 
--333.072388
+772.650757
 
 
 Coin: ETH
@@ -3086,11 +3086,11 @@ High: 4167.472168
 Low: 3833.288086
 Close: 4155.992188
 Volume: 20338319988.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 4155.992188
 Profits and Loss: 
--204.181763
+772.650757
 
 
 Coin: ETH
@@ -3100,11 +3100,11 @@ High: 4366.088379
 Low: 4032.483887
 Close: 4054.322754
 Volume: 28220661820.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 4155.992188
 Profits and Loss: 
--204.181763
+772.650757
 
 
 Coin: ETH
@@ -3116,9 +3116,9 @@ Close: 3970.181885
 Volume: 19432937968.
 SELL!
 Current positions: 
-Bought ETH at 4054.322754
+
 Profits and Loss: 
--204.181763
+586.840454
 
 
 Coin: ETH
@@ -3128,11 +3128,11 @@ High: 4171.663574
 Low: 3944.631836
 Close: 4171.663574
 Volume: 14781537792.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 4171.663574
 Profits and Loss: 
--288.322632
+586.840454
 
 
 Coin: ETH
@@ -3142,11 +3142,11 @@ High: 4185.729492
 Low: 3967.120361
 Close: 4087.903076
 Volume: 14978083638.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 4171.663574
 Profits and Loss: 
--288.322632
+586.840454
 
 
 Coin: ETH
@@ -3158,9 +3158,9 @@ Close: 4217.876953
 Volume: 15995727040.
 SELL!
 Current positions: 
-Bought ETH at 4087.903076
+
 Profits and Loss: 
--288.322632
+633.053833
 
 
 Coin: ETH
@@ -3170,11 +3170,11 @@ High: 4289.131348
 Low: 4106.82373
 Close: 4131.102051
 Volume: 17157714562.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 4131.102051
 Profits and Loss: 
--158.348755
+633.053833
 
 
 Coin: ETH
@@ -3184,11 +3184,11 @@ High: 4299.152832
 Low: 3930.257324
 Close: 3930.257324
 Volume: 26219530404.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 4131.102051
 Profits and Loss: 
--158.348755
+633.053833
 
 
 Coin: ETH
@@ -3200,9 +3200,9 @@ Close: 4287.318848
 Volume: 25958154575.
 SELL!
 Current positions: 
-Bought ETH at 3930.257324
+
 Profits and Loss: 
--158.348755
+789.27063
 
 
 Coin: ETH
@@ -3212,11 +3212,11 @@ High: 4455.735352
 Low: 4271.70752
 Close: 4414.746582
 Volume: 22967641914.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 4414.746582
 Profits and Loss: 
-198.712769
+789.27063
 
 
 Coin: ETH
@@ -3226,11 +3226,11 @@ High: 4426.848633
 Low: 4252.494141
 Close: 4325.650391
 Volume: 14615490626.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 4414.746582
 Profits and Loss: 
-198.712769
+789.27063
 
 
 Coin: ETH
@@ -3242,9 +3242,9 @@ Close: 4288.074219
 Volume: 17498160238.
 SELL!
 Current positions: 
-Bought ETH at 4325.650391
+
 Profits and Loss: 
-198.712769
+662.598267
 
 
 Coin: ETH
@@ -3254,11 +3254,11 @@ High: 4377.322266
 Low: 4160.966797
 Close: 4324.626953
 Volume: 17985288261.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 4324.626953
 Profits and Loss: 
-161.136597
+662.598267
 
 
 Coin: ETH
@@ -3268,11 +3268,11 @@ High: 4599.948242
 Low: 4288.686523
 Close: 4584.798828
 Volume: 20794448222.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 4324.626953
 Profits and Loss: 
-161.136597
+662.598267
 
 
 Coin: ETH
@@ -3284,9 +3284,9 @@ Close: 4607.193848
 Volume: 21220463155.
 SELL!
 Current positions: 
-Bought ETH at 4584.798828
+
 Profits and Loss: 
-161.136597
+945.165162
 
 
 Coin: ETH
@@ -3296,11 +3296,11 @@ High: 4606.516113
 Low: 4426.622559
 Close: 4537.324219
 Volume: 18415244464.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 4537.324219
 Profits and Loss: 
-183.531617
+945.165162
 
 
 Coin: ETH
@@ -3310,11 +3310,11 @@ High: 4570.895996
 Low: 4447.487305
 Close: 4486.243164
 Volume: 15086003586.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 4537.324219
 Profits and Loss: 
-183.531617
+945.165162
 
 
 Coin: ETH
@@ -3326,9 +3326,9 @@ Close: 4521.581055
 Volume: 14429076700.
 SELL!
 Current positions: 
-Bought ETH at 4486.243164
+
 Profits and Loss: 
-183.531617
+929.421998
 
 
 Coin: ETH
@@ -3338,11 +3338,11 @@ High: 4640.921875
 Low: 4510.984375
 Close: 4620.554688
 Volume: 13541376033.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 4620.554688
 Profits and Loss: 
-218.869508
+929.421998
 
 
 Coin: ETH
@@ -3352,11 +3352,11 @@ High: 4822.363281
 Low: 4619.649414
 Close: 4812.087402
 Volume: 19290896267.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 4620.554688
 Profits and Loss: 
-218.869508
+929.421998
 
 
 Coin: ETH
@@ -3368,9 +3368,9 @@ Close: 4735.068848
 Volume: 20834172627.
 SELL!
 Current positions: 
-Bought ETH at 4812.087402
+
 Profits and Loss: 
-218.869508
+1043.936158
 
 
 Coin: ETH
@@ -3380,11 +3380,11 @@ High: 4859.50293
 Low: 4485.093262
 Close: 4636.174316
 Volume: 22748160545.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 4636.174316
 Profits and Loss: 
-141.850954
+1043.936158
 
 
 Coin: ETH
@@ -3394,11 +3394,11 @@ High: 4778.059082
 Low: 4580.990234
 Close: 4730.384277
 Volume: 17933201129.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 4636.174316
 Profits and Loss: 
-141.850954
+1043.936158
 
 
 Coin: ETH
@@ -3410,9 +3410,9 @@ Close: 4667.115234
 Volume: 18316060208.
 SELL!
 Current positions: 
-Bought ETH at 4730.384277
+
 Profits and Loss: 
-141.850954
+1074.877076
 
 
 Coin: ETH
@@ -3422,11 +3422,11 @@ High: 4702.115234
 Low: 4582.180664
 Close: 4651.460449
 Volume: 14457436261.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 4651.460449
 Profits and Loss: 
-78.581911
+1074.877076
 
 
 Coin: ETH
@@ -3436,11 +3436,11 @@ High: 4689.842773
 Low: 4516.935547
 Close: 4626.358887
 Volume: 12172962219.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 4651.460449
 Profits and Loss: 
-78.581911
+1074.877076
 
 
 Coin: ETH
@@ -3452,9 +3452,9 @@ Close: 4557.503906
 Volume: 16275851299.
 SELL!
 Current positions: 
-Bought ETH at 4626.358887
+
 Profits and Loss: 
-78.581911
+980.920533
 
 
 Coin: ETH
@@ -3464,11 +3464,11 @@ High: 4891.70459
 Low: 4144.334961
 Close: 4216.365234
 Volume: 27417502801.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 4216.365234
 Profits and Loss: 
-9.72693
+980.920533
 
 
 Coin: ETH
@@ -3478,11 +3478,11 @@ High: 4300.306641
 Low: 4107.125977
 Close: 4287.59375
 Volume: 22183461850.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 4216.365234
 Profits and Loss: 
-9.72693
+980.920533
 
 
 Coin: ETH
@@ -3494,9 +3494,9 @@ Close: 4000.650879
 Volume: 21383250893.
 SELL!
 Current positions: 
-Bought ETH at 4287.59375
+
 Profits and Loss: 
-9.72693
+765.206178
 
 
 Coin: ETH
@@ -3506,11 +3506,11 @@ High: 4311.713867
 Low: 3982.91748
 Close: 4298.306641
 Volume: 20626269711.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 4298.306641
 Profits and Loss: 
--277.215941
+765.206178
 
 
 Coin: ETH
@@ -3520,11 +3520,11 @@ High: 4434.388184
 Low: 4209.242676
 Close: 4409.931152
 Volume: 15448261277.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 4298.306641
 Profits and Loss: 
--277.215941
+765.206178
 
 
 Coin: ETH
@@ -3536,9 +3536,9 @@ Close: 4269.73291
 Volume: 14094831413.
 SELL!
 Current positions: 
-Bought ETH at 4409.931152
+
 Profits and Loss: 
--277.215941
+736.632447
 
 
 Coin: ETH
@@ -3548,11 +3548,11 @@ High: 4302.022949
 Low: 4033.572266
 Close: 4088.457764
 Volume: 19752218877.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 4088.457764
 Profits and Loss: 
--417.414183
+736.632447
 
 
 Coin: ETH
@@ -3562,11 +3562,11 @@ High: 4385.483398
 Low: 4069.766602
 Close: 4340.763672
 Volume: 22133497059.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 4088.457764
 Profits and Loss: 
--417.414183
+736.632447
 
 
 Coin: ETH
@@ -3578,9 +3578,9 @@ Close: 4239.981445
 Volume: 21838037128.
 SELL!
 Current positions: 
-Bought ETH at 4340.763672
+
 Profits and Loss: 
--417.414183
+888.156128
 
 
 Coin: ETH
@@ -3590,11 +3590,11 @@ High: 4550.518066
 Low: 4249.774414
 Close: 4274.743164
 Volume: 18705358318.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 4274.743164
 Profits and Loss: 
--518.19641
+888.156128
 
 
 Coin: ETH
@@ -3604,11 +3604,11 @@ High: 4550.842285
 Low: 3933.506592
 Close: 4030.908936
 Volume: 26281795488.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 4274.743164
 Profits and Loss: 
--518.19641
+888.156128
 
 
 Coin: ETH
@@ -3620,9 +3620,9 @@ Close: 4096.912109
 Volume: 16515693874.
 SELL!
 Current positions: 
-Bought ETH at 4030.908936
+
 Profits and Loss: 
--518.19641
+710.325073
 
 
 Coin: ETH
@@ -3632,11 +3632,11 @@ High: 4297.916504
 Low: 3989.969971
 Close: 4294.453613
 Volume: 15953126340.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 4294.453613
 Profits and Loss: 
--452.193237
+710.325073
 
 
 Coin: ETH
@@ -3646,11 +3646,11 @@ High: 4460.848633
 Low: 4284.504883
 Close: 4445.10498
 Volume: 19086475837.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 4294.453613
 Profits and Loss: 
--452.193237
+710.325073
 
 
 Coin: ETH
@@ -3662,9 +3662,9 @@ Close: 4631.479004
 Volume: 28626354111.
 SELL!
 Current positions: 
-Bought ETH at 4445.10498
+
 Profits and Loss: 
--452.193237
+1047.350464
 
 
 Coin: ETH
@@ -3674,11 +3674,11 @@ High: 4780.732422
 Low: 4530.272461
 Close: 4586.990234
 Volume: 27634826695.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 4586.990234
 Profits and Loss: 
--265.819213
+1047.350464
 
 
 Coin: ETH
@@ -3688,11 +3688,11 @@ High: 4628.919922
 Low: 4441.507813
 Close: 4511.302246
 Volume: 21502671027.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 4586.990234
 Profits and Loss: 
--265.819213
+1047.350464
 
 
 Coin: ETH
@@ -3704,9 +3704,9 @@ Close: 4220.706055
 Volume: 25879591528.
 SELL!
 Current positions: 
-Bought ETH at 4511.302246
+
 Profits and Loss: 
--265.819213
+681.066285
 
 
 Coin: ETH
@@ -3716,11 +3716,11 @@ High: 4242.725586
 Low: 3525.494141
 Close: 4119.587402
 Volume: 38478999182.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 4119.587402
 Profits and Loss: 
--556.415404
+681.066285
 
 
 Coin: ETH
@@ -3730,11 +3730,11 @@ High: 4246.92334
 Low: 4040.217529
 Close: 4198.322754
 Volume: 25533062707.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 4119.587402
 Profits and Loss: 
--556.415404
+681.066285
 
 
 Coin: ETH
@@ -3746,9 +3746,9 @@ Close: 4358.737305
 Volume: 28229518513.
 SELL!
 Current positions: 
-Bought ETH at 4198.322754
+
 Profits and Loss: 
--556.415404
+920.216188
 
 
 Coin: ETH
@@ -3758,11 +3758,11 @@ High: 4428.589355
 Low: 4264.32373
 Close: 4315.061523
 Volume: 22366213354.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 4315.061523
 Profits and Loss: 
--396.000853
+920.216188
 
 
 Coin: ETH
@@ -3772,11 +3772,11 @@ High: 4453.112305
 Low: 4234.537598
 Close: 4439.35791
 Volume: 18704315119.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 4315.061523
 Profits and Loss: 
--396.000853
+920.216188
 
 
 Coin: ETH
@@ -3788,9 +3788,9 @@ Close: 4119.815918
 Volume: 22296131874.
 SELL!
 Current positions: 
-Bought ETH at 4439.35791
+
 Profits and Loss: 
--396.000853
+724.970583
 
 
 Coin: ETH
@@ -3800,11 +3800,11 @@ High: 4227.111816
 Low: 3897.767578
 Close: 3908.496094
 Volume: 28014595631.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 3908.496094
 Profits and Loss: 
--715.542845
+724.970583
 
 
 Coin: ETH
@@ -3814,11 +3814,11 @@ High: 4095.648438
 Low: 3846.054443
 Close: 4084.452393
 Volume: 19131502454.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 3908.496094
 Profits and Loss: 
--715.542845
+724.970583
 
 
 Coin: ETH
@@ -3830,9 +3830,9 @@ Close: 4134.453125
 Volume: 14057603914.
 SELL!
 Current positions: 
-Bought ETH at 4084.452393
+
 Profits and Loss: 
--715.542845
+950.927614
 
 
 Coin: ETH
@@ -3842,11 +3842,11 @@ High: 4145.955078
 Low: 3680.609131
 Close: 3784.226807
 Volume: 23999841386.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 3784.226807
 Profits and Loss: 
--665.542113
+950.927614
 
 
 Coin: ETH
@@ -3856,11 +3856,11 @@ High: 3866.633789
 Low: 3700.104736
 Close: 3745.44043
 Volume: 23836759957.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 3784.226807
 Profits and Loss: 
--665.542113
+950.927614
 
 
 Coin: ETH
@@ -3872,9 +3872,9 @@ Close: 4018.388672
 Volume: 26411188833.
 SELL!
 Current positions: 
-Bought ETH at 3745.44043
+
 Profits and Loss: 
--665.542113
+1185.089479
 
 
 Coin: ETH
@@ -3884,11 +3884,11 @@ High: 4110.368652
 Low: 3956.057129
 Close: 3962.469727
 Volume: 19825531254.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 3962.469727
 Profits and Loss: 
--392.593871
+1185.089479
 
 
 Coin: ETH
@@ -3898,11 +3898,11 @@ High: 3992.79248
 Low: 3711.424561
 Close: 3879.486572
 Volume: 23143541098.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 3962.469727
 Profits and Loss: 
--392.593871
+1185.089479
 
 
 Coin: ETH
@@ -3914,9 +3914,9 @@ Close: 3960.860107
 Volume: 19530895889.
 SELL!
 Current positions: 
-Bought ETH at 3879.486572
+
 Profits and Loss: 
--392.593871
+1183.479859
 
 
 Coin: ETH
@@ -3926,11 +3926,11 @@ High: 4018.658447
 Low: 3894.398682
 Close: 3922.592529
 Volume: 16167785597.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 3922.592529
 Profits and Loss: 
--311.220336
+1183.479859
 
 
 Coin: ETH
@@ -3940,11 +3940,11 @@ High: 3980.098633
 Low: 3759.40332
 Close: 3933.844482
 Volume: 21589690675.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 3922.592529
 Profits and Loss: 
--311.220336
+1183.479859
 
 
 Coin: ETH
@@ -3956,9 +3956,9 @@ Close: 4020.26001
 Volume: 16388555198.
 SELL!
 Current positions: 
-Bought ETH at 3933.844482
+
 Profits and Loss: 
--311.220336
+1281.14734
 
 
 Coin: ETH
@@ -3968,11 +3968,11 @@ High: 4073.791504
 Low: 3947.690186
 Close: 3982.099609
 Volume: 13921756199.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 3982.099609
 Profits and Loss: 
--224.804808
+1281.14734
 
 
 Coin: ETH
@@ -3982,11 +3982,11 @@ High: 4149.026855
 Low: 3897.234375
 Close: 4108.015625
 Volume: 18007273742.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 3982.099609
 Profits and Loss: 
--224.804808
+1281.14734
 
 
 Coin: ETH
@@ -3998,9 +3998,9 @@ Close: 4047.98291
 Volume: 12769090623.
 SELL!
 Current positions: 
-Bought ETH at 4108.015625
+
 Profits and Loss: 
--224.804808
+1347.030641
 
 
 Coin: ETH
@@ -4010,11 +4010,11 @@ High: 4138.564941
 Low: 4027.927002
 Close: 4093.281006
 Volume: 10894785525.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 4093.281006
 Profits and Loss: 
--284.837523
+1347.030641
 
 
 Coin: ETH
@@ -4024,11 +4024,11 @@ High: 4105.023926
 Low: 4013.026367
 Close: 4067.328125
 Volume: 11197244172.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 4093.281006
 Profits and Loss: 
--284.837523
+1347.030641
 
 
 Coin: ETH
@@ -4040,9 +4040,9 @@ Close: 4037.547607
 Volume: 11424360002.
 SELL!
 Current positions: 
-Bought ETH at 4067.328125
+
 Profits and Loss: 
--284.837523
+1291.297242
 
 
 Coin: ETH
@@ -4052,11 +4052,11 @@ High: 4037.538086
 Low: 3769.280029
 Close: 3800.893066
 Volume: 17299472803.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 3800.893066
 Profits and Loss: 
--314.618041
+1291.297242
 
 
 Coin: ETH
@@ -4066,11 +4066,11 @@ High: 3827.981934
 Low: 3612.795898
 Close: 3628.531738
 Volume: 15722555672.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 3800.893066
 Profits and Loss: 
--314.618041
+1291.297242
 
 
 Coin: ETH
@@ -4082,9 +4082,9 @@ Close: 3713.852051
 Volume: 12925377999.
 SELL!
 Current positions: 
-Bought ETH at 3628.531738
+
 Profits and Loss: 
--314.618041
+1204.256227
 
 
 Coin: ETH
@@ -4094,11 +4094,11 @@ High: 3807.288818
 Low: 3636.869873
 Close: 3682.632813
 Volume: 14157285268.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 3682.632813
 Profits and Loss: 
--229.297728
+1204.256227
 
 
 Coin: ETH
@@ -4108,11 +4108,11 @@ High: 3769.917969
 Low: 3682.286621
 Close: 3769.697021
 Volume: 9776191466.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 3682.632813
 Profits and Loss: 
--229.297728
+1204.256227
 
 
 Coin: ETH
@@ -4124,9 +4124,9 @@ Close: 3829.564941
 Volume: 9881471548.
 SELL!
 Current positions: 
-Bought ETH at 3769.697021
+
 Profits and Loss: 
--229.297728
+1351.188355
 
 
 Coin: ETH
@@ -4136,11 +4136,11 @@ High: 3836.19873
 Low: 3698.047607
 Close: 3761.380371
 Volume: 12080777893.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 3761.380371
 Profits and Loss: 
--169.429808
+1351.188355
 
 
 Coin: ETH
@@ -4150,11 +4150,11 @@ High: 3876.785156
 Low: 3723.349854
 Close: 3794.056641
 Volume: 14030925983.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 3761.380371
 Profits and Loss: 
--169.429808
+1351.188355
 
 
 Coin: ETH
@@ -4166,9 +4166,9 @@ Close: 3550.386963
 Volume: 18061338502.
 SELL!
 Current positions: 
-Bought ETH at 3794.056641
+
 Profits and Loss: 
--169.429808
+1140.194947
 
 
 Coin: ETH
@@ -4178,11 +4178,11 @@ High: 3549.708984
 Low: 3335.376709
 Close: 3418.408203
 Volume: 24293791313.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 3418.408203
 Profits and Loss: 
--413.099486
+1140.194947
 
 
 Coin: ETH
@@ -4192,11 +4192,11 @@ High: 3420.461914
 Low: 3117.381348
 Close: 3193.210449
 Volume: 24494179209.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 3418.408203
 Profits and Loss: 
--413.099486
+1140.194947
 
 
 Coin: ETH
@@ -4208,9 +4208,9 @@ Close: 3091.972656
 Volume: 16037732700.
 SELL!
 Current positions: 
-Bought ETH at 3193.210449
+
 Profits and Loss: 
--413.099486
+813.7594
 
 
 Coin: ETH
@@ -4220,11 +4220,11 @@ High: 3206.790771
 Low: 3075.911377
 Close: 3157.751465
 Volume: 12334683863.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 3157.751465
 Profits and Loss: 
--514.337279
+813.7594
 
 
 Coin: ETH
@@ -4234,11 +4234,11 @@ High: 3177.213379
 Low: 2947.683594
 Close: 3083.0979
 Volume: 19535744145.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 3157.751465
 Profits and Loss: 
--514.337279
+813.7594
 
 
 Coin: ETH
@@ -4250,9 +4250,9 @@ Close: 3238.111572
 Volume: 15211447193.
 SELL!
 Current positions: 
-Bought ETH at 3083.0979
+
 Profits and Loss: 
--514.337279
+894.119507
 
 
 Coin: ETH
@@ -4262,11 +4262,11 @@ High: 3401.219971
 Low: 3216.718018
 Close: 3372.258301
 Volume: 16662871689.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 3372.258301
 Profits and Loss: 
--359.323607
+894.119507
 
 
 Coin: ETH
@@ -4276,11 +4276,11 @@ High: 3396.969727
 Low: 3247.91748
 Close: 3248.288574
 Volume: 15294466275.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 3372.258301
 Profits and Loss: 
--359.323607
+894.119507
 
 
 Coin: ETH
@@ -4292,9 +4292,9 @@ Close: 3310.001465
 Volume: 13562957230.
 SELL!
 Current positions: 
-Bought ETH at 3248.288574
+
 Profits and Loss: 
--359.323607
+831.862671
 
 
 Coin: ETH
@@ -4304,11 +4304,11 @@ High: 3364.537842
 Low: 3278.670898
 Close: 3330.530762
 Volume: 9619999078.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 3330.530762
 Profits and Loss: 
--297.610716
+831.862671
 
 
 Coin: ETH
@@ -4318,11 +4318,11 @@ High: 3376.401123
 Low: 3291.563721
 Close: 3350.921875
 Volume: 9505934874.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 3330.530762
 Profits and Loss: 
--297.610716
+831.862671
 
 
 Coin: ETH
@@ -4334,9 +4334,9 @@ Close: 3212.304932
 Volume: 12344309617.
 SELL!
 Current positions: 
-Bought ETH at 3350.921875
+
 Profits and Loss: 
--297.610716
+713.636841
 
 
 Coin: ETH
@@ -4346,11 +4346,11 @@ High: 3236.016113
 Low: 3096.123535
 Close: 3164.025146
 Volume: 13024154091.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 3164.025146
 Profits and Loss: 
--436.227659
+713.636841
 
 
 Coin: ETH
@@ -4360,11 +4360,11 @@ High: 3171.158447
 Low: 3055.212402
 Close: 3095.825928
 Volume: 13187424144.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 3164.025146
 Profits and Loss: 
--436.227659
+713.636841
 
 
 Coin: ETH
@@ -4376,9 +4376,9 @@ Close: 3001.120117
 Volume: 10645922764.
 SELL!
 Current positions: 
-Bought ETH at 3095.825928
+
 Profits and Loss: 
--436.227659
+550.731812
 
 
 Coin: ETH
@@ -4388,11 +4388,11 @@ High: 3029.081055
 Low: 2496.812988
 Close: 2557.931641
 Volume: 26796291874.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 2557.931641
 Profits and Loss: 
--530.93347
+550.731812
 
 
 Coin: ETH
@@ -4402,11 +4402,11 @@ High: 2615.247314
 Low: 2330.247314
 Close: 2405.181152
 Volume: 27369692036.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 2557.931641
 Profits and Loss: 
--530.93347
+550.731812
 
 
 Coin: ETH
@@ -4418,9 +4418,9 @@ Close: 2535.039063
 Volume: 16481489511.
 SELL!
 Current positions: 
-Bought ETH at 2405.181152
+
 Profits and Loss: 
--530.93347
+527.839234
 
 
 Coin: ETH
@@ -4430,11 +4430,11 @@ High: 2537.208496
 Low: 2172.30127
 Close: 2440.352295
 Volume: 28220804648.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 2440.352295
 Profits and Loss: 
--401.075559
+527.839234
 
 
 Coin: ETH
@@ -4444,11 +4444,11 @@ High: 2498.50708
 Low: 2359.384766
 Close: 2455.935059
 Volume: 16179776932.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 2440.352295
 Profits and Loss: 
--401.075559
+527.839234
 
 
 Coin: ETH
@@ -4460,9 +4460,9 @@ Close: 2468.030273
 Volume: 21229909340.
 SELL!
 Current positions: 
-Bought ETH at 2455.935059
+
 Profits and Loss: 
--401.075559
+555.517212
 
 
 Coin: ETH
@@ -4472,11 +4472,11 @@ High: 2510.45166
 Low: 2328.452148
 Close: 2423.001221
 Volume: 16126522783.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 2423.001221
 Profits and Loss: 
--388.980345
+555.517212
 
 
 Coin: ETH
@@ -4486,11 +4486,11 @@ High: 2548.778564
 Low: 2367.83374
 Close: 2547.092041
 Volume: 14666227351.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 2423.001221
 Profits and Loss: 
--388.980345
+555.517212
 
 
 Coin: ETH
@@ -4502,9 +4502,9 @@ Close: 2597.084717
 Volume: 11172062661.
 SELL!
 Current positions: 
-Bought ETH at 2547.092041
+
 Profits and Loss: 
--388.980345
+729.600708
 
 
 Coin: ETH
@@ -4514,11 +4514,11 @@ High: 2631.408447
 Low: 2550.460938
 Close: 2603.466553
 Volume: 9501221177.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 2603.466553
 Profits and Loss: 
--338.987669
+729.600708
 
 
 Coin: ETH
@@ -4528,11 +4528,11 @@ High: 2697.735352
 Low: 2489.072266
 Close: 2688.278809
 Volume: 13778234614.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 2603.466553
 Profits and Loss: 
--338.987669
+729.600708
 
 
 Coin: ETH
@@ -4544,9 +4544,9 @@ Close: 2792.117188
 Volume: 13194846235.
 SELL!
 Current positions: 
-Bought ETH at 2688.278809
+
 Profits and Loss: 
--338.987669
+918.251343
 
 
 Coin: ETH
@@ -4556,11 +4556,11 @@ High: 2802.212158
 Low: 2630.120361
 Close: 2682.854004
 Volume: 13876301217.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 2682.854004
 Profits and Loss: 
--235.14929
+918.251343
 
 
 Coin: ETH
@@ -4570,11 +4570,11 @@ High: 2712.482666
 Low: 2587.783447
 Close: 2679.162598
 Volume: 12755505065.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 2682.854004
 Profits and Loss: 
--235.14929
+918.251343
 
 
 Coin: ETH
@@ -4586,9 +4586,9 @@ Close: 2983.586914
 Volume: 18987223729.
 SELL!
 Current positions: 
-Bought ETH at 2679.162598
+
 Profits and Loss: 
--235.14929
+1218.984253
 
 
 Coin: ETH
@@ -4598,11 +4598,11 @@ High: 3054.130127
 Low: 2966.781006
 Close: 3014.648193
 Volume: 13102093957.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 3014.648193
 Profits and Loss: 
-69.275026
+1218.984253
 
 
 Coin: ETH
@@ -4612,11 +4612,11 @@ High: 3061.26123
 Low: 2965.429932
 Close: 3057.476074
 Volume: 9466018022.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 3014.648193
 Profits and Loss: 
-69.275026
+1218.984253
 
 
 Coin: ETH
@@ -4628,9 +4628,9 @@ Close: 3142.470703
 Volume: 15197063785.
 SELL!
 Current positions: 
-Bought ETH at 3057.476074
+
 Profits and Loss: 
-69.275026
+1346.806763
 
 
 Coin: ETH
@@ -4640,11 +4640,11 @@ High: 3219.472656
 Low: 3038.37793
 Close: 3122.608643
 Volume: 17136080906.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 3122.608643
 Profits and Loss: 
-154.269655
+1346.806763
 
 
 Coin: ETH
@@ -4654,11 +4654,11 @@ High: 3263.155762
 Low: 3063.160156
 Close: 3239.457031
 Volume: 13951308490.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 3122.608643
 Profits and Loss: 
-154.269655
+1346.806763
 
 
 Coin: ETH
@@ -4670,9 +4670,9 @@ Close: 3077.482178
 Volume: 18629485080.
 SELL!
 Current positions: 
-Bought ETH at 3239.457031
+
 Profits and Loss: 
-154.269655
+1301.680298
 
 
 Coin: ETH
@@ -4682,11 +4682,11 @@ High: 3127.450684
 Low: 2888.707764
 Close: 2927.383545
 Volume: 16043881065.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 2927.383545
 Profits and Loss: 
--7.705198
+1301.680298
 
 
 Coin: ETH
@@ -4696,11 +4696,11 @@ High: 2980.079346
 Low: 2870.177002
 Close: 2917.362793
 Volume: 11254355757.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 2927.383545
 Profits and Loss: 
--7.705198
+1301.680298
 
 
 Coin: ETH
@@ -4712,9 +4712,9 @@ Close: 2883.463379
 Volume: 9054963563.
 SELL!
 Current positions: 
-Bought ETH at 2917.362793
+
 Profits and Loss: 
--7.705198
+1257.760132
 
 
 Coin: ETH
@@ -4724,11 +4724,11 @@ High: 2957.963623
 Low: 2840.257568
 Close: 2933.479004
 Volume: 12164552172.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 2933.479004
 Profits and Loss: 
--41.604612
+1257.760132
 
 
 Coin: ETH
@@ -4738,11 +4738,11 @@ High: 3185.520752
 Low: 2917.857178
 Close: 3179.877197
 Volume: 13921257873.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 2933.479004
 Profits and Loss: 
--41.604612
+1257.760132
 
 
 Coin: ETH
@@ -4754,9 +4754,9 @@ Close: 3127.830078
 Volume: 12352406833.
 SELL!
 Current positions: 
-Bought ETH at 3179.877197
+
 Profits and Loss: 
--41.604612
+1452.111206
 
 
 Coin: ETH
@@ -4766,11 +4766,11 @@ High: 3154.615234
 Low: 2861.852051
 Close: 2881.481934
 Volume: 15860206214.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 2881.481934
 Profits and Loss: 
--93.651731
+1452.111206
 
 
 Coin: ETH
@@ -4780,11 +4780,11 @@ High: 2937.308594
 Low: 2761.643311
 Close: 2785.727539
 Volume: 15748173433.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 2881.481934
 Profits and Loss: 
--93.651731
+1452.111206
 
 
 Coin: ETH
@@ -4796,9 +4796,9 @@ Close: 2763.701172
 Volume: 9774183169.
 SELL!
 Current positions: 
-Bought ETH at 2785.727539
+
 Profits and Loss: 
--93.651731
+1334.330444
 
 
 Coin: ETH
@@ -4808,11 +4808,11 @@ High: 2763.756592
 Low: 2585.946289
 Close: 2628.648438
 Volume: 11641437834.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 2628.648438
 Profits and Loss: 
--115.678098
+1334.330444
 
 
 Coin: ETH
@@ -4822,11 +4822,11 @@ High: 2752.458496
 Low: 2568.254395
 Close: 2573.816162
 Volume: 18646392740.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 2628.648438
 Profits and Loss: 
--115.678098
+1334.330444
 
 
 Coin: ETH
@@ -4838,9 +4838,9 @@ Close: 2639.299316
 Volume: 16360200507.
 SELL!
 Current positions: 
-Bought ETH at 2573.816162
+
 Profits and Loss: 
--115.678098
+1344.981322
 
 
 Coin: ETH
@@ -4850,11 +4850,11 @@ High: 2741.368408
 Low: 2587.412842
 Close: 2590.359619
 Volume: 13382637240.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 2590.359619
 Profits and Loss: 
--50.194944
+1344.981322
 
 
 Coin: ETH
@@ -4864,11 +4864,11 @@ High: 2689.047607
 Low: 2308.914795
 Close: 2598.067139
 Volume: 29312342666.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 2590.359619
 Profits and Loss: 
--50.194944
+1344.981322
 
 
 Coin: ETH
@@ -4880,9 +4880,9 @@ Close: 2764.535645
 Volume: 17208902048.
 SELL!
 Current positions: 
-Bought ETH at 2598.067139
+
 Profits and Loss: 
--50.194944
+1519.157348
 
 
 Coin: ETH
@@ -4892,11 +4892,11 @@ High: 2849.424072
 Low: 2745.009033
 Close: 2781.111816
 Volume: 11724648351.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 2781.111816
 Profits and Loss: 
-116.273562
+1519.157348
 
 
 Coin: ETH
@@ -4906,11 +4906,11 @@ High: 2831.125488
 Low: 2581.615723
 Close: 2621.801758
 Volume: 16150857254.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 2781.111816
 Profits and Loss: 
-116.273562
+1519.157348
 
 
 Coin: ETH
@@ -4922,9 +4922,9 @@ Close: 2919.201172
 Volume: 19266124733.
 SELL!
 Current positions: 
-Bought ETH at 2621.801758
+
 Profits and Loss: 
-116.273562
+1657.246704
 
 
 Coin: ETH
@@ -4934,11 +4934,11 @@ High: 3029.651611
 Low: 2868.938965
 Close: 2972.485107
 Volume: 18757425786.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 2972.485107
 Profits and Loss: 
-413.672976
+1657.246704
 
 
 Coin: ETH
@@ -4948,11 +4948,11 @@ High: 3026.868164
 Low: 2919.943115
 Close: 2950.118408
 Volume: 16636517503.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 2972.485107
 Profits and Loss: 
-413.672976
+1657.246704
 
 
 Coin: ETH
@@ -4964,9 +4964,9 @@ Close: 2834.468994
 Volume: 13091199728.
 SELL!
 Current positions: 
-Bought ETH at 2950.118408
+
 Profits and Loss: 
-413.672976
+1519.230591
 
 
 Coin: ETH
@@ -4976,11 +4976,11 @@ High: 2835.17627
 Low: 2587.748291
 Close: 2617.156006
 Volume: 14496939024.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 2617.156006
 Profits and Loss: 
-298.023562
+1519.230591
 
 
 Coin: ETH
@@ -4990,11 +4990,11 @@ High: 2679.102539
 Low: 2596.98999
 Close: 2664.831055
 Volume: 8072368396.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 2617.156006
 Profits and Loss: 
-298.023562
+1519.230591
 
 
 Coin: ETH
@@ -5006,9 +5006,9 @@ Close: 2555.037354
 Volume: 8872976607.
 SELL!
 Current positions: 
-Bought ETH at 2664.831055
+
 Profits and Loss: 
-298.023562
+1457.111939
 
 
 Coin: ETH
@@ -5018,11 +5018,11 @@ High: 2639.943115
 Low: 2455.59375
 Close: 2497.77124
 Volume: 14594098731.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 2497.77124
 Profits and Loss: 
-188.229861
+1457.111939
 
 
 Coin: ETH
@@ -5032,11 +5032,11 @@ High: 2618.166016
 Low: 2489.755127
 Close: 2576.747559
 Volume: 13922922903.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 2497.77124
 Profits and Loss: 
-188.229861
+1457.111939
 
 
 Coin: ETH
@@ -5048,9 +5048,9 @@ Close: 2729.783447
 Volume: 14173665398.
 SELL!
 Current positions: 
-Bought ETH at 2576.747559
+
 Profits and Loss: 
-188.229861
+1689.124146
 
 
 Coin: ETH
@@ -5060,11 +5060,11 @@ High: 2729.116455
 Low: 2566.193115
 Close: 2608.048584
 Volume: 13292477213.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 2608.048584
 Profits and Loss: 
-341.265749
+1689.124146
 
 
 Coin: ETH
@@ -5074,11 +5074,11 @@ High: 2664.558594
 Low: 2534.688232
 Close: 2559.562988
 Volume: 12382419582.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 2608.048584
 Profits and Loss: 
-341.265749
+1689.124146
 
 
 Coin: ETH
@@ -5090,9 +5090,9 @@ Close: 2574.75415
 Volume: 6532996574.
 SELL!
 Current positions: 
-Bought ETH at 2559.562988
+
 Profits and Loss: 
-341.265749
+1655.829712
 
 
 Coin: ETH
@@ -5102,11 +5102,11 @@ High: 2594.549805
 Low: 2503.885254
 Close: 2518.94458
 Volume: 8632000379.
-WAIT!
+BUY!
 Current positions: 
-
+Bought ETH at 2518.94458
 Profits and Loss: 
-356.456911
+1655.829712
 
 
 Coin: ETH
@@ -5116,10 +5116,10 @@ High: 2602.306152
 Low: 2507.971191
 Close: 2531.611572
 Volume: 11543150592.
-BUY!
+WAIT!
 Current positions: 
-
+Bought ETH at 2518.94458
 Profits and Loss: 
-356.456911
+1655.829712
 
 

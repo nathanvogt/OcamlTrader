@@ -118,12 +118,12 @@ let init_state indic_names budget f =
    expressions from other indicator modules *)
 let new_indic_val data = function
   | RSI m ->
-      if m = 0. then RSI 50.
-      else if m = 50. then RSI 100.
+      if m = 0. then RSI 100.
+      else if m = 100. then RSI 50.
       else RSI 0. (* (RSI Rsi.update_val data) *)
   | MACD m ->
-      if m = 0. then MACD 50.
-      else if m = 50. then MACD 100.
+      if m = 0. then MACD 100.
+      else if m = 100. then MACD 50.
       else MACD 0.
 (* (MACD Macd.update_val data) *)
 
