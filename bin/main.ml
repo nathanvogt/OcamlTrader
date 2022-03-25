@@ -88,6 +88,8 @@ let rec main_loop st =
     ^ deicision_to_string decision
     ^ snd state_action_tup ^ "\n\n";
   print_string @@ snd state_action_tup ^ "\n";
+  (* TODO: figure our way to get program to "sleep" so not everything is
+     printed out at the same time*)
   (* update report *)
   match Feeder.next_day () with
   | None ->

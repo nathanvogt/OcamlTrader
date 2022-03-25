@@ -51,3 +51,19 @@ val decision_action : t -> decision -> t * string
     indicators from the main loops. Based on this decision, it returns a
     tuple with the first element being new state, and the second being a
     string representation of action executed *)
+
+val price_high : t -> string -> float
+(** [price_high st coin_name] returns high price of [coin_name] in [st]*)
+
+val price_low : t -> string -> float
+(** [price_low st coin_name] returns high price of [coin_name] in [st]*)
+
+val price_open : t -> string -> float
+(** [price_open st coin_name] returns high price of [coin_name] in [st]*)
+
+val price_close : t -> string -> float
+(** [price_close st coin_name] returns high price of [coin_name] in [st]*)
+
+val price_vol : t -> string -> float
+(** [price_volume st coin_name] returns high price of [coin_name] in
+    [st]*)

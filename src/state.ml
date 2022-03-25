@@ -113,19 +113,53 @@ let init_state indic_names budget f =
     acc_info = init_account budget;
   }
 
+(* ------- functions to access data ------- *)
+(* helper type to prevent typos when requesting specific data type *)
+type d_type =
+  | High
+  | Low
+  | Open
+  | Close
+  | Volume
+
+(* helper function retrieving data to be passed to indicators *)
+let rec get_data_aux coin (data_type : d_type) = function
+  | [] -> raise (NoSuchCoin coin)
+  | (cn, data) :: t ->
+      if cn = coin then
+        match data_type with
+        | High -> data.high
+        | Low -> data.low
+        | Open -> data.op
+        | Close -> data.close
+        | Volume -> data.volume
+      else get_data_aux coin data_type t
+
+(* TODO: @michael -- coin_name is hardcoded as "ETH" for now *)
+let price_high st coin_name = get_data_aux coin_name High st.data
+let price_low st coin_name = get_data_aux coin_name Low st.data
+let price_open st coin_name = get_data_aux coin_name Open st.data
+let price_close st coin_name = get_data_aux coin_name Close st.data
+let price_vol st coin_name = get_data_aux coin_name Volume st.data
+
 (* ------- functions to be used by main ------- *)
 (* helper function pattern matching against indic_list and calling
-   expressions from other indicator modules *)
-let new_indic_val data = function
+   expressions from other indicator modules. Passes in state as
+   parameter so getters and setters can be used. *)
+
+(* TODO: replace with calls to indicator modules *)
+(* @michael: this is where I call the indicators, will just be passing
+   in state so you can use the getter and setters defined below *)
+let new_indic_val st = function
   | RSI m ->
       if m = 0. then RSI 100.
       else if m = 100. then RSI 50.
-      else RSI 0. (* (RSI Rsi.update_val data) *)
+      else RSI 0. (* (RSI Rsi.update_val st) *)
   | MACD m ->
       if m = 0. then MACD 100.
       else if m = 100. then MACD 50.
       else MACD 0.
-(* (MACD Macd.update_val data) *)
+(* (MACD Macd.update_val st) *)
 
 (* helper function receiving new data and calling indicator functions to
    update indicator field *)
@@ -138,7 +172,7 @@ let update_data st f =
   {
     st with
     data = update_specific_coin (Feeder.coin_name f) new_data st.data;
-    indicators = update_indicators new_data st.indicators;
+    indicators = update_indicators st st.indicators;
   }
 (* later can add update acc_info as we buy/sell*)
 
