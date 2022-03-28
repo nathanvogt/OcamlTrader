@@ -151,15 +151,15 @@ let price_vol st coin_name = get_data_aux coin_name Volume st.data
 (* @michael: this is where I call the indicators, will just be passing
    in state so you can use the getter and setters defined below *)
 let new_indic_val st = function
-  | RSI m ->
-      if m = 0. then RSI 100.
-      else if m = 100. then RSI 50.
-      else RSI 0. (* (RSI Rsi.update_val st) *)
-  | MACD m ->
-      if m = 0. then MACD 100.
-      else if m = 100. then MACD 50.
+  | RSI prev_val ->
+      if prev_val = 0. then RSI 100.
+      else if prev_val = 100. then RSI 50.
+      else RSI 0. (* (RSI Rsi.update_val st prev_val) *)
+  | MACD prev_val ->
+      if prev_val = 0. then MACD 100.
+      else if prev_val = 100. then MACD 50.
       else MACD 0.
-(* (MACD Macd.update_val st) *)
+(* (MACD Macd.update_val st prev_val) *)
 
 (* helper function receiving new data and calling indicator functions to
    update indicator field *)
