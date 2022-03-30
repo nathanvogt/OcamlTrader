@@ -1,6 +1,7 @@
 include Indicator
 include Feeder
 include State
+include Unix
 
 (* ------ global variables ------ *)
 
@@ -63,12 +64,17 @@ let deicision_to_string = function
   | State.Buy -> "BUY!\n"
   | State.Wait -> "WAIT!\n"
 
+let is_valid_input input =
+  match float_of_string input with
+  | exception Failure _ -> false
+  | _ -> true
+
 (* ------ main loop ------ *)
 
 (** [main_loop state] is the repeating loop of our program that takes
     [state] from previous timestep and makes a decision, then receives
     new data from feeder and passes new state *)
-let rec main_loop st =
+let rec main_loop wait_period st =
   (* formatting *)
   print_string "\n\n";
 
@@ -88,8 +94,6 @@ let rec main_loop st =
     ^ deicision_to_string decision
     ^ snd state_action_tup ^ "\n\n";
   print_string @@ snd state_action_tup ^ "\n";
-  (* TODO: figure our way to get program to "sleep" so not everything is
-     printed out at the same time*)
   (* update report *)
   match Feeder.next_day () with
   | None ->
@@ -98,19 +102,45 @@ let rec main_loop st =
       Printf.fprintf (open_out "report.txt") "%s" !report;
       exit 0
   | Some new_data ->
-      State.update_data (fst state_action_tup) new_data |> main_loop
+      Unix.sleepf wait_period;
+      flush Stdlib.stdout;
+      State.update_data (fst state_action_tup) new_data
+      |> main_loop wait_period
+
+(* helper function setting parameters for user input *)
+let rec set_parameters () =
+  match read_line () with
+  | exception End_of_file -> ()
+  | input ->
+      if is_valid_input input then (
+        let wait_period = float_of_string input in
+        Feeder.init_reader ();
+        match Feeder.next_day () with
+        | None ->
+            print_string "This is the end of the file.";
+            exit 0
+        | Some new_data ->
+            ANSITerminal.print_string [ ANSITerminal.green ]
+              "Starting crypto trader.\n\n";
+            Unix.sleepf 1.5;
+            flush Stdlib.stdout;
+            State.init_state indicators budget new_data
+            |> main_loop wait_period)
+      else begin
+        print_string "Not a valid float. Please try again.\n";
+        print_string ">";
+        set_parameters ()
+      end
 
 (** [main ()] prompts for the game to play, then starts it. *)
-let main () =
+let rec main () =
   ANSITerminal.print_string [ ANSITerminal.red ]
-    "\n\nStarting crypto trader \n";
-  Feeder.init_reader ();
-  match Feeder.next_day () with
-  | None ->
-      print_string "This is the end of the file.";
-      exit 0
-  | Some new_data ->
-      State.init_state indicators budget new_data |> main_loop
+    "\n\nWelcome to crypto trader \n";
+  ANSITerminal.print_string [ ANSITerminal.red ]
+    "How long would you like to pause between each day? (Enter float \
+     in seconds) \n";
+  print_string ">";
+  set_parameters ()
 
 (* Execute the game engine. *)
 let () = main ()
