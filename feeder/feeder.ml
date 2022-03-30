@@ -41,3 +41,6 @@ let low d = d.low
 let volume d = d.volume
 let date d = d.date
 let coin_name d = "ETH" (* hard coded temporarily *)
+
+(* set to empty list for now *)
+let lookback (coin : string) (days : int) : float list = []
