@@ -38,6 +38,12 @@ let ema lst n =
       let first = avg (sublist 0 (n - 1) lst) in
       first :: ema_recurse (sublist n (List.length lst - 1) lst) n first
 
+let ema_today price days yes_price =
+  let smoothing = float_of_int smoothing in
+  let days = float_of_int days in
+  (price *. (smoothing /. (1. +. days)))
+  +. (yes_price *. (1. -. (smoothing /. (1. +. days))))
+
 let rec diff lst =
   match lst with
   | [] -> []

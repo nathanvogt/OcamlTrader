@@ -36,6 +36,11 @@ val ema : float list -> int -> float list
     days after the first day; takes in a given time internal [n], which
     accounts for the specified time interval *)
 
+val ema_today : float -> int -> float -> float
+(** [ema_today price days yes_price] returns today's EMA value given the
+    interval [days], today's price [price], and yesterday's price
+    [yes_price] *)
+
 val diff : float list -> float list
 (** [diff lst] takes in a list [lst] of size [n] and returns the
     differences of each pair of elements, resulting in [n-1] elements *)

@@ -51,7 +51,7 @@ let yesterday_price = ref 0.0
 (** [price_change] calculates the change in price from yesterday to
     today *)
 let price_change st coin =
-  let today_price = State.price_close st "ETH" in
+  let today_price = State.price_close st coin in
   let diff = today_price -. !yesterday_price in
   yesterday_price := diff;
   diff
