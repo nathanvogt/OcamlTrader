@@ -102,8 +102,8 @@ let rec main_loop wait_period st =
       Printf.fprintf (open_out "report.txt") "%s" !report;
       exit 0
   | Some new_data ->
-      Unix.sleepf wait_period;
       flush Stdlib.stdout;
+      Unix.sleepf wait_period;
       State.update_data (fst state_action_tup) new_data
       |> main_loop wait_period
 
@@ -121,9 +121,9 @@ let rec set_parameters () =
             exit 0
         | Some new_data ->
             ANSITerminal.print_string [ ANSITerminal.green ]
-              "Starting crypto trader.\n\n";
-            Unix.sleepf 1.5;
+              "Starting crypto trader...\n\n";
             flush Stdlib.stdout;
+            Unix.sleepf 1.5;
             State.init_state indicators budget new_data
             |> main_loop wait_period)
       else begin
