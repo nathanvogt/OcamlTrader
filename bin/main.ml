@@ -75,7 +75,6 @@ open Printf
     [state] from previous timestep and makes a decision, then receives
     new data from feeder and passes new state *)
 let rec main_loop wait_period st =
-  List.iter (printf "%f ") (Feeder.lookback "ETH" 6);
   (* formatting *)
   print_string "\n\n";
 
