@@ -43,3 +43,6 @@ val lookback : string -> int -> float list
     [days]; returns a [float list] of the given coin's closing prices
     for past number of days specified by [days]; required for indicator
     initialization *)
+
+external lookback_raw : int -> string = "lookback"
+val lookback_g : int -> t list

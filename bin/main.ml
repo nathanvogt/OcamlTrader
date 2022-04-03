@@ -70,11 +70,12 @@ let is_valid_input input =
   | _ -> true
 
 (* ------ main loop ------ *)
-
+open Printf
 (** [main_loop state] is the repeating loop of our program that takes
     [state] from previous timestep and makes a decision, then receives
     new data from feeder and passes new state *)
 let rec main_loop wait_period st =
+  List.iter (printf "%f ") (Feeder.lookback "ETH" 6);
   (* formatting *)
   print_string "\n\n";
 

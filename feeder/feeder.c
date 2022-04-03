@@ -1,5 +1,6 @@
 #define CAML_NAME_SPACE
 #include <stdio.h>
+#include <string.h>
 #include <caml/mlvalues.h>
 #include <caml/alloc.h>
 #include <unistd.h>
@@ -8,6 +9,7 @@
 FILE *f;
 char eof[] = "EOF";
 char ur[] = "UR";
+long pos;
 
 CAMLprim value initReader()
 {
@@ -21,6 +23,7 @@ CAMLprim value initReader()
         printf("Error opening file");
         return Val_unit;
     }
+    pos = 0L;
     return Val_unit;
 }
 CAMLprim value nextDay()
@@ -35,5 +38,42 @@ CAMLprim value nextDay()
     { // end of file
         return caml_copy_string(eof);
     }
+    pos = ftell(f);
     return caml_copy_string(buff);
+}
+//checks there are that many days of historical data
+CAMLprim value lookback(value days) {
+
+    int d = Int_val(days);
+    int anchor = d;
+
+    fseek(f, 0L, SEEK_END);
+    while(d > 0) {
+        long ret = ftell(f);
+        char next = fgetc(f);
+        fseek(f, ret, SEEK_SET);
+        if(next == '\n') {
+            d--;
+        }else{
+
+        }
+        if(d != 0){
+            fseek(f, -1, SEEK_CUR);
+        }
+    }
+    char res[255*anchor];
+    memset(res, 0, sizeof res);
+    char buff[255];
+    int first = 1;
+    while(fscanf(f, "%s", buff) != -1) {
+        if(first == 1) {
+            first = 0;
+        } else {
+           strcat(res, " "); 
+        }
+        strcat(res, buff);
+        memset(buff, 0, sizeof buff);
+    }
+    int r = fseek(f, pos, SEEK_SET);
+    return caml_copy_string(res);
 }
