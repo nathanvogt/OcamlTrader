@@ -1,0 +1,3 @@
+(library
+ (name trends)
+ (public_name Trends))
