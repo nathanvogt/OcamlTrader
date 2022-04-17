@@ -21,9 +21,9 @@ let macd lst =
   let twenty_six_day = Ma.ema lst 26 in
   List.map2 (fun x y -> x -. y) twelve_day twenty_six_day
 
-let update_val st prev_val coin =
+let update_val prev_close prev_macd coin =
   if !initialized then (
-    let price = State.price_close st coin in
+    let price = prev_close in
     let ema_12 = Ma.ema_today price 12 !yesterday_price in
     let ema_26 = Ma.ema_today price 26 !yesterday_price in
     prev_ema_12 := ema_12;
@@ -38,8 +38,3 @@ let update_val st prev_val coin =
     yesterday_price := Feeder.lookback coin 12 |> List.rev |> List.hd;
     initialized := true;
     ema_12 -. ema_26
-
-let initialize () =
-  let ema_26 = Feeder.lookback "RSI" 26 |> Ma.avg in
-  let ema_12 = Feeder.lookback "RSI" 12 |> Ma.avg in
-  ema_12 -. ema_26

@@ -50,16 +50,16 @@ let yesterday_price = ref 0.0
 
 (** [price_change] calculates the change in price from yesterday to
     today *)
-let price_change st coin =
-  let today_price = State.price_close st coin in
+let price_change prev_close coin =
+  let today_price = prev_close coin in
   let diff = today_price -. !yesterday_price in
   yesterday_price := diff;
   diff
 
 (** [rsi_today] calculates today's rsi value given state [st] and
     coin_name [coin] *)
-let rsi_today st coin =
-  let price_change = price_change st coin in
+let rsi_today prev_close =
+  let price_change = prev_close in
   let gain = if price_change >= 0. then price_change else 0. in
   let loss = if price_change <= 0. then price_change *. -1. else 0. in
   let avg_gain = ((!prev_avg_gain *. 13.) +. gain) /. 14. in
@@ -70,8 +70,8 @@ let rsi_today st coin =
   prev_avg_loss := avg_loss;
   rsi
 
-let update_val st prev_val coin =
-  if !past_fourteen then rsi_today st coin
+let update_val prev_close prev_rsi coin =
+  if !past_fourteen then rsi_today prev_close
   else
     let lookback = Feeder.lookback coin 14 in
     let gain_loss = Ma.gain_loss lookback (0., 0.) in
@@ -82,5 +82,3 @@ let update_val st prev_val coin =
     past_fourteen := true;
     yesterday_price := List.rev lookback |> List.hd;
     50.
-
-let initialize () = Feeder.lookback "MACD" 14 |> Ma.avg

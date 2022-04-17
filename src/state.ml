@@ -66,15 +66,24 @@ let is_valid_coin coin_name j =
 (* ------ initializing indicators ------ *)
 exception InvalidIndicator of string
 
+(* initialize indicator values to prevent dependency between modules *)
+let initialize = function
+  | RSI 0. ->
+      let ema_26 = Feeder.lookback "MACD" 26 |> Ma.avg in
+      let ema_12 = Feeder.lookback "MACD" 12 |> Ma.avg in
+      ema_12 -. ema_26
+  | MACD 0. -> Feeder.lookback "RSI" 14 |> Ma.avg
+  | _ -> raise (Failure "Indicator initialization erro")
+
 (* recursive helpfer function to initiate indicators *)
 (* TODO hard coded for now *)
 let rec initiate_indicators_aux = function
   | [] -> []
   | h :: t ->
       if h = "RSI" then
-        RSI (RSI.initialize ()) :: initiate_indicators_aux t
+        RSI (initialize (RSI 0.)) :: initiate_indicators_aux t
       else if h = "MACD" then
-        MACD (MACD.intialize ()) :: initiate_indicators_aux t
+        MACD (initialize (MACD 0.)) :: initiate_indicators_aux t
       else raise (InvalidIndicator h)
 
 (* helper function taking in string list of indicators and returning
@@ -137,7 +146,6 @@ let rec get_data_aux coin (data_type : d_type) = function
         | Volume -> data.volume
       else get_data_aux coin data_type t
 
-(* TODO: @michael -- coin_name is hardcoded as "ETH" for now *)
 let price_high st coin_name = get_data_aux coin_name High st.data
 let price_low st coin_name = get_data_aux coin_name Low st.data
 let price_open st coin_name = get_data_aux coin_name Open st.data
@@ -148,26 +156,22 @@ let price_vol st coin_name = get_data_aux coin_name Volume st.data
 (* helper function pattern matching against indic_list and calling
    expressions from other indicator modules. Passes in state as
    parameter so getters and setters can be used. *)
-
-(* TODO: replace with calls to indicator modules *)
-(* @michael: this is where I call the indicators, will just be passing
-   in state so you can use the getter and setters defined below *)
-let new_indic_val st = function
+let new_indic_val (st : t) = function
   | RSI prev_val ->
-      if prev_val = 0. then RSI 100.
-      else if prev_val = 100. then RSI 50.
-      else RSI 0. (* (RSI Rsi.update_val st prev_val) *)
+      RSI (Rsi.update_val (price_close st coin_name) prev_val coin_name)
   | MACD prev_val ->
-      if prev_val = 0. then MACD 100.
-      else if prev_val = 100. then MACD 50.
-      else MACD 0.
+      MACD
+        (Macd.update_val (price_close st coin_name) prev_val coin_name)
+
+(* if prev_val = 0. then MACD 100. else if prev_val = 100. then MACD 50.
+   else MACD 0. *)
 (* (MACD Macd.update_val st prev_val) *)
 
 (* helper function receiving new data and calling indicator functions to
    update indicator field *)
-let rec update_indicators data = function
+let rec update_indicators (state : t) = function
   | [] -> []
-  | h :: t -> new_indic_val data h :: update_indicators data t
+  | h :: t -> new_indic_val state h :: update_indicators state t
 
 let update_data st f =
   let new_data = feeder_data f in
