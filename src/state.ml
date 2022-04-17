@@ -71,8 +71,10 @@ exception InvalidIndicator of string
 let rec initiate_indicators_aux = function
   | [] -> []
   | h :: t ->
-      if h = "RSI" then RSI 0. :: initiate_indicators_aux t
-      else if h = "MACD" then MACD 0. :: initiate_indicators_aux t
+      if h = "RSI" then
+        RSI (RSI.initialize ()) :: initiate_indicators_aux t
+      else if h = "MACD" then
+        MACD (MACD.intialize ()) :: initiate_indicators_aux t
       else raise (InvalidIndicator h)
 
 (* helper function taking in string list of indicators and returning
