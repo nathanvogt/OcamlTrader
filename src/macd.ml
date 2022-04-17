@@ -38,3 +38,8 @@ let update_val st prev_val coin =
     yesterday_price := Feeder.lookback coin 12 |> List.rev |> List.hd;
     initialized := true;
     ema_12 -. ema_26
+
+let initialize () =
+  let ema_26 = Feeder.lookback "RSI" 26 |> Ma.avg in
+  let ema_12 = Feeder.lookback "RSI" 12 |> Ma.avg in
+  ema_12 -. ema_26

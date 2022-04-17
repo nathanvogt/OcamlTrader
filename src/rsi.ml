@@ -82,3 +82,5 @@ let update_val st prev_val coin =
     past_fourteen := true;
     yesterday_price := List.rev lookback |> List.hd;
     50.
+
+let initialize () = Feeder.lookback "MACD" 14 |> Ma.avg

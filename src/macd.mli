@@ -10,3 +10,7 @@ val update_val : State.t -> float -> string -> float
 (** [update_val st prev_val coin] takes in state [st], yesterday's
     closing price [prev_val], and coin name [coin]; returns today's MACD
     value *)
+
+val initialize : unit -> float
+(** [initialize ()] takes in unit [()] and returns the float average of
+    the lookback period for the given indicator *)
