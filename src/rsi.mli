@@ -16,8 +16,16 @@ val rsi : float list -> float list
     that period; for the first 14 days there are no RSI values as the
     lookback period is 14 days*)
 
+<<<<<<< HEAD
 val update_val :
   float -> float -> float -> float -> float -> string -> float
 (** [updateval price_close prev_price_close prev_rsi prev_avg_gain prev_avg_loss coin]
     takes in state [st], yesterday's closing price [prev_val], and coin
     name [coin]; returns today's RSI value *)
+=======
+val update_val : float -> float -> float -> float -> string -> float
+(** [updateval price_close prev_price_close prev_rsi prev_avg_gain prev_avg_loss coin]
+    takes in computes today's RSI value based on today's price and
+    parameters from yesterday, returns a tuple of today's RSI, today's
+    average gain, and today's average loss in this order *)
+>>>>>>> ecb1605cded4522cd141799805c316b9b0b20535
