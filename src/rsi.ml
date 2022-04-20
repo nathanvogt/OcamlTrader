@@ -81,4 +81,5 @@ let update_val prev_close prev_rsi coin =
     prev_avg_loss := loss;
     past_fourteen := true;
     yesterday_price := List.rev lookback |> List.hd;
-    50.
+
+let initialize () = Feeder.lookback "RSI" 14 |> Ma.avg
