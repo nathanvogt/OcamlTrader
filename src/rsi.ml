@@ -70,17 +70,27 @@ let rsi_today prev_close =
   prev_avg_loss := avg_loss;
   rsi
 
-let update_val prev_close prev_rsi prev_avg_gain prev_avg_loss coin =
-  
-  (* if !past_fourteen then rsi_today prev_close
-  else
-    let lookback = Feeder.lookback coin 14 in
-    let gain_loss = Ma.gain_loss lookback (0., 0.) in
-    let gain = fst gain_loss in
-    let loss = snd gain_loss *. -1. in
-    prev_avg_gain := gain;
-    prev_avg_loss := loss;
-    past_fourteen := true;
-    yesterday_price := List.rev lookback |> List.hd *)
+let update_val
+    price_close
+    prev_price_close
+    prev_rsi
+    prev_avg_gain
+    prev_avg_loss
+    coin =
+  let price_diff = price_close -. prev_price_close in
+  let today_gain = if price_diff >= 0. then price_diff else 0. in
+  let today_loss = if price_diff <= 0. then price_diff *. -1. else 0. in
+  let avg_gain = ((13. *. prev_avg_gain) +. today_gain) /. 14. in
+  let avg_loss = ((13. *. prev_avg_loss) +. today_loss) /. 14. in
+  let rs = avg_gain /. avg_loss in
+  let today_rsi = 100. -. (100. /. (1. +. rs)) in
+  (today_rsi, avg_gain, avg_loss)
+
+(* if !past_fourteen then rsi_today prev_close else let lookback =
+   Feeder.lookback coin 14 in let gain_loss = Ma.gain_loss lookback (0.,
+   0.) in let gain = fst gain_loss in let loss = snd gain_loss *. -1. in
+   prev_avg_gain := gain; prev_avg_loss := loss; past_fourteen := true;
+   yesterday_price := List.rev lookback |> List.hd *)
 
 (* @Michael NEED TO RETURN TUPLE of float * float * float *)
+(* Unused variables in [update_val]: [prev_rsi], [coin] *)
