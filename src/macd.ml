@@ -21,26 +21,27 @@ let macd lst =
   let twenty_six_day = Ma.ema lst 26 in
   List.map2 (fun x y -> x -. y) twelve_day twenty_six_day
 
-let update_val prev_close prev_macd ema_12 ema_26 coin =
-  if !initialized then (
-    let price = prev_close in
-    let ema_12 = Ma.ema_today price 12 !yesterday_price in
-    let ema_26 = Ma.ema_today price 26 !yesterday_price in
-    prev_ema_12 := ema_12;
-    prev_ema_26 := ema_26;
-    yesterday_price := price;
-    ema_12 -. ema_26)
-  else
-    let ema_12 = Feeder.lookback coin 12 |> Ma.avg in
-    let ema_26 = Feeder.lookback coin 26 |> Ma.avg in
-    prev_ema_12 := ema_12;
-    prev_ema_26 := ema_26;
-    yesterday_price := Feeder.lookback coin 12 |> List.rev |> List.hd;
-    initialized := true;
+(** [ema_multiplier observations] takes in [observations], the number of
+    days for an EMA period, and returns the corresponding EMA multiplier *)
+let ema_multiplier observations = 2. /. (float_of_int observations +. 1.)
+
+let update_val price_close prev_macd prev_ema_12 prev_ema_26 coin =
+  let mult_26 = ema_multiplier 26 in
+  let mult_12 = ema_multiplier 12 in
+  let ema_26 =
+    (price_close *. mult_26) +. (prev_ema_26 *. (1. -. mult_26))
+  in
+  let ema_12 =
+    (price_close *. mult_12) +. (prev_ema_12 *. (1. -. mult_12))
+  in
+  (ema_12 -. ema_26, ema_12, ema_26)
+(* if !initialized then ( let price = prev_close in let ema_12 =
+   Ma.ema_today price 12 !yesterday_price in let ema_26 = Ma.ema_today
+   price 26 !yesterday_price in prev_ema_12 := ema_12; prev_ema_26 :=
+   ema_26; yesterday_price := price; ema_12 -. ema_26) else let ema_12 =
+   Feeder.lookback coin 12 |> Ma.avg in let ema_26 = Feeder.lookback
+   coin 26 |> Ma.avg in prev_ema_12 := ema_12; prev_ema_26 := ema_26;
+   yesterday_price := Feeder.lookback coin 12 |> List.rev |> List.hd;
+   initialized := true; *)
 (* @Michael NEED TO RETURN TUPLE of float * float * float *)
-
-
-let initialize () =
-  let ema_26 = Feeder.lookback "MACD" 26 |> Ma.avg in
-  let ema_12 = Feeder.lookback "MACD" 12 |> Ma.avg in
-  ema_12 -. ema_26
+(* Unused in [update_val]: [prev_macd], [coin] *)

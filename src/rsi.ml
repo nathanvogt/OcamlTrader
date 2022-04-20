@@ -71,7 +71,8 @@ let rsi_today prev_close =
   rsi
 
 let update_val prev_close prev_rsi prev_avg_gain prev_avg_loss coin =
-  if !past_fourteen then rsi_today prev_close
+  
+  (* if !past_fourteen then rsi_today prev_close
   else
     let lookback = Feeder.lookback coin 14 in
     let gain_loss = Ma.gain_loss lookback (0., 0.) in
@@ -80,6 +81,6 @@ let update_val prev_close prev_rsi prev_avg_gain prev_avg_loss coin =
     prev_avg_gain := gain;
     prev_avg_loss := loss;
     past_fourteen := true;
-    yesterday_price := List.rev lookback |> List.hd
+    yesterday_price := List.rev lookback |> List.hd *)
 
 (* @Michael NEED TO RETURN TUPLE of float * float * float *)
