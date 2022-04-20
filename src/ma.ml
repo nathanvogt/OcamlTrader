@@ -50,9 +50,9 @@ let rec diff lst =
   | [ h ] -> []
   | h :: i :: t -> (i -. h) :: diff (i :: t)
 
-let rec gain_loss lst (gain, loss) =
+let rec gain_loss (gain, loss) lst =
   match lst with
   | [] -> (gain, loss)
   | h :: t ->
-      if h >= 0. then gain_loss t (h +. gain, loss)
-      else gain_loss t (gain, h +. loss)
+      if h >= 0. then gain_loss (h +. gain, loss) t
+      else gain_loss (gain, h +. loss) t

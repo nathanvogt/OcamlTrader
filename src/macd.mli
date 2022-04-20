@@ -6,7 +6,7 @@ val macd : float list -> float list
     list of MACD values; Precondition: requires [lst] to have at least
     26 elements *)
 
-val update_val : float -> float -> string -> float
-(** [update_val prev_close prev_macd coin] takes in state [st],
-    yesterday's closing price [prev_val], and coin name [coin]; returns
-    today's MACD value *)
+val update_val : float -> float -> float -> float -> string -> float
+(** [update_val prev_close prev_macd ema_12 ema_26 coin] takes in state
+    [st], yesterday's closing price [prev_val], and coin name [coin];
+    returns today's MACD value *)

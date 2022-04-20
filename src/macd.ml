@@ -21,7 +21,7 @@ let macd lst =
   let twenty_six_day = Ma.ema lst 26 in
   List.map2 (fun x y -> x -. y) twelve_day twenty_six_day
 
-let update_val prev_close prev_macd coin =
+let update_val prev_close prev_macd ema_12 ema_26 coin =
   if !initialized then (
     let price = prev_close in
     let ema_12 = Ma.ema_today price 12 !yesterday_price in
@@ -37,6 +37,8 @@ let update_val prev_close prev_macd coin =
     prev_ema_26 := ema_26;
     yesterday_price := Feeder.lookback coin 12 |> List.rev |> List.hd;
     initialized := true;
+(* @Michael NEED TO RETURN TUPLE of float * float * float *)
+
 
 let initialize () =
   let ema_26 = Feeder.lookback "MACD" 26 |> Ma.avg in
