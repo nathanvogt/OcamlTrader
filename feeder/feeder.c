@@ -18,6 +18,7 @@ CAMLprim value initReader()
         return Val_unit;
     }
     f = fopen("data/ETH-USD.csv", "r");
+    // f = fopen("data/TEST-DATA.csv", "r");
     if (f == NULL)
     {
         printf("Error opening file");
@@ -41,35 +42,44 @@ CAMLprim value nextDay()
     pos = ftell(f);
     return caml_copy_string(buff);
 }
-//checks there are that many days of historical data
-CAMLprim value lookback(value days) {
+// checks there are that many days of historical data
+CAMLprim value lookback(value days)
+{
 
     int d = Int_val(days);
     int anchor = d;
 
     fseek(f, 0L, SEEK_END);
-    while(d > 0) {
+    while (d > 0)
+    {
         long ret = ftell(f);
         char next = fgetc(f);
         fseek(f, ret, SEEK_SET);
-        if(next == '\n') {
+        if (next == '\n')
+        {
             d--;
-        }else{
-
         }
-        if(d != 0){
+        else
+        {
+        }
+        if (d != 0)
+        {
             fseek(f, -1, SEEK_CUR);
         }
     }
-    char res[255*anchor];
+    char res[255 * anchor];
     memset(res, 0, sizeof res);
     char buff[255];
     int first = 1;
-    while(fscanf(f, "%s", buff) != -1) {
-        if(first == 1) {
+    while (fscanf(f, "%s", buff) != -1)
+    {
+        if (first == 1)
+        {
             first = 0;
-        } else {
-           strcat(res, " "); 
+        }
+        else
+        {
+            strcat(res, " ");
         }
         strcat(res, buff);
         memset(buff, 0, sizeof buff);

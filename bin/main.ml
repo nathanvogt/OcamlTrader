@@ -31,8 +31,8 @@ let rec indication_naive acc (indications : State.indicator_type list) =
   | [] -> acc
   | h :: t -> begin
       match h with
-      | RSI m -> indication_naive (acc +. m) t
-      | MACD m -> indication_naive (acc +. m) t
+      | RSI (rsi, _, _, _, _) -> indication_naive (acc +. rsi) t
+      | MACD (macd, _, _, _) -> indication_naive (acc +. macd) t
     end
 
 (* hueristic indicator weighting just taking average *)

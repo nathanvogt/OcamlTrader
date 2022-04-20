@@ -14,8 +14,8 @@ type feeder_data = {
 }
 
 type indicator_type =
-  | RSI of float * float * float
-  | MACD of float * float * float
+  | RSI of float * float * float * float * float
+  | MACD of float * float * float * float
 
 type decision =
   | Buy
@@ -68,15 +68,15 @@ exception InvalidIndicator of string
 
 (* initialize indicator values to prevent dependency between modules *)
 let initialize = function
-  | RSI (0., 0., 0.) ->
+  | RSI (0., 0., 0., 0., 0.) ->
       let prev_avg_gain, prev_avg_loss =
         Feeder.lookback "RSI" 14 |> Ma.gain_loss (0., 0.)
       in
-      RSI (0., prev_avg_gain, prev_avg_loss)
-  | MACD (0., 0., 0.) ->
+      RSI (0., 0., 0., prev_avg_gain, prev_avg_loss)
+  | MACD (0., 0., 0., 0.) ->
       let ema_26 = Feeder.lookback "MACD" 26 |> Ma.avg in
       let ema_12 = Feeder.lookback "MACD" 12 |> Ma.avg in
-      MACD (0., ema_12, ema_26)
+      MACD (0., 0., ema_12, ema_26)
   | _ -> raise (Failure "Indicator initialization erro")
 
 (* recursive helpfer function to initiate indicators *)
@@ -85,9 +85,10 @@ let rec initiate_indicators_aux = function
   | [] -> []
   | h :: t ->
       if h = "RSI" then
-        initialize (RSI (0., 0., 0.)) :: initiate_indicators_aux t
+        initialize (RSI (0., 0., 0., 0., 0.))
+        :: initiate_indicators_aux t
       else if h = "MACD" then
-        initialize (MACD (0., 0., 0.)) :: initiate_indicators_aux t
+        initialize (MACD (0., 0., 0., 0.)) :: initiate_indicators_aux t
       else raise (InvalidIndicator h)
 
 (* helper function taking in string list of indicators and returning
@@ -161,16 +162,22 @@ let price_vol st coin_name = get_data_aux coin_name Volume st.data
    expressions from other indicator modules. Passes in state as
    parameter so getters and setters can be used. *)
 let new_indic_val (st : t) = function
-  | RSI (prev_val, prev_avg_gain, prev_avg_loss) ->
+  | RSI (prev_rsi, prev_price_close, _, prev_avg_gain, prev_avg_loss) ->
+      let curr_rsi, curr_price, prev_price, curr_avg_gain, curr_avg_loss
+          =
+        Rsi.update_val prev_rsi
+          (price_close st coin_name)
+          prev_price_close prev_avg_gain prev_avg_loss coin_name
+      in
       RSI
-        (Rsi.update_val
-           (price_close st coin_name)
-           prev_val prev_avg_gain prev_avg_loss coin_name)
-  | MACD (prev_val, ema_12, ema_26) ->
-      MACD
-        (Macd.update_val
-           (price_close st coin_name)
-           prev_val ema_12 ema_26 coin_name)
+        (curr_rsi, curr_price, prev_price, curr_avg_gain, curr_avg_loss)
+  | MACD (prev_macd, _, ema_12, ema_26) ->
+      let curr_macd, curr_price, curr_avg_gain, curr_avg_loss =
+        Macd.update_val prev_macd
+          (price_close st coin_name)
+          ema_12 ema_26 coin_name
+      in
+      MACD (curr_macd, curr_price, curr_avg_gain, curr_avg_loss)
 
 (* if prev_val = 0. then MACD 100. else if prev_val = 100. then MACD 50.
    else MACD 0. *)

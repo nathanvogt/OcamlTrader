@@ -21,13 +21,12 @@ let rec rsi_recurse lst yesterday_gain yesterday_loss =
       today_rsi :: rsi_recurse t (fst adjusted) (snd adjusted)
 
 let rsi lst =
-  let diff = Ma.diff lst in
-  let fourteen = Ma.sublist 0 12 diff in
-  let gain_loss = Ma.gain_loss fourteen (0., 0.) in
-  let avg_loss = snd gain_loss /. -14. in
-  let avg_gain = fst gain_loss /. 14. in
-  let after_fourteen = Ma.sublist 13 (List.length diff - 1) diff in
-  rsi_recurse after_fourteen avg_gain avg_loss
+  (* let diff = Ma.diff lst in let fourteen = Ma.sublist 0 12 diff in
+     let gain_loss = Ma.gain_loss fourteen (0., 0.) in let avg_loss =
+     snd gain_loss /. -14. in let avg_gain = fst gain_loss /. 14. in let
+     after_fourteen = Ma.sublist 13 (List.length diff - 1) diff in *)
+  (* rsi_recurse after_fourteen avg_gain avg_loss *)
+  []
 
 (********************************************************************
    Day to Day RSI computations
@@ -71,9 +70,9 @@ let rsi_today prev_close =
   rsi
 
 let update_val
+    prev_rsi
     price_close
     prev_price_close
-    prev_rsi
     prev_avg_gain
     prev_avg_loss
     coin =
@@ -84,7 +83,7 @@ let update_val
   let avg_loss = ((13. *. prev_avg_loss) +. today_loss) /. 14. in
   let rs = avg_gain /. avg_loss in
   let today_rsi = 100. -. (100. /. (1. +. rs)) in
-  (today_rsi, avg_gain, avg_loss)
+  (today_rsi, price_close, 0., avg_gain, avg_loss)
 
 (* if !past_fourteen then rsi_today prev_close else let lookback =
    Feeder.lookback coin 14 in let gain_loss = Ma.gain_loss lookback (0.,

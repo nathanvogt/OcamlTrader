@@ -8,8 +8,8 @@
 (** Type defining name of indicator with float value produced by
     indicator *)
 type indicator_type =
-  | RSI of float
-  | MACD of float
+  | RSI of float * float * float * float * float
+  | MACD of float * float * float * float
 
 (** Deicsion type to be passed after evaluation on training metrics, and
     for account to be updated accordingly. This is exposed by the state

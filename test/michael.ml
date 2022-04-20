@@ -97,7 +97,7 @@ let gain_loss_test
     (expected_output : float * float) : test =
   name >:: fun _ ->
   assert_equal ~printer:pp_float_float expected_output
-    (gain_loss lst (0., 0.))
+    (gain_loss (0., 0.) lst)
 
 let ma_tests =
   [

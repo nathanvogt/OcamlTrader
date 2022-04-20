@@ -25,7 +25,7 @@ let macd lst =
     days for an EMA period, and returns the corresponding EMA multiplier *)
 let ema_multiplier observations = 2. /. (float_of_int observations +. 1.)
 
-let update_val price_close prev_macd prev_ema_12 prev_ema_26 coin =
+let update_val prev_macd price_close prev_ema_12 prev_ema_26 coin =
   let mult_26 = ema_multiplier 26 in
   let mult_12 = ema_multiplier 12 in
   let ema_26 =
@@ -34,7 +34,8 @@ let update_val price_close prev_macd prev_ema_12 prev_ema_26 coin =
   let ema_12 =
     (price_close *. mult_12) +. (prev_ema_12 *. (1. -. mult_12))
   in
-  (ema_12 -. ema_26, ema_12, ema_26)
+  let new_macd = ema_12 -. ema_26 in
+  (new_macd, 0., ema_12, ema_26)
 (* if !initialized then ( let price = prev_close in let ema_12 =
    Ma.ema_today price 12 !yesterday_price in let ema_26 = Ma.ema_today
    price 26 !yesterday_price in prev_ema_12 := ema_12; prev_ema_26 :=
