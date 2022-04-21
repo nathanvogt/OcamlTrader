@@ -11,6 +11,7 @@ exception UninitializedReader
 
 external init_reader : unit -> unit = "initReader"
 external read_next_day : unit -> string = "nextDay"
+(* TODO: init reader with path parameter *)
 
 external lookback_raw : int -> string = "lookback"
 

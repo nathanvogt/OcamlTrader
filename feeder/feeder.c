@@ -17,8 +17,8 @@ CAMLprim value initReader()
     {
         return Val_unit;
     }
-    f = fopen("data/ETH-USD.csv", "r");
-    // f = fopen("data/TEST-DATA.csv", "r");
+    // f = fopen("data/ETH-USD.csv", "r");
+    f = fopen("data/TEST-DATA.csv", "r");
     if (f == NULL)
     {
         printf("Error opening file");
