@@ -54,8 +54,8 @@ let pp_list pp_elt lst =
   "[" ^ pp_elts lst ^ "]"
 
 (********************************************************************
-End helper functions.
- ********************************************************************)
+  Testing Indicators
+  ********************************************************************)
 
 (** [sma_test name input expected_output] constructs an OUnit test named
     [name] that asserts the quality of [expected_output] with
@@ -257,7 +257,90 @@ let rsi_tests =
       ];
   ]
 
+(********************************************************************
+  Testing State
+  ********************************************************************)
+
+(* mock position lists for testing *)
+let positions_list_empty = []
+let positions_list_one = [ 2.; 4.; 6.; 8.; 10. ]
+let positions_list_two = [ 10.; 8.; 6.; 4.; 2. ]
+
+(* mock budget to test buy *)
+let budget = 100.
+
+(* helper function copied from state, testing logic of calculating
+   average position value after buy *)
+let state_market_value_buy position_size average_position_val buy_price
+    =
+  if buy_price > budget then average_position_val
+  else
+    ((position_size *. average_position_val) +. buy_price)
+    /. (position_size +. 1.)
+
+(* helper function copied from state, testing logic of calculating
+   average position value after sell *)
+let state_market_value_sell
+    position_size
+    average_position_val
+    position_list =
+  if List.length position_list = 0 then 0.
+  else
+    ((position_size *. average_position_val) -. List.hd position_list)
+    /. (position_size -. 1.)
+
+(* testing logic of state averaging on buy *)
+let state_market_value_buy_test
+    (name : string)
+    (average_position_val : float)
+    (position_size : float)
+    (buy_price : float)
+    (expected_output : float) : test =
+  name >:: fun _ ->
+  assert_equal ~printer:string_of_float expected_output
+    (state_market_value_buy position_size average_position_val buy_price)
+
+(* testing logic of state averaging on sell *)
+let state_market_value_sell_test
+    (name : string)
+    (average_position_val : float)
+    (position_size : float)
+    (position_list : float list)
+    (expected_output : float) : test =
+  name >:: fun _ ->
+  assert_equal ~printer:string_of_float expected_output
+    (state_market_value_sell position_size average_position_val
+       position_list)
+
+let state_tests =
+  [
+    state_market_value_buy_test "testing buy on average of no positions"
+      0. 0. 10. 10.;
+    state_market_value_buy_test
+      "testing buy on average of 10 positions with same price" 10. 10.
+      10. 10.;
+    state_market_value_buy_test
+      "testing buy on average of 2 positions with higher price" 10. 2.
+      40. 20.;
+    state_market_value_buy_test
+      "testing buy on average of 4 positions with lower price" 10. 4. 0.
+      8.;
+    state_market_value_buy_test
+      "attempting to buy price more expensive than current budget \
+       should return original average"
+      10. 4. 120. 10.;
+    state_market_value_sell_test "testing sell on empty position list"
+      0. 0. [] 0.;
+    state_market_value_sell_test
+      "testing sell on position list with 2. as most recent" 6. 5.
+      positions_list_one 7.;
+    state_market_value_sell_test
+      "testing sell on position list with 10. as most recent" 6. 5.
+      positions_list_two 5.;
+  ]
+
 let suite =
-  "test suite for indicators" >::: List.flatten [ ma_tests; rsi_tests ]
+  "test suite for indicators"
+  >::: List.flatten [ ma_tests; rsi_tests; state_tests ]
 
 let _ = run_test_tt_main suite
