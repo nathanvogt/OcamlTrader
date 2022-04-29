@@ -1,7 +1,7 @@
 include Indicator
 include Feeder
 include State
-include Unix
+include Lwt_io
 
 (* ------ global variables ------ *)
 
@@ -14,9 +14,7 @@ let budget = 10000.00
 
 (* string representation of report meant to be printed to file *)
 let report = ref @@ "Report of " ^ coin_name ^ " purchases: \n"
-
-(* ------ connect with feeder ------ *)
-(* TODO: insert any things conncting to C feeder here *)
+let report_file = "report.txt"
 
 (* ------ helper funcs ------ *)
 (* helper function taking average based on pipeline ordering *)
@@ -70,7 +68,17 @@ let is_valid_input input =
   | _ -> true
 
 (* ------ main loop ------ *)
-open Printf
+let p =
+  Lwt.bind (Lwt_io.read_line Lwt_io.stdin) (fun s1 ->
+      Lwt_io.printf "this is not a %s\n" s1)
+
+(* from: https://ilyasergey.net/YSC2229/week-10-reading-files.html *)
+let update_file filename str =
+  let outc = Core.Out_channel.create ~append:false filename in
+  Core.protect
+    ~f:(fun () -> Core.fprintf outc "%s\n" str)
+    ~finally:(fun () -> Core.Out_channel.close outc)
+
 (** [main_loop state] is the repeating loop of our program that takes
     [state] from previous timestep and makes a decision, then receives
     new data from feeder and passes new state *)
@@ -89,27 +97,31 @@ let rec main_loop wait_period st =
   (* tuple with first element being new state, second being string
      representation of action executed *)
   let state_action_tup = State.decision_action st decision in
-  report :=
-    !report ^ data
-    ^ deicision_to_string decision
-    ^ snd state_action_tup ^ "\n\n";
+  let step_data =
+    data ^ deicision_to_string decision ^ snd state_action_tup ^ "\n\n"
+  in
+
+  (* reverse order so newest printed on top *)
+  report := step_data ^ !report;
   print_string @@ snd state_action_tup ^ "\n";
+  ANSITerminal.print_string [ ANSITerminal.yellow ]
+  @@ "Sending real time to " ^ report_file ^ "\n";
+  update_file report_file !report;
   (* update report *)
   match Feeder.next_day () with
   | None ->
       ANSITerminal.print_string [ ANSITerminal.yellow ]
         "This is the end of the file. \n";
-      Printf.fprintf (open_out "report.txt") "%s" !report;
       exit 0
   | Some new_data ->
-      flush Stdlib.stdout;
+      Stdlib.flush Stdlib.stdout;
       Unix.sleepf wait_period;
       State.update_data (fst state_action_tup) new_data
       |> main_loop wait_period
 
 (* helper function setting parameters for user input *)
 let rec set_parameters () =
-  match read_line () with
+  match Stdlib.read_line () with
   | exception End_of_file -> ()
   | input ->
       if is_valid_input input then (
@@ -122,7 +134,7 @@ let rec set_parameters () =
         | Some new_data ->
             ANSITerminal.print_string [ ANSITerminal.green ]
               "Starting crypto trader...\n\n";
-            flush Stdlib.stdout;
+            Stdlib.flush Stdlib.stdout;
             Unix.sleepf 1.5;
             State.init_state indicators budget new_data
             |> main_loop wait_period)
@@ -140,6 +152,7 @@ let rec main () =
     "How long would you like to pause between each day? (Enter float \
      in seconds) \n";
   print_string ">";
+  Printf.fprintf (open_out "real_time_updates.txt") "%s" !report;
   set_parameters ()
 
 (* Execute the game engine. *)
