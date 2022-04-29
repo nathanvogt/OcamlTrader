@@ -9,11 +9,11 @@ include Lwt_io
     correctly. Some, like coin_name, are hard coded for now *)
 let indicators = [ "RSI"; "MACD" ]
 
-let coin_name = "ETH"
+let coin_name_const = "ETH"
 let budget = 10000.00
 
 (* string representation of report meant to be printed to file *)
-let report = ref @@ "Report of " ^ coin_name ^ " purchases: \n"
+let report = ref @@ "Report of " ^ coin_name_const ^ " purchases: \n"
 let report_file = "report.txt"
 let num_splits = 8
 let grid_upper_limit = ref 0.
@@ -28,8 +28,8 @@ let grid_price_line =
 
 let grid_linebreak = "\n\n"
 
-(* space before price point: 26 spaces *)
-let space_place_holder = "                          "
+(* space before price point: 30 spaces *)
+let space_place_holder = "                              "
 
 (********************************************************************
     Helper Functions
@@ -61,9 +61,9 @@ let weight_indicators st =
    later need to make this smarter: don't sell when we don't have
    position sizes control the total budget it buys and sells -jun *)
 let evaluate_indicators weight =
-  if weight <= 30. then State.Sell
+  if weight <= 30. then State.Buy
   else if weight <= 70. then State.Wait
-  else State.Buy
+  else State.Sell
 
 (* helper function printing ansiterminal color unit of decision *)
 let ansiterminal_print decision =
@@ -79,6 +79,16 @@ let deicision_to_string = function
   | State.Buy -> "BUY!\n"
   | State.Wait -> "WAIT!\n"
 
+(* helper function printing average market value and positions held of
+   given coin *)
+let market_positions_tostring st =
+  "Coin: " ^ coin_name_const ^ "; Average position value: "
+  ^ (string_of_float @@ State.avg_position_val st coin_name_const)
+  ^ "; Number of positions: "
+  ^ string_of_float (State.positions_held st coin_name_const)
+  ^ "\n"
+
+(* helper function ensuring user input is valid float *)
 let is_valid_input input =
   match float_of_string input with
   | exception Failure _ -> false
@@ -98,10 +108,20 @@ let update_file filename str =
    order to ensure graph resizes until fit *)
 let rec resize_graph curr_price =
   let margin = 2. *. !grid_size in
-  (* first check if bounds are too small, should increase to 30% margin
-     on each side *)
-  if !grid_upper_limit -. !grid_lower_limit < 0.2 *. curr_price then (
-    ANSITerminal.print_string [ ANSITerminal.magenta ] "Bound ratios.\n";
+  (* first check if bounds are so wide that lower limit becomes
+     negative *)
+  if !grid_upper_limit -. (!grid_size *. float_of_int num_splits) < 0.
+  then grid_lower_limit := 0.
+  else ();
+  (* next check if bounds are too small or large, should increase to 30%
+     margin on each side *)
+  if
+    !grid_upper_limit -. !grid_lower_limit < 0.2 *. curr_price
+    || !grid_upper_limit -. !grid_lower_limit > 1.2 *. curr_price
+  then (
+    ANSITerminal.print_string
+      [ ANSITerminal.magenta ]
+      "Adjust bound ratios.\n";
     grid_lower_limit := curr_price -. (0.4 *. curr_price);
     grid_upper_limit := curr_price +. (0.4 *. curr_price);
     grid_size :=
@@ -169,33 +189,38 @@ let rec main_loop wait_period st =
   print_string "\n\n";
 
   (* storing data in value to be later concatenated in report *)
-  let data = State.data_print coin_name st in
-  print_endline @@ "Date: " ^ State.curr_date st coin_name;
+  let data = State.data_print coin_name_const st in
+  print_endline @@ "Date: " ^ State.curr_date st coin_name_const;
 
   (* print_string @@ data; *)
 
   (* storing decision in value to be later passed into State *)
-  let decision = evaluate_indicators @@ weight_indicators st in
-  ansiterminal_print decision;
+  let indic_decision = evaluate_indicators @@ weight_indicators st in
+  ansiterminal_print indic_decision;
 
   (* tuple with first element being new state, second being string
      representation of action executed *)
-  let state_action_tup = State.decision_action st decision in
+  let state_action_tup = State.decision_action st indic_decision in
+  let market_info_string =
+    market_positions_tostring (fst state_action_tup)
+  in
   let step_data =
-    data ^ deicision_to_string decision ^ snd state_action_tup ^ "\n\n"
+    data
+    ^ deicision_to_string indic_decision
+    ^ market_info_string ^ snd state_action_tup ^ "\n\n"
   in
 
   (* reverse order so newest printed on top *)
   report := step_data ^ !report;
-  print_string @@ snd state_action_tup ^ "\n";
+  print_string @@ market_info_string ^ snd state_action_tup ^ "\n";
   ANSITerminal.print_string [ ANSITerminal.yellow ]
   @@ "Real time data is sent to " ^ report_file ^ "\n";
   update_file report_file !report;
-  resize_graph (State.price_close st coin_name);
+  resize_graph (State.price_close st coin_name_const);
   graph_grid
-    (State.price_close st coin_name)
+    (State.price_close st coin_name_const)
     !grid_upper_limit
-    (State.price_close st coin_name < !grid_upper_limit);
+    (State.price_close st coin_name_const < !grid_upper_limit);
   (* update report *)
   match Feeder.next_day () with
   | None ->

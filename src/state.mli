@@ -70,3 +70,11 @@ val price_vol : t -> string -> float
 
 val curr_date : t -> string -> string
 (** [curr_date st coin_name] returns current date of [coin_name] in [st]*)
+
+val avg_position_val : t -> string -> float
+(** [avg_position_val st coin_name] returns float value of the average
+    market value held in positions of [coin_name]*)
+
+val positions_held : t -> string -> float
+(** [positions_held st coin_name] returns float value of the number of
+    positions held of [coin_name] *)

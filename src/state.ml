@@ -1,7 +1,8 @@
 include Feeder
+include ANSITerminal
 
 (* hardcoded: TODO, to be fixed later *)
-let coin_name = "ETH"
+let coin_name_const = "ETH"
 
 (* subtype containing data from feeder *)
 type feeder_data = {
@@ -22,10 +23,11 @@ type decision =
   | Wait
   | Sell
 
-(* sub type containing information about trader itself *)
-(* later: which of these might benefit from mutable? *)
+(* sub type containing information about trading account *)
 type account = {
-  market_value : float; (* current amount invested *)
+  market_value : (string * float * float) list;
+  (* list of (coin_name, average_value, positions held (may be
+     fractional)) *)
   cash_balance : float; (* current amount held *)
   positions : (string * float) list; (* (coin, amnt) *)
   p_l : float; (* total profit/loss *)
@@ -112,7 +114,7 @@ let rec update_specific_coin coin_name new_data = function
    run *)
 let init_account budget =
   {
-    market_value = 0.0;
+    market_value = [ (coin_name_const, 0.0, 0.0) ];
     (* TODO: to be added functionality later where this is mutable type
        and updated real time / every interval *)
     cash_balance = budget;
@@ -150,12 +152,21 @@ let rec get_data_aux coin (data_type : data_float_type) = function
         | Volume -> data.volume
       else get_data_aux coin data_type t
 
-(* separate helper function for data due to type mistmatch *)
-
+(* separate helper function for date due to type mistmatch *)
 let rec get_curr_date_aux coin = function
   | [] -> raise (NoSuchCoin coin)
   | (cn, data) :: t ->
       if cn = coin then data.date else get_curr_date_aux coin t
+
+(* helper function getting either average position value of coin_name if
+   get_avg_pos is true, or position size if get_avg_pos is false *)
+let rec get_market_val_aux coin (get_avg_pos : bool) = function
+  | [] ->
+      print_endline "Not a valid coin name";
+      0.0
+  | (cn, avg_pos, pos_val) :: t ->
+      if coin = cn then if get_avg_pos then avg_pos else pos_val
+      else get_market_val_aux coin get_avg_pos t
 
 let price_high st coin_name = get_data_aux coin_name High st.data
 let price_low st coin_name = get_data_aux coin_name Low st.data
@@ -163,6 +174,12 @@ let price_open st coin_name = get_data_aux coin_name Open st.data
 let price_close st coin_name = get_data_aux coin_name Close st.data
 let price_vol st coin_name = get_data_aux coin_name Volume st.data
 let curr_date st coin_name = get_curr_date_aux coin_name st.data
+
+let avg_position_val st coin_name =
+  get_market_val_aux coin_name true st.acc_info.market_value
+
+let positions_held st coin_name =
+  get_market_val_aux coin_name false st.acc_info.market_value
 
 (* ------- functions to be used by main ------- *)
 (* helper function pattern matching against indic_list and calling
@@ -173,22 +190,18 @@ let new_indic_val (st : t) = function
       let curr_rsi, curr_price, prev_price, curr_avg_gain, curr_avg_loss
           =
         Rsi.update_val prev_rsi
-          (price_close st coin_name)
-          prev_price_close prev_avg_gain prev_avg_loss coin_name
+          (price_close st coin_name_const)
+          prev_price_close prev_avg_gain prev_avg_loss coin_name_const
       in
       RSI
         (curr_rsi, curr_price, prev_price, curr_avg_gain, curr_avg_loss)
   | MACD (prev_macd, _, ema_12, ema_26) ->
       let curr_macd, curr_price, curr_avg_gain, curr_avg_loss =
         Macd.update_val prev_macd
-          (price_close st coin_name)
-          ema_12 ema_26 coin_name
+          (price_close st coin_name_const)
+          ema_12 ema_26 coin_name_const
       in
       MACD (curr_macd, curr_price, curr_avg_gain, curr_avg_loss)
-
-(* if prev_val = 0. then MACD 100. else if prev_val = 100. then MACD 50.
-   else MACD 0. *)
-(* (MACD Macd.update_val st prev_val) *)
 
 (* helper function receiving new data and calling indicator functions to
    update indicator field *)
@@ -256,11 +269,7 @@ let rec positions_to_string = function
    information *)
 (* TODO: add market value and budget updates later *)
 let account_to_string account_info =
-  "Current positions: \n"
-  ^ positions_to_string account_info.positions
-  ^ "\n" ^ "Profits and Loss: \n"
-  ^ string_of_float account_info.p_l
-  ^ "\n"
+  "Profits and Loss: \n" ^ string_of_float account_info.p_l ^ "\n"
 
 (* helper function getting closing price from data list in state *)
 let rec get_closing_price coin_name = function
@@ -268,46 +277,120 @@ let rec get_closing_price coin_name = function
   | (k, v) :: t ->
       if k = coin_name then v.close else get_closing_price coin_name t
 
+(* TODO the 1. that is hard coded into the denom can be changed later if
+   fractional shares are involed *)
+(* helper function updating market_value with buy order *)
+let rec market_value_buy coin_name buy_price = function
+  | [] -> []
+  | ((cn, avg_price, positions_held) as h) :: t ->
+      if coin_name = cn then
+        ( cn,
+          ((positions_held *. avg_price) +. buy_price)
+          /. (positions_held +. 1.),
+          positions_held +. 1. )
+        :: t
+      else h :: market_value_buy coin_name buy_price t
+
 (* helper function return copy of state account with bought coin *)
-let buy_account acc price =
-  { acc with positions = (coin_name, price) :: acc.positions }
+let buy_account acc buy_price =
+  {
+    acc with
+    positions = (coin_name_const, buy_price) :: acc.positions;
+    cash_balance = acc.cash_balance -. buy_price;
+    market_value =
+      market_value_buy coin_name_const buy_price acc.market_value;
+  }
 
 (* helper funciton returning tuple of account sold and profit/loss from
    transaction *)
-let rec sell_acc_aux sell_price cname = function
+let rec sell_acc_aux sell_price cname pos =
+  match pos with
   | [] -> ([], 0.0)
   | (name, bought_price) :: t ->
       if cname = name then (t, sell_price -. bought_price)
       else sell_acc_aux sell_price cname t
 
+(* helper function getting last position of [coin_name] from positions
+   list. makes no modifications to positions list *)
+let rec pop_last_pos coin_name = function
+  | [] -> 0.
+  | (cn, pos_val) :: t ->
+      if coin_name = cn then pos_val else pop_last_pos coin_name t
+
+(* helper function updating market_value with sell order *)
+let rec market_value_sell
+    coin_name
+    sell_price
+    (position_list : (string * float) list) = function
+  | [] -> []
+  | ((cn, avg_price, positions_held) as h) :: t ->
+      if coin_name = cn then
+        if positions_held -. 1. = 0. || List.length position_list <= 0
+        then (cn, 0., 0.) :: t
+        else
+          ( cn,
+            ((positions_held *. avg_price)
+            -. pop_last_pos coin_name position_list)
+            /. (positions_held -. 1.),
+            positions_held -. 1. )
+          :: t
+      else h :: market_value_buy coin_name sell_price t
+
 (* helper funciton selling position in account *)
 let sell_account acc sell_price =
-  let pos_pl_tup = sell_acc_aux sell_price coin_name acc.positions in
+  let pos_pl_tup =
+    sell_acc_aux sell_price coin_name_const acc.positions
+  in
   {
-    acc with
+    market_value =
+      market_value_sell coin_name_const sell_price acc.positions
+        acc.market_value;
     positions = fst pos_pl_tup;
     p_l = acc.p_l +. snd pos_pl_tup;
+    cash_balance = acc.cash_balance +. sell_price;
   }
+
+(* helper function making sure enough money is in account to buy
+   currency. can be adjusted to buy fractional shares *)
+let valid_buy acc buy_price = acc.cash_balance >= buy_price
+
+(* helper function making sure there is position to sell currency.*)
+let valid_sell acc = acc.positions <> []
 
 let decision_action st = function
   | Buy ->
-      let buy_state =
-        {
-          st with
-          acc_info =
-            buy_account st.acc_info
-              (get_closing_price coin_name st.data);
-        }
-      in
-      (buy_state, account_to_string buy_state.acc_info)
+      if
+        valid_buy st.acc_info
+          (get_closing_price coin_name_const st.data)
+      then
+        let buy_state =
+          {
+            st with
+            acc_info =
+              buy_account st.acc_info
+                (get_closing_price coin_name_const st.data);
+          }
+        in
+        (buy_state, account_to_string buy_state.acc_info)
+      else begin
+        ANSITerminal.print_string [ ANSITerminal.yellow ]
+        @@ "Insufficient funds.\n";
+        (st, account_to_string st.acc_info)
+      end
   | Sell ->
-      let sell_state =
-        {
-          st with
-          acc_info =
-            sell_account st.acc_info
-              (get_closing_price coin_name st.data);
-        }
-      in
-      (sell_state, account_to_string sell_state.acc_info)
+      if valid_sell st.acc_info then
+        let sell_state =
+          {
+            st with
+            acc_info =
+              sell_account st.acc_info
+                (get_closing_price coin_name_const st.data);
+          }
+        in
+        (sell_state, account_to_string sell_state.acc_info)
+      else begin
+        ANSITerminal.print_string [ ANSITerminal.yellow ]
+        @@ "No positions to sell.\n";
+        (st, account_to_string st.acc_info)
+      end
   | Wait -> (st, account_to_string st.acc_info)
