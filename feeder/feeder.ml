@@ -16,14 +16,14 @@ external read_next_day : unit -> string = "nextDay"
 external lookback_raw : int -> string = "lookback"
 
 let construct_t s =
-  let l = String.split_on_char ',' s in 
+  let l = String.split_on_char ',' s in
   {
-        open_price = Float.of_string @@ List.nth l 1;
-        close_price = Float.of_string @@ List.nth l 4;
-        high = Float.of_string @@ List.nth l 2;
-        low = Float.of_string @@ List.nth l 3;
-        volume = Float.of_string @@ List.nth l 6;
-        date = List.nth l 0;
+    open_price = Float.of_string @@ List.nth l 1;
+    close_price = Float.of_string @@ List.nth l 4;
+    high = Float.of_string @@ List.nth l 2;
+    low = Float.of_string @@ List.nth l 3;
+    volume = Float.of_string @@ List.nth l 6;
+    date = List.nth l 0;
   }
 
 (* let next_day () = (*can optimize into single pass function*) let l =
@@ -57,10 +57,11 @@ let date d = d.date
 let coin_name d = "ETH" (* hard coded temporarily *)
 
 let lookback_g (days : int) : t list =
-  lookback_raw days |> String.split_on_char ' ' |>
-  List.map (fun x -> construct_t x)
+  lookback_raw days
+  |> String.split_on_char ' '
+  |> List.map (fun x -> construct_t x)
 
 (* set to empty list for now *)
 (* TODO: ocaml raw results to return parameterized values *)
-let lookback (coin : string) (days : int) : float list = 
+let lookback (coin : string) (days : int) : float list =
   lookback_g days |> List.map (fun x -> close_price x)

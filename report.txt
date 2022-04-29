@@ -1,0 +1,268 @@
+Coin: ETH
+Date: 2021-03-22
+Open: 2654.333984
+High: 8654.333984
+Low: 8654.333984
+Close: 8654.333984
+Volume: 30992961300.
+BUY!
+Current positions: 
+Bought ETH at 8654.333984
+Profits and Loss: 
+0.
+
+
+Coin: ETH
+Date: 2021-03-22
+Open: 2654.333984
+High: 8654.333984
+Low: 8654.333984
+Close: 8654.333984
+Volume: 30992961300.
+BUY!
+Current positions: 
+Bought ETH at 8654.333984
+Profits and Loss: 
+0.
+
+
+Coin: ETH
+Date: 2021-03-22
+Open: 2654.333984
+High: 8654.333984
+Low: 8654.333984
+Close: 8654.333984
+Volume: 30992961300.
+WAIT!
+Current positions: 
+
+Profits and Loss: 
+0.
+
+
+Coin: ETH
+Date: 2021-03-22
+Open: 2654.333984
+High: 8654.333984
+Low: 8654.333984
+Close: 8654.333984
+Volume: 30992961300.
+SELL!
+Current positions: 
+
+Profits and Loss: 
+0.
+
+
+Coin: ETH
+Date: 2021-03-22
+Open: 2654.333984
+High: 8654.333984
+Low: 8654.333984
+Close: 8654.333984
+Volume: 30992961300.
+SELL!
+Current positions: 
+
+Profits and Loss: 
+0.
+
+
+Coin: ETH
+Date: 2021-03-22
+Open: 2654.333984
+High: 7654.333984
+Low: 7654.333984
+Close: 7654.333984
+Volume: 29599296129.
+SELL!
+Current positions: 
+
+Profits and Loss: 
+0.
+
+
+Coin: ETH
+Date: 2021-03-22
+Open: 2654.333984
+High: 6654.333984
+Low: 6654.333984
+Close: 6654.333984
+Volume: 28599296129.
+SELL!
+Current positions: 
+
+Profits and Loss: 
+0.
+
+
+Coin: ETH
+Date: 2021-03-22
+Open: 2654.333984
+High: 5654.333984
+Low: 5654.333984
+Close: 5654.333984
+Volume: 27599296129.
+SELL!
+Current positions: 
+
+Profits and Loss: 
+0.
+
+
+Coin: ETH
+Date: 2021-03-22
+Open: 2654.333984
+High: 4654.333984
+Low: 4654.333984
+Close: 4654.333984
+Volume: 26599296129.
+SELL!
+Current positions: 
+
+Profits and Loss: 
+0.
+
+
+Coin: ETH
+Date: 2021-03-22
+Open: 2654.333984
+High: 3654.333984
+Low: 3654.333984
+Close: 3654.333984
+Volume: 25599296129.
+SELL!
+Current positions: 
+
+Profits and Loss: 
+0.
+
+
+Coin: ETH
+Date: 2021-03-22
+Open: 2654.333984
+High: 2654.333984
+Low: 2654.333984
+Close: 2654.333984
+Volume: 24599296129.
+SELL!
+Current positions: 
+
+Profits and Loss: 
+0.
+
+
+Coin: ETH
+Date: 2021-03-21
+Open: 2554.217041
+High: 2554.217041
+Low: 2554.217041
+Close: 2554.217041
+Volume: 22977404620.
+SELL!
+Current positions: 
+
+Profits and Loss: 
+0.
+
+
+Coin: ETH
+Date: 2021-03-20
+Open: 2454.634644
+High: 2454.634644
+Low: 2454.634644
+Close: 2454.634644
+Volume: 22677674970.
+SELL!
+Current positions: 
+
+Profits and Loss: 
+0.
+
+
+Coin: ETH
+Date: 2021-03-19
+Open: 2354.624146
+High: 2354.624146
+Low: 2354.624146
+Close: 2354.624146
+Volume: 21249297710.
+SELL!
+Current positions: 
+
+Profits and Loss: 
+0.
+
+
+Coin: ETH
+Date: 2021-03-18
+Open: 2254.855103
+High: 2254.855103
+Low: 2254.855103
+Close: 2254.855103
+Volume: 23263845504.
+SELL!
+Current positions: 
+
+Profits and Loss: 
+0.
+
+
+Coin: ETH
+Date: 2021-03-17
+Open: 2154.449341
+High: 2154.449341
+Low: 2154.449341
+Close: 2154.449341
+Volume: 24512917348.
+SELL!
+Current positions: 
+
+Profits and Loss: 
+0.
+
+
+Coin: ETH
+Date: 2021-03-16
+Open: 2054.564331
+High: 2054.564331
+Low: 2054.564331
+Close: 2054.564331
+Volume: 23828509590.
+SELL!
+Current positions: 
+
+Profits and Loss: 
+0.
+
+
+Coin: ETH
+Date: 2021-03-15
+Open: 1954.564331
+High: 1954.564331
+Low: 1954.564331
+Close: 1954.564331
+Volume: 26244738810.
+SELL!
+Current positions: 
+
+Profits and Loss: 
+0.
+
+
+Coin: ETH
+Date: 2021-03-14
+Open: 1854.564331
+High: 1854.564331
+Low: 1854.564331
+Close: 1854.564331
+Volume: 19344589211.
+SELL!
+Current positions: 
+
+Profits and Loss: 
+0.
+
+
+Report of ETH purchases: 
+

@@ -67,3 +67,6 @@ val price_close : t -> string -> float
 val price_vol : t -> string -> float
 (** [price_volume st coin_name] returns high price of [coin_name] in
     [st]*)
+
+val curr_date : t -> string -> string
+(** [curr_date st coin_name] returns current date of [coin_name] in [st]*)

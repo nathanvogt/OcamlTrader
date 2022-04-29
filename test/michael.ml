@@ -4,8 +4,16 @@ open Ma
 open Ethdata
 open Rsi
 
+(* OTHER POSSIBLE TESTS: *)
+(* - new_indic_val in state.ml *)
+(* - feeder general functionality (should be very easy, just see see if
+   pulled data matches expected data) *)
+(* - related easy test is to make sure header labels are correct (close
+   corresponds to close, high corresponds to high, nothing goes below
+   low, etc.) *)
+
 (********************************************************************
-   Here are some helper functions for your testing of set-like lists.
+ Helper functions helping with list comparison
  ********************************************************************)
 
 (** [cmp_set_like_lists lst1 lst2] compares two lists to see whether
@@ -45,22 +53,8 @@ let pp_list pp_elt lst =
   in
   "[" ^ pp_elts lst ^ "]"
 
-(* These tests demonstrate how to use [cmp_set_like_lists] and [pp_list]
-   to get helpful output from OUnit. *)
-let cmp_demo =
-  [
-    ( "order is irrelevant" >:: fun _ ->
-      assert_equal ~cmp:cmp_set_like_lists ~printer:(pp_list pp_string)
-        [ "foo"; "bar" ] [ "bar"; "foo" ] );
-    (* Uncomment this test to see what happens when a test case
-       fails. *)
-    ( "duplicates not allowed" >:: fun _ ->
-      assert_equal ~cmp:cmp_set_like_lists ~printer:(pp_list pp_string)
-        [ "foo"; "foo" ] [ "foo" ] );
-  ]
-
 (********************************************************************
-       End helper functions.
+End helper functions.
  ********************************************************************)
 
 (** [sma_test name input expected_output] constructs an OUnit test named

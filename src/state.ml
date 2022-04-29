@@ -80,7 +80,6 @@ let initialize = function
   | _ -> raise (Failure "Indicator initialization erro")
 
 (* recursive helpfer function to initiate indicators *)
-(* TODO hard coded for now *)
 let rec initiate_indicators_aux = function
   | [] -> []
   | h :: t ->
@@ -131,7 +130,7 @@ let init_state indic_names budget f =
 
 (* ------- functions to access data ------- *)
 (* helper type to prevent typos when requesting specific data type *)
-type d_type =
+type data_float_type =
   | High
   | Low
   | Open
@@ -139,7 +138,7 @@ type d_type =
   | Volume
 
 (* helper function retrieving data to be passed to indicators *)
-let rec get_data_aux coin (data_type : d_type) = function
+let rec get_data_aux coin (data_type : data_float_type) = function
   | [] -> raise (NoSuchCoin coin)
   | (cn, data) :: t ->
       if cn = coin then
@@ -151,11 +150,19 @@ let rec get_data_aux coin (data_type : d_type) = function
         | Volume -> data.volume
       else get_data_aux coin data_type t
 
+(* separate helper function for data due to type mistmatch *)
+
+let rec get_curr_date_aux coin = function
+  | [] -> raise (NoSuchCoin coin)
+  | (cn, data) :: t ->
+      if cn = coin then data.date else get_curr_date_aux coin t
+
 let price_high st coin_name = get_data_aux coin_name High st.data
 let price_low st coin_name = get_data_aux coin_name Low st.data
 let price_open st coin_name = get_data_aux coin_name Open st.data
 let price_close st coin_name = get_data_aux coin_name Close st.data
 let price_vol st coin_name = get_data_aux coin_name Volume st.data
+let curr_date st coin_name = get_curr_date_aux coin_name st.data
 
 (* ------- functions to be used by main ------- *)
 (* helper function pattern matching against indic_list and calling
@@ -259,10 +266,7 @@ let account_to_string account_info =
 let rec get_closing_price coin_name = function
   | [] -> 0.0
   | (k, v) :: t ->
-      if k = coin_name then v.close
-        (* TODO: assumes that no duplicates exist -- should have sorting
-           function to check for this later, everytime we update data *)
-      else get_closing_price coin_name t
+      if k = coin_name then v.close else get_closing_price coin_name t
 
 (* helper function return copy of state account with bought coin *)
 let buy_account acc price =
@@ -295,7 +299,6 @@ let decision_action st = function
               (get_closing_price coin_name st.data);
         }
       in
-      (* TODO later when moved to online need current price *)
       (buy_state, account_to_string buy_state.acc_info)
   | Sell ->
       let sell_state =

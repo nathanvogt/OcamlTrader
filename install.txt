@@ -1,4 +1,5 @@
-currently no external libraries needed
+external libraries used:
+1. core: run `opam install core'
 
 to run main loop:
 1. make build
