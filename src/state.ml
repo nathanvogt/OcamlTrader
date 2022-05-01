@@ -33,6 +33,9 @@ type account = {
   p_l : float; (* total profit/loss *)
 }
 
+(* price of coin at time state is initiated *)
+let initial_coin_price = ref 0.
+
 type t = {
   data : (string * feeder_data) list;
   indicators : indicator_type list;
@@ -124,11 +127,15 @@ let init_account budget =
 
 (* ------ initalizing actual state ------*)
 let init_state indic_names budget f =
-  {
-    data = [ (Feeder.coin_name f, feeder_data f) ];
-    indicators = initiate_indicators indic_names;
-    acc_info = init_account budget;
-  }
+  let ret =
+    {
+      data = [ (Feeder.coin_name f, feeder_data f) ];
+      indicators = initiate_indicators indic_names;
+      acc_info = init_account budget;
+    }
+  in
+  initial_coin_price := Feeder.close_price f;
+  ret
 
 (* ------- functions to access data ------- *)
 (* helper type to prevent typos when requesting specific data type *)
@@ -265,12 +272,6 @@ let rec positions_to_string = function
   | (name, price) :: t ->
       "Bought " ^ name ^ " at " ^ string_of_float price
 
-(* helper function returning string representation of account
-   information *)
-(* TODO: add market value and budget updates later *)
-let account_to_string account_info =
-  "Profits and Loss: \n" ^ string_of_float account_info.p_l ^ "\n"
-
 (* helper function getting closing price from data list in state *)
 let rec get_closing_price coin_name = function
   | [] -> 0.0
@@ -371,11 +372,11 @@ let decision_action st = function
                 (get_closing_price coin_name_const st.data);
           }
         in
-        (buy_state, account_to_string buy_state.acc_info)
+        (buy_state, buy_state.acc_info.p_l)
       else begin
         ANSITerminal.print_string [ ANSITerminal.yellow ]
         @@ "Insufficient funds.\n";
-        (st, account_to_string st.acc_info)
+        (st, st.acc_info.p_l)
       end
   | Sell ->
       if valid_sell st.acc_info then
@@ -387,10 +388,13 @@ let decision_action st = function
                 (get_closing_price coin_name_const st.data);
           }
         in
-        (sell_state, account_to_string sell_state.acc_info)
+        (sell_state, sell_state.acc_info.p_l)
       else begin
         ANSITerminal.print_string [ ANSITerminal.yellow ]
         @@ "No positions to sell.\n";
-        (st, account_to_string st.acc_info)
+        (st, st.acc_info.p_l)
       end
-  | Wait -> (st, account_to_string st.acc_info)
+  | Wait -> (st, st.acc_info.p_l)
+
+let all_time_profit st coin_name =
+  price_close st coin_name -. !initial_coin_price

@@ -46,7 +46,7 @@ val data_print : string -> t -> string
 (** [data_print st] returns string value representation of the data
     record in [st]*)
 
-val decision_action : t -> decision -> t * string
+val decision_action : t -> decision -> t * float
 (** [decision_action st decision] takes in a type decision as decided by
     indicators from the main loops. Based on this decision, it returns a
     tuple with the first element being new state, and the second being a
@@ -78,3 +78,9 @@ val avg_position_val : t -> string -> float
 val positions_held : t -> string -> float
 (** [positions_held st coin_name] returns float value of the number of
     positions held of [coin_name] *)
+
+val all_time_profit : t -> string -> float
+(** [all_time_profit st coin_name] returns the profit we would make
+    assuming we bought [coin_name] from the point the bot is initiated,
+    until current time assumign we do not sell. It can be used to gauge
+    the effectiveness of our algorithm. *)

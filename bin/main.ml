@@ -94,6 +94,20 @@ let is_valid_input input =
   | exception Failure _ -> false
   | _ -> true
 
+(* colorfying the profit that is printed in terminal *)
+let profit_pretty_print prof_header prof_loss : unit =
+  print_string prof_header;
+  if prof_loss > 0. then
+    ANSITerminal.print_string [ ANSITerminal.green ]
+      (string_of_float prof_loss)
+  else if prof_loss < 0. then
+    ANSITerminal.print_string [ ANSITerminal.red ]
+      (string_of_float prof_loss)
+  else
+    ANSITerminal.print_string [ ANSITerminal.yellow ]
+      (string_of_float prof_loss);
+  print_string "\n"
+
 (* from: https://ilyasergey.net/YSC2229/week-10-reading-files.html
    [update_file filename str] updates [filename] with real time
    information about the crypto price, action at this time frame,
@@ -192,27 +206,41 @@ let rec main_loop wait_period st =
   let data = State.data_print coin_name_const st in
   print_endline @@ "Date: " ^ State.curr_date st coin_name_const;
 
-  (* print_string @@ data; *)
-
   (* storing decision in value to be later passed into State *)
   let indic_decision = evaluate_indicators @@ weight_indicators st in
   ansiterminal_print indic_decision;
 
+  (* storing "profits" from if algorithm just bought the coin and held,
+     used as comparison to actual algorithm *)
+  let all_time_profits =
+    "All time profit: "
+    ^ string_of_float (State.all_time_profit st coin_name_const)
+  in
+
   (* tuple with first element being new state, second being string
      representation of action executed *)
   let state_action_tup = State.decision_action st indic_decision in
+
+  (* storing algorithm profits in string *)
+  let algo_profits =
+    "Algorithm profit: " ^ string_of_float (snd state_action_tup)
+  in
+
   let market_info_string =
     market_positions_tostring (fst state_action_tup)
   in
   let step_data =
     data
     ^ deicision_to_string indic_decision
-    ^ market_info_string ^ snd state_action_tup ^ "\n\n"
+    ^ market_info_string ^ algo_profits ^ all_time_profits ^ "\n\n"
   in
 
   (* reverse order so newest printed on top *)
   report := step_data ^ !report;
-  print_string @@ market_info_string ^ snd state_action_tup ^ "\n";
+  ANSITerminal.print_string [ ANSITerminal.blue ] market_info_string;
+  profit_pretty_print "Algorithm profit: " (snd state_action_tup);
+  profit_pretty_print "All time profit: "
+    (State.all_time_profit st coin_name_const);
   ANSITerminal.print_string [ ANSITerminal.yellow ]
   @@ "Real time data is sent to " ^ report_file ^ "\n";
   update_file report_file !report;
