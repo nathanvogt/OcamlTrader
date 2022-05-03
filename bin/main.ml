@@ -12,6 +12,10 @@ let indicators = [ "RSI"; "MACD" ]
 let coin_name_const = "ETH"
 let budget = 10000.00
 
+(* mock number of positions that naive heuristic can hold, based on
+   floor of [budget]/starting_coin_price *)
+let starting_pos = ref 0.
+
 (* string representation of report meant to be printed to file *)
 let report = ref @@ "Report of " ^ coin_name_const ^ " purchases: \n"
 let report_file = "report.txt"
@@ -107,6 +111,13 @@ let profit_pretty_print prof_header prof_loss : unit =
     ANSITerminal.print_string [ ANSITerminal.yellow ]
       (string_of_float prof_loss);
   print_string "\n"
+
+(* helper function to update the position size held by the baseline
+   algorithm who buys as many coins as it can based on budget and
+   starting price at initialization, and just holds. Assumes budget >
+   initial price *)
+let update_naive_pos f =
+  starting_pos := floor (budget /. Feeder.close_price f)
 
 (* from: https://ilyasergey.net/YSC2229/week-10-reading-files.html
    [update_file filename str] updates [filename] with real time
@@ -278,6 +289,7 @@ let rec set_wait_time_parameter () =
               "Starting crypto trader...\n\n";
             Stdlib.flush Stdlib.stdout;
             Unix.sleepf 1.5;
+            update_naive_pos new_data;
             State.init_state indicators budget new_data
             |> main_loop wait_period)
       else begin
