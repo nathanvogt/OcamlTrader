@@ -341,6 +341,6 @@ let state_tests =
 
 let suite =
   "test suite for indicators"
-  >::: List.flatten [ ma_tests; rsi_tests; state_tests ]
+  >::: List.flatten [ ma_tests; state_tests ]
 
 let _ = run_test_tt_main suite
