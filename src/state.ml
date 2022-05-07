@@ -396,5 +396,6 @@ let decision_action st = function
       end
   | Wait -> (st, st.acc_info.p_l)
 
-let all_time_profit st coin_name =
-  price_close st coin_name -. !initial_coin_price
+let all_time_profit st coin_name start_position_size =
+  start_position_size
+  *. (price_close st coin_name -. !initial_coin_price)

@@ -1,13 +1,750 @@
 Coin: ETH
+Date: 2021-06-30
+Open: 2164.216309
+High: 2282.989014
+Low: 2090.760742
+Close: 2274.547607
+Volume: 25828056268.
+SELL!
+Coin: ETH; Average position value: 3638.12207; Number of positions: 1.
+Algorithm profit: 3009.282713All time profit: 2099.91638
+
+Coin: ETH
+Date: 2021-06-29
+Open: 2083.44873
+High: 2242.23877
+Low: 2076.240234
+Close: 2160.768311
+Volume: 24815124419.
+SELL!
+Coin: ETH; Average position value: 3163.158569; Number of positions: 2.
+Algorithm profit: 3422.930174All time profit: 1531.0199
+
+Coin: ETH
+Date: 2021-06-28
+Open: 1981.386475
+High: 2139.80542
+Low: 1963.615479
+Close: 2079.657471
+Volume: 25514602841.
+SELL!
+Coin: ETH; Average position value: 2897.99357067; Number of positions: 3.
+Algorithm profit: 3629.825437All time profit: 1125.4657
+
+Coin: ETH
+Date: 2021-06-27
+Open: 1830.996948
+High: 1979.95813
+Low: 1811.24585
+Close: 1978.894653
+Volume: 19885474742.
+SELL!
+Coin: ETH; Average position value: 2645.6070555; Number of positions: 4.
+Algorithm profit: 3438.615476All time profit: 621.65161
+
+Coin: ETH
+Date: 2021-06-26
+Open: 1810.884277
+High: 1850.17981
+Low: 1719.559448
+Close: 1829.239258
+Volume: 20637542361.
+WAIT!
+Coin: ETH; Average position value: 2479.1291014; Number of positions: 5.
+Algorithm profit: 3272.938108All time profit: -126.625365
+
+Coin: ETH
+Date: 2021-06-25
+Open: 1989.21582
+High: 2017.759521
+Low: 1794.400391
+Close: 1813.217285
+Volume: 22774334998.
+BUY!
+Coin: ETH; Average position value: 2479.1291014; Number of positions: 5.
+Algorithm profit: 3272.938108All time profit: -206.73523
+
+Coin: ETH
+Date: 2021-06-24
+Open: 1968.957397
+High: 2032.339355
+Low: 1887.432007
+Close: 1988.456299
+Volume: 20272845769.
+WAIT!
+Coin: ETH; Average position value: 2645.6070555; Number of positions: 4.
+Algorithm profit: 3272.938108All time profit: 669.45984
+
+Coin: ETH
+Date: 2021-06-23
+Open: 1878.625
+High: 2043.530396
+Low: 1827.571533
+Close: 1989.736328
+Volume: 28408659206.
+SELL!
+Coin: ETH; Average position value: 2645.6070555; Number of positions: 4.
+Algorithm profit: 3272.938108All time profit: 675.859985
+
+Coin: ETH
+Date: 2021-06-22
+Open: 1886.667603
+High: 1993.15979
+Low: 1707.600586
+Close: 1874.950073
+Volume: 35547251725.
+BUY!
+Coin: ETH; Average position value: 2491.475659; Number of positions: 5.
+Algorithm profit: 3158.151853All time profit: 101.92871
+
+Coin: ETH
+Date: 2021-06-21
+Open: 2245.317871
+High: 2259.464111
+Low: 1867.185425
+Close: 1888.44751
+Volume: 33745173825.
+BUY!
+Coin: ETH; Average position value: 2645.6070555; Number of positions: 4.
+Algorithm profit: 3158.151853All time profit: 169.415895
+
+Coin: ETH
+Date: 2021-06-20
+Open: 2171.337891
+High: 2275.382813
+Low: 2049.962646
+Close: 2246.364502
+Volume: 22535930423.
+SELL!
+Coin: ETH; Average position value: 2897.99357067; Number of positions: 3.
+Algorithm profit: 3158.151853All time profit: 1959.000855
+
+Coin: ETH
+Date: 2021-06-19
+Open: 2235.15918
+High: 2278.415039
+Low: 2168.88501
+Close: 2178.499023
+Volume: 18765854896.
+WAIT!
+Coin: ETH; Average position value: 2731.4284665; Number of positions: 4.
+Algorithm profit: 3143.520505All time profit: 1619.67346
+
+Coin: ETH
+Date: 2021-06-18
+Open: 2374.586914
+High: 2377.195068
+Low: 2147.30835
+Close: 2231.733154
+Volume: 22752818388.
+BUY!
+Coin: ETH; Average position value: 2731.4284665; Number of positions: 4.
+Algorithm profit: 3143.520505All time profit: 1885.844115
+
+Coin: ETH
+Date: 2021-06-17
+Open: 2367.306396
+High: 2457.175537
+Low: 2312.301514
+Close: 2372.001953
+Volume: 21871633186.
+WAIT!
+Coin: ETH; Average position value: 2897.99357067; Number of positions: 3.
+Algorithm profit: 3143.520505All time profit: 2587.18811
+
+Coin: ETH
+Date: 2021-06-16
+Open: 2544.864746
+High: 2554.628906
+Low: 2354.350586
+Close: 2367.663574
+Volume: 24101926180.
+BUY!
+Coin: ETH; Average position value: 2897.99357067; Number of positions: 3.
+Algorithm profit: 3143.520505All time profit: 2565.496215
+
+Coin: ETH
+Date: 2021-06-15
+Open: 2587.762695
+High: 2639.229248
+Low: 2515.153076
+Close: 2610.936768
+Volume: 29005279219.
+WAIT!
+Coin: ETH; Average position value: 3163.158569; Number of positions: 2.
+Algorithm profit: 3143.520505All time profit: 3781.862185
+
+Coin: ETH
+Date: 2021-06-14
+Open: 2508.770508
+High: 2606.432861
+Low: 2469.388184
+Close: 2537.891113
+Volume: 26964576331.
+SELL!
+Coin: ETH; Average position value: 3163.158569; Number of positions: 2.
+Algorithm profit: 3143.520505All time profit: 3416.63391
+
+Coin: ETH
+Date: 2021-06-13
+Open: 2372.690186
+High: 2547.36792
+Low: 2312.640137
+Close: 2508.391602
+Volume: 27092945370.
+SELL!
+Coin: ETH; Average position value: 2972.19344067; Number of positions: 3.
+Algorithm profit: 3195.892576All time profit: 3269.136355
+
+Coin: ETH
+Date: 2021-06-12
+Open: 2354.752197
+High: 2447.227783
+Low: 2265.758057
+Close: 2372.484375
+Volume: 25724364410.
+WAIT!
+Coin: ETH; Average position value: 2847.02471925; Number of positions: 4.
+Algorithm profit: 3159.019529All time profit: 2589.60022
+
+Coin: ETH
+Date: 2021-06-11
+Open: 2472.858887
+High: 2495.414795
+Low: 2326.869629
+Close: 2353.768799
+Volume: 24832564195.
+BUY!
+Coin: ETH; Average position value: 2847.02471925; Number of positions: 4.
+Algorithm profit: 3159.019529All time profit: 2496.02234
+
+Coin: ETH
+Date: 2021-06-10
+Open: 2611.142578
+High: 2619.957764
+Low: 2435.401611
+Close: 2471.518555
+Volume: 28753626390.
+BUY!
+Coin: ETH; Average position value: 2847.02471925; Number of positions: 4.
+Algorithm profit: 3159.019529All time profit: 3084.77112
+
+Coin: ETH
+Date: 2021-06-09
+Open: 2510.199219
+High: 2625.070557
+Low: 2412.197754
+Close: 2608.26709
+Volume: 36075832186.
+SELL!
+Coin: ETH; Average position value: 2972.19344067; Number of positions: 3.
+Algorithm profit: 3159.019529All time profit: 3768.513795
+
+Coin: ETH
+Date: 2021-06-08
+Open: 2594.602295
+High: 2620.846191
+Low: 2315.546631
+Close: 2517.438721
+Volume: 41909736778.
+BUY!
+Coin: ETH; Average position value: 2858.50476075; Number of positions: 4.
+Algorithm profit: 3068.19116All time profit: 3314.37195
+
+Coin: ETH
+Date: 2021-06-07
+Open: 2713.047363
+High: 2845.185059
+Low: 2583.995117
+Close: 2590.263184
+Volume: 30600111277.
+BUY!
+Coin: ETH; Average position value: 2972.19344067; Number of positions: 3.
+Algorithm profit: 3068.19116All time profit: 3678.494265
+
+Coin: ETH
+Date: 2021-06-06
+Open: 2629.748779
+High: 2743.441162
+Low: 2616.162354
+Close: 2715.092773
+Volume: 25311639414.
+SELL!
+Coin: ETH; Average position value: 3163.158569; Number of positions: 2.
+Algorithm profit: 3068.19116All time profit: 4302.64221
+
+Coin: ETH
+Date: 2021-06-05
+Open: 2691.619385
+High: 2817.484863
+Low: 2558.233643
+Close: 2630.576904
+Volume: 30496672724.
+BUY!
+Coin: ETH; Average position value: 2985.63134733; Number of positions: 3.
+Algorithm profit: 2983.675291All time profit: 3880.062865
+
+Coin: ETH
+Date: 2021-06-04
+Open: 2857.165527
+High: 2857.165527
+Low: 2562.637451
+Close: 2688.195068
+Volume: 34173841611.
+BUY!
+Coin: ETH; Average position value: 3163.158569; Number of positions: 2.
+Algorithm profit: 2983.675291All time profit: 4168.153685
+
+Coin: ETH
+Date: 2021-06-03
+Open: 2708.376221
+High: 2891.254883
+Low: 2667.684326
+Close: 2855.126465
+Volume: 30038207402.
+SELL!
+Coin: ETH; Average position value: 3638.12207; Number of positions: 1.
+Algorithm profit: 2983.675291All time profit: 5002.81067
+
+Coin: ETH
+Date: 2021-06-02
+Open: 2634.456055
+High: 2801.392334
+Low: 2555.401367
+Close: 2706.125
+Volume: 27723267359.
+SELL!
+Coin: ETH; Average position value: 3612.814087; Number of positions: 2.
+Algorithm profit: 3716.05493All time profit: 4257.803345
+
+Coin: ETH
+Date: 2021-06-01
+Open: 2707.560547
+High: 2739.737549
+Low: 2531.160645
+Close: 2633.518311
+Volume: 27363223090.
+BUY!
+Coin: ETH; Average position value: 3286.38216167; Number of positions: 3.
+Algorithm profit: 3643.448241All time profit: 3894.7699
+
+Coin: ETH
+Date: 2021-05-31
+Open: 2387.198486
+High: 2715.85498
+Low: 2279.505127
+Close: 2714.945313
+Volume: 31007383150.
+SELL!
+Coin: ETH; Average position value: 3612.814087; Number of positions: 2.
+Algorithm profit: 3643.448241All time profit: 4301.90491
+
+Coin: ETH
+Date: 2021-05-30
+Open: 2278.288818
+High: 2472.187744
+Low: 2188.834473
+Close: 2390.30542
+Volume: 25876619428.
+SELL!
+Coin: ETH; Average position value: 3320.70556633; Number of positions: 3.
+Algorithm profit: 3664.991453All time profit: 2678.705445
+
+Coin: ETH
+Date: 2021-05-29
+Open: 2414.067139
+High: 2566.938477
+Low: 2208.490967
+Close: 2279.51416
+Volume: 33773720220.
+BUY!
+Coin: ETH; Average position value: 3095.50573725; Number of positions: 4.
+Algorithm profit: 3694.592283All time profit: 2124.749145
+
+Coin: ETH
+Date: 2021-05-28
+Open: 2742.468994
+High: 2761.363281
+Low: 2336.361328
+Close: 2419.90625
+Volume: 39999114805.
+BUY!
+Coin: ETH; Average position value: 3095.50573725; Number of positions: 4.
+Algorithm profit: 3694.592283All time profit: 2826.709595
+
+Coin: ETH
+Date: 2021-05-27
+Open: 2888.752441
+High: 2888.752441
+Low: 2642.60791
+Close: 2736.488525
+Volume: 33373635283.
+BUY!
+Coin: ETH; Average position value: 3320.70556633; Number of positions: 3.
+Algorithm profit: 3694.592283All time profit: 4409.62097
+
+Coin: ETH
+Date: 2021-05-26
+Open: 2707.052734
+High: 2911.735596
+Low: 2652.094482
+Close: 2888.69873
+Volume: 42499766020.
+SELL!
+Coin: ETH; Average position value: 3612.814087; Number of positions: 2.
+Algorithm profit: 3694.592283All time profit: 5170.671995
+
+Coin: ETH
+Date: 2021-05-25
+Open: 2649.033203
+High: 2750.534912
+Low: 2394.355469
+Close: 2706.628906
+Volume: 49558333256.
+WAIT!
+Coin: ETH; Average position value: 3218.74983733; Number of positions: 3.
+Algorithm profit: 3236.514891All time profit: 4260.322875
+
+Coin: ETH
+Date: 2021-05-24
+Open: 2099.936035
+High: 2672.595703
+Low: 2090.639648
+Close: 2643.591064
+Volume: 53697121740.
+SELL!
+Coin: ETH; Average position value: 3218.74983733; Number of positions: 3.
+Algorithm profit: 3236.514891All time profit: 3945.133665
+
+Coin: ETH
+Date: 2021-05-23
+Open: 2298.367188
+High: 2384.411621
+Low: 1737.46875
+Close: 2109.579834
+Volume: 56005721977.
+BUY!
+Coin: ETH; Average position value: 2987.9887695; Number of positions: 4.
+Algorithm profit: 2888.629393All time profit: 1275.077515
+
+Coin: ETH
+Date: 2021-05-22
+Open: 2436.014648
+High: 2483.983154
+Low: 2168.124268
+Close: 2295.705566
+Volume: 42089937660.
+BUY!
+Coin: ETH; Average position value: 2987.9887695; Number of positions: 4.
+Algorithm profit: 2888.629393All time profit: 2205.706175
+
+Coin: ETH
+Date: 2021-05-21
+Open: 2772.341309
+High: 2938.205078
+Low: 2113.347168
+Close: 2430.621338
+Volume: 53774070802.
+BUY!
+Coin: ETH; Average position value: 3218.74983733; Number of positions: 3.
+Algorithm profit: 2888.629393All time profit: 2880.285035
+
+Coin: ETH
+Date: 2021-05-20
+Open: 2439.638672
+High: 2993.145264
+Low: 2170.229004
+Close: 2784.294189
+Volume: 67610826680.
+SELL!
+Coin: ETH; Average position value: 3612.814087; Number of positions: 2.
+Algorithm profit: 2888.629393All time profit: 4648.64929
+
+Coin: ETH
+Date: 2021-05-19
+Open: 3382.657227
+High: 3437.935791
+Low: 1952.460205
+Close: 2460.679199
+Volume: 84482912776.
+BUY!
+Coin: ETH; Average position value: 3228.76912433; Number of positions: 3.
+Algorithm profit: 2565.014403All time profit: 3030.57434
+
+Coin: ETH
+Date: 2021-05-18
+Open: 3276.872314
+High: 3562.465088
+Low: 3246.404053
+Close: 3380.070068
+Volume: 40416525218.
+SELL!
+Coin: ETH; Average position value: 3612.814087; Number of positions: 2.
+Algorithm profit: 2565.014403All time profit: 7627.528685
+
+Coin: ETH
+Date: 2021-05-17
+Open: 3581.343018
+High: 3587.765625
+Low: 3129.008789
+Close: 3282.397705
+Volume: 54061732774.
+BUY!
+Coin: ETH; Average position value: 3502.675293; Number of positions: 3.
+Algorithm profit: 2467.34204All time profit: 7139.16687
+
+Coin: ETH
+Date: 2021-05-16
+Open: 3641.830811
+High: 3878.895996
+Low: 3350.95166
+Close: 3587.506104
+Volume: 47359478734.
+BUY!
+Coin: ETH; Average position value: 3612.814087; Number of positions: 2.
+Algorithm profit: 2467.34204All time profit: 8664.708865
+
+Coin: ETH
+Date: 2021-05-15
+Open: 4075.95166
+High: 4129.185547
+Low: 3638.12207
+Close: 3638.12207
+Volume: 42422321751.
+BUY!
+Coin: ETH; Average position value: 3638.12207; Number of positions: 1.
+Algorithm profit: 2467.34204All time profit: 8917.788695
+
+Coin: ETH
+Date: 2021-05-14
+Open: 3720.122314
+High: 4171.01709
+Low: 3703.399902
+Close: 4079.057373
+Volume: 48174271215.
+SELL!
+Coin: ETH; Average position value: 0.; Number of positions: 0.
+Algorithm profit: 2467.34204All time profit: 11122.46521
+
+Coin: ETH
+Date: 2021-05-13
+Open: 3828.918457
+High: 4032.563477
+Low: 3549.407227
+Close: 3715.148438
+Volume: 78398214539.
+WAIT!
+Coin: ETH; Average position value: 3785.848633; Number of positions: 1.
+Algorithm profit: 2174.1333All time profit: 9302.920535
+
+Coin: ETH
+Date: 2021-05-12
+Open: 4174.635742
+High: 4362.350586
+Low: 3785.848633
+Close: 3785.848633
+Volume: 69023382175.
+BUY!
+Coin: ETH; Average position value: 3785.848633; Number of positions: 1.
+Algorithm profit: 2174.1333All time profit: 9656.42151
+
+Coin: ETH
+Date: 2021-05-11
+Open: 3948.271973
+High: 4178.208984
+Low: 3783.889404
+Close: 4168.701172
+Volume: 52679737865.
+SELL!
+Coin: ETH; Average position value: 0.; Number of positions: 0.
+Algorithm profit: 2174.1333All time profit: 11570.684205
+
+Coin: ETH
+Date: 2021-05-10
+Open: 3924.41333
+High: 4197.473145
+Low: 3684.45166
+Close: 3952.293945
+Volume: 62691789007.
+WAIT!
+Coin: ETH; Average position value: 0.; Number of positions: 0.
+Algorithm profit: 2174.1333All time profit: 10488.64807
+
+Coin: ETH
+Date: 2021-05-09
+Open: 3911.463135
+High: 3981.259033
+Low: 3743.989014
+Close: 3928.844727
+Volume: 50568290278.
+WAIT!
+Coin: ETH; Average position value: 0.; Number of positions: 0.
+Algorithm profit: 2174.1333All time profit: 10371.40198
+
+Coin: ETH
+Date: 2021-05-08
+Open: 3481.988037
+High: 3950.165039
+Low: 3453.768555
+Close: 3902.647705
+Volume: 50208491286.
+SELL!
+Coin: ETH; Average position value: 0.; Number of positions: 0.
+Algorithm profit: 2174.1333All time profit: 10240.41687
+
+Coin: ETH
+Date: 2021-05-07
+Open: 3490.105225
+High: 3573.290039
+Low: 3370.261963
+Close: 3484.729004
+Volume: 39607240515.
+WAIT!
+Coin: ETH; Average position value: 0.; Number of positions: 0.
+Algorithm profit: 2174.1333All time profit: 8150.823365
+
+Coin: ETH
+Date: 2021-05-06
+Open: 3524.930908
+High: 3598.895996
+Low: 3386.23999
+Close: 3490.880371
+Volume: 44300394788.
+WAIT!
+Coin: ETH; Average position value: 0.; Number of positions: 0.
+Algorithm profit: 2174.1333All time profit: 8181.5802
+
+Coin: ETH
+Date: 2021-05-05
+Open: 3240.554688
+High: 3541.462646
+Low: 3213.101563
+Close: 3522.783203
+Volume: 48334198383.
+SELL!
+Coin: ETH; Average position value: 0.; Number of positions: 0.
+Algorithm profit: 2174.1333All time profit: 8341.09436
+
+Coin: ETH
+Date: 2021-05-04
+Open: 3431.131592
+High: 3523.585938
+Low: 3180.742676
+Close: 3253.629395
+Volume: 62402045158.
+BUY!
+Coin: ETH; Average position value: 3253.629395; Number of positions: 1.
+Algorithm profit: 1904.979492All time profit: 6995.32532
+
+Coin: ETH
+Date: 2021-05-03
+Open: 2951.175781
+High: 3450.037842
+Low: 2951.175781
+Close: 3431.086182
+Volume: 49174290212.
+SELL!
+Coin: ETH; Average position value: 0.; Number of positions: 0.
+Algorithm profit: 1904.979492All time profit: 7882.609255
+
+Coin: ETH
+Date: 2021-05-02
+Open: 2945.560059
+High: 2984.891846
+Low: 2860.526123
+Close: 2952.056152
+Volume: 28032013047.
+WAIT!
+Coin: ETH; Average position value: 0.; Number of positions: 0.
+Algorithm profit: 1904.979492All time profit: 5487.459105
+
+Coin: ETH
+Date: 2021-05-01
+Open: 2772.838379
+High: 2951.440918
+Low: 2755.908447
+Close: 2945.892822
+Volume: 28726205272.
+SELL!
+Coin: ETH; Average position value: 0.; Number of positions: 0.
+Algorithm profit: 1904.979492All time profit: 5456.642455
+
+Coin: ETH
+Date: 2021-04-30
+Open: 2757.734131
+High: 2796.054932
+Low: 2728.169922
+Close: 2773.207031
+Volume: 29777179889.
+WAIT!
+Coin: ETH; Average position value: 0.; Number of positions: 0.
+Algorithm profit: 1904.979492All time profit: 4593.2135
+
+Coin: ETH
+Date: 2021-04-29
+Open: 2748.649658
+High: 2797.972412
+Low: 2672.106689
+Close: 2756.876953
+Volume: 32578127990.
+WAIT!
+Coin: ETH; Average position value: 0.; Number of positions: 0.
+Algorithm profit: 1904.979492All time profit: 4511.56311
+
+Coin: ETH
+Date: 2021-04-28
+Open: 2664.685547
+High: 2757.477295
+Low: 2564.081543
+Close: 2746.380127
+Volume: 34269031076.
+SELL!
+Coin: ETH; Average position value: 0.; Number of positions: 0.
+Algorithm profit: 1904.979492All time profit: 4459.07898
+
+Coin: ETH
+Date: 2021-04-27
+Open: 2534.03125
+High: 2676.392822
+Low: 2485.375
+Close: 2662.865234
+Volume: 32275969215.
+SELL!
+Coin: ETH; Average position value: 2431.946533; Number of positions: 1.
+Algorithm profit: 1590.545898All time profit: 4041.504515
+
+Coin: ETH
+Date: 2021-04-26
+Open: 2319.478027
+High: 2536.337402
+Low: 2308.315186
+Close: 2534.481689
+Volume: 35208325408.
+SELL!
+Coin: ETH; Average position value: 2388.4207765; Number of positions: 2.
+Algorithm profit: 1272.575684All time profit: 3399.58679
+
+Coin: ETH
+Date: 2021-04-25
+Open: 2214.413818
+High: 2354.08667
+Low: 2172.515137
+Close: 2316.05957
+Volume: 31814355546.
+SELL!
+Coin: ETH; Average position value: 2380.14257833; Number of positions: 3.
+Algorithm profit: 1101.680177All time profit: 2307.476195
+
+Coin: ETH
 Date: 2021-04-24
 Open: 2367.199219
 High: 2367.740967
 Low: 2163.693115
 Close: 2211.625732
 Volume: 31854226936.
-SELL!
-Coin: ETH; Average position value: 0.; Number of positions: 0.
-Algorithm profit: 1485.523802All time profit: 357.061401
+BUY!
+Coin: ETH; Average position value: 2338.01336675; Number of positions: 4.
+Algorithm profit: 997.246339All time profit: 1785.307005
 
 Coin: ETH
 Date: 2021-04-23
@@ -16,9 +753,9 @@ High: 2439.537109
 Low: 2117.039551
 Close: 2363.586182
 Volume: 55413933925.
-SELL!
-Coin: ETH; Average position value: 0.; Number of positions: 0.
-Algorithm profit: 1485.523802All time profit: 509.021851
+BUY!
+Coin: ETH; Average position value: 2380.14257833; Number of positions: 3.
+Algorithm profit: 997.246339All time profit: 2545.109255
 
 Coin: ETH
 Date: 2021-04-22
@@ -27,9 +764,9 @@ High: 2641.094971
 Low: 2315.960205
 Close: 2403.535156
 Volume: 53575904724.
-SELL!
-Coin: ETH; Average position value: 0.; Number of positions: 0.
-Algorithm profit: 1485.523802All time profit: 548.970825
+WAIT!
+Coin: ETH; Average position value: 2388.4207765; Number of positions: 2.
+Algorithm profit: 997.246339All time profit: 2744.854125
 
 Coin: ETH
 Date: 2021-04-21
@@ -39,8 +776,8 @@ Low: 2238.366943
 Close: 2364.751709
 Volume: 38899067643.
 SELL!
-Coin: ETH; Average position value: 0.; Number of positions: 0.
-Algorithm profit: 1485.523802All time profit: 510.187378
+Coin: ETH; Average position value: 2388.4207765; Number of positions: 2.
+Algorithm profit: 997.246339All time profit: 2550.93689
 
 Coin: ETH
 Date: 2021-04-20
@@ -50,8 +787,8 @@ Low: 2060.143799
 Close: 2330.210938
 Volume: 39433483315.
 SELL!
-Coin: ETH; Average position value: 0.; Number of positions: 0.
-Algorithm profit: 1485.523802All time profit: 475.646607
+Coin: ETH; Average position value: 2337.99283867; Number of positions: 3.
+Algorithm profit: 869.631593All time profit: 2378.233035
 
 Coin: ETH
 Date: 2021-04-19
@@ -60,9 +797,9 @@ High: 2276.776855
 Low: 2086.688721
 Close: 2166.188721
 Volume: 34060654971.
-SELL!
-Coin: ETH; Average position value: 0.; Number of positions: 0.
-Algorithm profit: 1485.523802All time profit: 311.62439
+BUY!
+Coin: ETH; Average position value: 2295.04180925; Number of positions: 4.
+Algorithm profit: 705.609376All time profit: 1558.12195
 
 Coin: ETH
 Date: 2021-04-18
@@ -71,9 +808,9 @@ High: 2365.460449
 Low: 2011.766846
 Close: 2237.136963
 Volume: 50696368718.
-SELL!
-Coin: ETH; Average position value: 0.; Number of positions: 0.
-Algorithm profit: 1485.523802All time profit: 382.572632
+BUY!
+Coin: ETH; Average position value: 2337.99283867; Number of positions: 3.
+Algorithm profit: 705.609376All time profit: 1912.86316
 
 Coin: ETH
 Date: 2021-04-17
@@ -82,9 +819,9 @@ High: 2497.385254
 Low: 2333.682861
 Close: 2344.89502
 Volume: 32349808978.
-SELL!
-Coin: ETH; Average position value: 0.; Number of positions: 0.
-Algorithm profit: 1485.523802All time profit: 490.330689
+BUY!
+Coin: ETH; Average position value: 2388.4207765; Number of positions: 2.
+Algorithm profit: 705.609376All time profit: 2451.653445
 
 Coin: ETH
 Date: 2021-04-16
@@ -93,9 +830,9 @@ High: 2547.555664
 Low: 2318.675049
 Close: 2431.946533
 Volume: 36196928256.
-SELL!
-Coin: ETH; Average position value: 0.; Number of positions: 0.
-Algorithm profit: 1485.523802All time profit: 577.382202
+BUY!
+Coin: ETH; Average position value: 2431.946533; Number of positions: 1.
+Algorithm profit: 705.609376All time profit: 2886.91101
 
 Coin: ETH
 Date: 2021-04-15
@@ -106,7 +843,7 @@ Close: 2519.116211
 Volume: 32325606817.
 SELL!
 Coin: ETH; Average position value: 0.; Number of positions: 0.
-Algorithm profit: 1485.523802All time profit: 664.55188
+Algorithm profit: 705.609376All time profit: 3322.7594
 
 Coin: ETH
 Date: 2021-04-14
@@ -117,7 +854,7 @@ Close: 2435.10498
 Volume: 35592822986.
 SELL!
 Coin: ETH; Average position value: 0.; Number of positions: 0.
-Algorithm profit: 1485.523802All time profit: 580.540649
+Algorithm profit: 705.609376All time profit: 2902.703245
 
 Coin: ETH
 Date: 2021-04-13
@@ -128,7 +865,7 @@ Close: 2299.187744
 Volume: 29456642939.
 SELL!
 Coin: ETH; Average position value: 0.; Number of positions: 0.
-Algorithm profit: 1485.523802All time profit: 444.623413
+Algorithm profit: 705.609376All time profit: 2223.117065
 
 Coin: ETH
 Date: 2021-04-12
@@ -137,9 +874,9 @@ High: 2199.71875
 Low: 2110.368896
 Close: 2139.353271
 Volume: 21727936609.
-SELL!
+WAIT!
 Coin: ETH; Average position value: 0.; Number of positions: 0.
-Algorithm profit: 1485.523802All time profit: 284.78894
+Algorithm profit: 705.609376All time profit: 1423.9447
 
 Coin: ETH
 Date: 2021-04-11
@@ -148,9 +885,9 @@ High: 2165.191406
 Low: 2119.865723
 Close: 2157.656982
 Volume: 19692836132.
-SELL!
+WAIT!
 Coin: ETH; Average position value: 0.; Number of positions: 0.
-Algorithm profit: 1485.523802All time profit: 303.092651
+Algorithm profit: 705.609376All time profit: 1515.463255
 
 Coin: ETH
 Date: 2021-04-10
@@ -161,7 +898,7 @@ Close: 2135.942139
 Volume: 24986243611.
 SELL!
 Coin: ETH; Average position value: 0.; Number of positions: 0.
-Algorithm profit: 1485.523802All time profit: 281.377808
+Algorithm profit: 705.609376All time profit: 1406.88904
 
 Coin: ETH
 Date: 2021-04-09
@@ -170,9 +907,9 @@ High: 2102.873779
 Low: 2055.16333
 Close: 2072.108887
 Volume: 19812472092.
-SELL!
-Coin: ETH; Average position value: 1791.702271; Number of positions: 1.
-Algorithm profit: 1141.283934All time profit: 217.544556
+BUY!
+Coin: ETH; Average position value: 2072.108887; Number of positions: 1.
+Algorithm profit: 641.776124All time profit: 1087.72278
 
 Coin: ETH
 Date: 2021-04-08
@@ -182,8 +919,8 @@ Low: 1959.079468
 Close: 2088.57373
 Volume: 25312956529.
 SELL!
-Coin: ETH; Average position value: 1799.3370365; Number of positions: 2.
-Algorithm profit: 876.146849All time profit: 234.009399
+Coin: ETH; Average position value: 0.; Number of positions: 0.
+Algorithm profit: 641.776124All time profit: 1170.046995
 
 Coin: ETH
 Date: 2021-04-07
@@ -192,9 +929,9 @@ High: 2133.1875
 Low: 1945.442139
 Close: 1971.077271
 Volume: 36116271935.
-WAIT!
-Coin: ETH; Average position value: 1807.37447133; Number of positions: 3.
-Algorithm profit: 611.02246All time profit: 116.51294
+BUY!
+Coin: ETH; Average position value: 1971.077271; Number of positions: 1.
+Algorithm profit: 524.279665All time profit: 582.5647
 
 Coin: ETH
 Date: 2021-04-06
@@ -203,9 +940,9 @@ High: 2151.223389
 Low: 2057.609131
 Close: 2118.378906
 Volume: 29222865881.
-SELL!
-Coin: ETH; Average position value: 1807.37447133; Number of positions: 3.
-Algorithm profit: 611.02246All time profit: 263.814575
+WAIT!
+Coin: ETH; Average position value: 0.; Number of positions: 0.
+Algorithm profit: 524.279665All time profit: 1319.072875
 
 Coin: ETH
 Date: 2021-04-05
@@ -215,8 +952,8 @@ Low: 2032.387695
 Close: 2107.887207
 Volume: 28889391170.
 WAIT!
-Coin: ETH; Average position value: 1801.24462925; Number of positions: 4.
-Algorithm profit: 275.498657All time profit: 253.322876
+Coin: ETH; Average position value: 0.; Number of positions: 0.
+Algorithm profit: 524.279665All time profit: 1266.61438
 
 Coin: ETH
 Date: 2021-04-04
@@ -226,8 +963,8 @@ Low: 2007.111816
 Close: 2093.122803
 Volume: 26006501902.
 SELL!
-Coin: ETH; Average position value: 1801.24462925; Number of positions: 4.
-Algorithm profit: 275.498657All time profit: 238.558472
+Coin: ETH; Average position value: 0.; Number of positions: 0.
+Algorithm profit: 524.279665All time profit: 1192.79236
 
 Coin: ETH
 Date: 2021-04-03
@@ -237,8 +974,8 @@ Low: 2028.422485
 Close: 2028.422485
 Volume: 32011518871.
 BUY!
-Coin: ETH; Average position value: 1804.5205326; Number of positions: 5.
-Algorithm profit: 0.All time profit: 173.858154
+Coin: ETH; Average position value: 2028.422485; Number of positions: 1.
+Algorithm profit: 459.579347All time profit: 869.29077
 
 Coin: ETH
 Date: 2021-04-02
@@ -247,9 +984,9 @@ High: 2152.451904
 Low: 1960.678711
 Close: 2143.225586
 Volume: 34862511022.
-WAIT!
-Coin: ETH; Average position value: 1804.5205326; Number of positions: 5.
-Algorithm profit: 0.All time profit: 288.661255
+SELL!
+Coin: ETH; Average position value: 0.; Number of positions: 0.
+Algorithm profit: 459.579347All time profit: 1443.306275
 
 Coin: ETH
 Date: 2021-04-01
@@ -258,9 +995,9 @@ High: 1989.055054
 Low: 1912.178467
 Close: 1977.276855
 Volume: 30914259795.
-BUY!
-Coin: ETH; Average position value: 1804.5205326; Number of positions: 5.
-Algorithm profit: 0.All time profit: 122.712524
+SELL!
+Coin: ETH; Average position value: 0.; Number of positions: 0.
+Algorithm profit: 459.579347All time profit: 613.56262
 
 Coin: ETH
 Date: 2021-03-31
@@ -269,9 +1006,9 @@ High: 1947.837769
 Low: 1793.002197
 Close: 1918.362061
 Volume: 30226902621.
-WAIT!
-Coin: ETH; Average position value: 1804.5205326; Number of positions: 5.
-Algorithm profit: 0.All time profit: 63.79773
+SELL!
+Coin: ETH; Average position value: 0.; Number of positions: 0.
+Algorithm profit: 459.579347All time profit: 318.98865
 
 Coin: ETH
 Date: 2021-03-30
@@ -280,9 +1017,9 @@ High: 1860.974731
 Low: 1793.922363
 Close: 1846.033691
 Volume: 22512781703.
-BUY!
-Coin: ETH; Average position value: 1804.5205326; Number of positions: 5.
-Algorithm profit: 0.All time profit: -8.53064
+WAIT!
+Coin: ETH; Average position value: 1788.217041; Number of positions: 1.
+Algorithm profit: 329.434327All time profit: -42.6532
 
 Coin: ETH
 Date: 2021-03-29
@@ -291,9 +1028,9 @@ High: 1837.187988
 Low: 1683.716553
 Close: 1819.684937
 Volume: 22796570548.
-BUY!
-Coin: ETH; Average position value: 1804.5205326; Number of positions: 5.
-Algorithm profit: 0.All time profit: -34.879394
+SELL!
+Coin: ETH; Average position value: 1788.217041; Number of positions: 1.
+Algorithm profit: 329.434327All time profit: -174.39697
 
 Coin: ETH
 Date: 2021-03-28
@@ -303,8 +1040,8 @@ Low: 1672.6604
 Close: 1691.355957
 Volume: 16599472938.
 BUY!
-Coin: ETH; Average position value: 1804.5205326; Number of positions: 5.
-Algorithm profit: 0.All time profit: -163.208374
+Coin: ETH; Average position value: 1739.786499; Number of positions: 2.
+Algorithm profit: 201.105347All time profit: -816.04187
 
 Coin: ETH
 Date: 2021-03-27
@@ -313,9 +1050,9 @@ High: 1732.824341
 Low: 1674.319336
 Close: 1716.494629
 Volume: 18102277710.
-BUY!
-Coin: ETH; Average position value: 1804.5205326; Number of positions: 5.
-Algorithm profit: 0.All time profit: -138.069702
+SELL!
+Coin: ETH; Average position value: 1788.217041; Number of positions: 1.
+Algorithm profit: 201.105347All time profit: -690.34851
 
 Coin: ETH
 Date: 2021-03-26
@@ -324,9 +1061,9 @@ High: 1702.922852
 Low: 1594.736694
 Close: 1702.842041
 Volume: 22548516548.
-BUY!
-Coin: ETH; Average position value: 1804.5205326; Number of positions: 5.
-Algorithm profit: 0.All time profit: -151.72229
+SELL!
+Coin: ETH; Average position value: 1739.7755125; Number of positions: 2.
+Algorithm profit: 175.944702All time profit: -758.61145
 
 Coin: ETH
 Date: 2021-03-25
@@ -335,9 +1072,9 @@ High: 1625.911499
 Low: 1560.370483
 Close: 1595.359253
 Volume: 29650328701.
-BUY!
-Coin: ETH; Average position value: 1804.5205326; Number of positions: 5.
-Algorithm profit: 0.All time profit: -259.205078
+WAIT!
+Coin: ETH; Average position value: 1690.988159; Number of positions: 3.
+Algorithm profit: 66.516113All time profit: -1296.02539
 
 Coin: ETH
 Date: 2021-03-24
@@ -347,8 +1084,8 @@ Low: 1570.787964
 Close: 1593.413452
 Volume: 31228051473.
 BUY!
-Coin: ETH; Average position value: 1804.5205326; Number of positions: 5.
-Algorithm profit: 0.All time profit: -261.150879
+Coin: ETH; Average position value: 1690.988159; Number of positions: 3.
+Algorithm profit: 66.516113All time profit: -1305.754395
 
 Coin: ETH
 Date: 2021-03-23
@@ -357,9 +1094,9 @@ High: 1725.108765
 Low: 1662.539917
 Close: 1678.650146
 Volume: 21998237965.
-BUY!
-Coin: ETH; Average position value: 1804.5205326; Number of positions: 5.
-Algorithm profit: 0.All time profit: -175.914185
+WAIT!
+Coin: ETH; Average position value: 1739.7755125; Number of positions: 2.
+Algorithm profit: 66.516113All time profit: -879.570925
 
 Coin: ETH
 Date: 2021-03-22
@@ -369,8 +1106,8 @@ Low: 1674.299805
 Close: 1691.333984
 Volume: 23599296129.
 BUY!
-Coin: ETH; Average position value: 1804.5205326; Number of positions: 5.
-Algorithm profit: 0.All time profit: -163.230347
+Coin: ETH; Average position value: 1739.7755125; Number of positions: 2.
+Algorithm profit: 66.516113All time profit: -816.151735
 
 Coin: ETH
 Date: 2021-03-21
@@ -380,8 +1117,8 @@ Low: 1764.139282
 Close: 1788.217041
 Volume: 22977404620.
 BUY!
-Coin: ETH; Average position value: 1804.5205326; Number of positions: 5.
-Algorithm profit: 0.All time profit: -66.34729
+Coin: ETH; Average position value: 1788.217041; Number of positions: 1.
+Algorithm profit: 66.516113All time profit: -331.73645
 
 Coin: ETH
 Date: 2021-03-20
@@ -390,9 +1127,9 @@ High: 1874.708984
 Low: 1811.728638
 Close: 1812.634644
 Volume: 22677674970.
-BUY!
-Coin: ETH; Average position value: 1804.5205326; Number of positions: 5.
-Algorithm profit: 0.All time profit: -41.929687
+WAIT!
+Coin: ETH; Average position value: 0.; Number of positions: 0.
+Algorithm profit: 66.516113All time profit: -209.648435
 
 Coin: ETH
 Date: 2021-03-19
@@ -401,9 +1138,9 @@ High: 1841.196045
 Low: 1746.473389
 Close: 1817.624146
 Volume: 21249297710.
-BUY!
-Coin: ETH; Average position value: 1804.5205326; Number of positions: 5.
-Algorithm profit: 0.All time profit: -36.940185
+SELL!
+Coin: ETH; Average position value: 0.; Number of positions: 0.
+Algorithm profit: 66.516113All time profit: -184.700925
 
 Coin: ETH
 Date: 2021-03-18
@@ -413,8 +1150,8 @@ Low: 1705.716064
 Close: 1782.855103
 Volume: 23263845504.
 BUY!
-Coin: ETH; Average position value: 1801.24462925; Number of positions: 4.
-Algorithm profit: 0.All time profit: -71.709228
+Coin: ETH; Average position value: 1782.855103; Number of positions: 1.
+Algorithm profit: 31.74707All time profit: -358.54614
 
 Coin: ETH
 Date: 2021-03-17
@@ -423,9 +1160,9 @@ High: 1839.81897
 Low: 1749.179932
 Close: 1823.449341
 Volume: 24512917348.
-BUY!
-Coin: ETH; Average position value: 1807.37447133; Number of positions: 3.
-Algorithm profit: 0.All time profit: -31.11499
+SELL!
+Coin: ETH; Average position value: 0.; Number of positions: 0.
+Algorithm profit: 31.74707All time profit: -155.57495
 
 Coin: ETH
 Date: 2021-03-16
@@ -434,9 +1171,9 @@ High: 1817.060181
 Low: 1720.053223
 Close: 1806.971802
 Volume: 23828509590.
-BUY!
-Coin: ETH; Average position value: 1799.3370365; Number of positions: 2.
-Algorithm profit: 0.All time profit: -47.592529
+WAIT!
+Coin: ETH; Average position value: 1791.702271; Number of positions: 1.
+Algorithm profit: 0.All time profit: -237.962645
 
 Coin: ETH
 Date: 2021-03-15
@@ -447,7 +1184,7 @@ Close: 1791.702271
 Volume: 26244738810.
 BUY!
 Coin: ETH; Average position value: 1791.702271; Number of positions: 1.
-Algorithm profit: 0.All time profit: -62.86206
+Algorithm profit: 0.All time profit: -314.3103
 
 Coin: ETH
 Date: 2021-03-14
