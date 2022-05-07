@@ -79,8 +79,8 @@ let grid_indicator price_close =
 (* main function returning a combination of various indicators for a
    final decision *)
 let indicator_comb st =
-  (* weight_indicators st *)
-  grid_indicator (State.price_close st coin_name_const)
+  weight_indicators st
+  +. grid_indicator (State.price_close st coin_name_const)
 
 (* helper function receiving decision and taking corresponding action
 
