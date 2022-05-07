@@ -147,25 +147,36 @@ let rec resize_graph curr_price =
     ANSITerminal.print_string
       [ ANSITerminal.magenta ]
       "Adjust bound ratios.\n";
-    grid_lower_limit := curr_price -. (0.4 *. curr_price);
-    grid_upper_limit := curr_price +. (0.4 *. curr_price);
-    grid_size :=
-      (!grid_upper_limit -. !grid_lower_limit)
-      /. float_of_int num_splits);
-  if curr_price -. margin < !grid_lower_limit then (
-    grid_lower_limit :=
-      !grid_lower_limit -. (!grid_size *. float_of_int (num_splits / 2));
-    grid_upper_limit :=
-      !grid_upper_limit -. (!grid_size *. float_of_int (num_splits / 2));
-    resize_graph curr_price)
-  else if curr_price +. margin > !grid_upper_limit then (
-    grid_lower_limit :=
-      !grid_lower_limit +. (!grid_size *. float_of_int (num_splits / 2));
-    grid_upper_limit :=
-      !grid_upper_limit +. (!grid_size *. float_of_int (num_splits / 2));
-    resize_graph curr_price)
+    adjust_bounds curr_price num_splits);
+  if curr_price -. margin < !grid_lower_limit then
+    adjust_margin_down curr_price num_splits
+  else if curr_price +. margin > !grid_upper_limit then
+    adjust_margin_up curr_price num_splits
   else ()
 (* resizing complete *)
+
+(* helper function to adjust bounds of graph *)
+and adjust_bounds curr_price num_splits =
+  grid_lower_limit := curr_price -. (0.4 *. curr_price);
+  grid_upper_limit := curr_price +. (0.4 *. curr_price);
+  grid_size :=
+    (!grid_upper_limit -. !grid_lower_limit) /. float_of_int num_splits
+
+(* helper function subtracting from margin *)
+and adjust_margin_down curr_price num_splits =
+  grid_lower_limit :=
+    !grid_lower_limit -. (!grid_size *. float_of_int (num_splits / 2));
+  grid_upper_limit :=
+    !grid_upper_limit -. (!grid_size *. float_of_int (num_splits / 2));
+  resize_graph curr_price
+
+(* helper function adding to margin *)
+and adjust_margin_up curr_price num_splits =
+  grid_lower_limit :=
+    !grid_lower_limit +. (!grid_size *. float_of_int (num_splits / 2));
+  grid_upper_limit :=
+    !grid_upper_limit +. (!grid_size *. float_of_int (num_splits / 2));
+  resize_graph curr_price
 
 (* [graph_grid] prints out nicely the upper and lower bounds of the
    price, current price, and resizes if needed *)
