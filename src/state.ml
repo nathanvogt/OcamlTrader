@@ -82,7 +82,7 @@ let initialize = function
       let ema_26 = Feeder.lookback "MACD" 26 |> Ma.avg in
       let ema_12 = Feeder.lookback "MACD" 12 |> Ma.avg in
       MACD (0., 0., ema_12, ema_26)
-  | _ -> raise (Failure "Indicator initialization erro")
+  | _ -> raise (Failure "Indicator initialization error")
 
 (* recursive helpfer function to initiate indicators *)
 let rec initiate_indicators_aux = function

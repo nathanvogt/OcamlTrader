@@ -1,26 +1,4 @@
 Coin: ETH
-Date: 2021-04-03
-Open: 2142.895996
-High: 2144.962402
-Low: 2028.422485
-Close: 2028.422485
-Volume: 32011518871.
-BUY!
-Coin: ETH; Average position value: 1811.9085696; Number of positions: 5.
-Algorithm profit: 0.All time profit: 173.858154
-
-Coin: ETH
-Date: 2021-04-02
-Open: 1976.932739
-High: 2152.451904
-Low: 1960.678711
-Close: 2143.225586
-Volume: 34862511022.
-BUY!
-Coin: ETH; Average position value: 1811.9085696; Number of positions: 5.
-Algorithm profit: 0.All time profit: 288.661255
-
-Coin: ETH
 Date: 2021-04-01
 Open: 1919.157227
 High: 1989.055054
