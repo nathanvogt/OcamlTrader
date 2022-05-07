@@ -1,7 +1,6 @@
 open OUnit2
 open Indicator
 open Ma
-open Ethdata
 open Rsi
 
 (* OTHER POSSIBLE TESTS: *)

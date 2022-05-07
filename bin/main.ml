@@ -16,6 +16,12 @@ let budget = 10000.00
    floor of [budget]/starting_coin_price *)
 let starting_pos = ref 0.
 
+(* global reference to the price value of grid line above price *)
+let grid_upper = ref 0.
+
+(* global reference to the price value of grid line below price *)
+let grid_lower = ref 0.
+
 (* string representation of report meant to be printed to file *)
 let report = ref @@ "Report of " ^ coin_name_const ^ " purchases: \n"
 let report_file = "report.txt"
@@ -29,8 +35,6 @@ let grid_size = ref 0.
 let grid_price_line =
   ":     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - \
    - - - - -"
-
-let grid_linebreak = "\n\n"
 
 (* space before price point: 30 spaces *)
 let space_place_holder = "                              "
@@ -54,11 +58,29 @@ let rec indication_naive acc (indications : State.indicator_type list) =
       | MACD (macd, _, _, _) -> indication_naive (acc +. macd) t
     end
 
-(* hueristic indicator weighting just taking average *)
+(* heuristic taking simple average of indicators. @nathan: here is
+   somewhere that could use a hyperparameter to be tuned *)
 let weight_indicators st =
   State.indicator_values st
   |> indication_naive 0.0
   |> average @@ float_of_int (List.length indicators)
+
+(* heuristic returning value of whether closing price has crossed any of
+   upper or lower grid lines. returns float value similar to that of
+   indicators between 0-100. @nathan: here is somewhere that could use a
+   hyperparameter to be tuned *)
+let grid_indicator price_close =
+  if price_close > !grid_upper then (* possible hyperparameter *) 90.
+  else if price_close < !grid_lower then
+    (* possible hyperparameter *)
+    10.
+  else (* possible hyperparameter *) 50.
+
+(* main function returning a combination of various indicators for a
+   final decision *)
+let indicator_comb st =
+  weight_indicators st
+  +. grid_indicator (State.price_close st coin_name_const)
 
 (* helper function receiving decision and taking corresponding action
 
@@ -138,7 +160,7 @@ let rec resize_graph curr_price =
   if !grid_upper_limit -. (!grid_size *. float_of_int num_splits) < 0.
   then grid_lower_limit := 0.
   else ();
-  (* next check if bounds are too small or large, should increase to 30%
+  (* next check if bounds are too small or large, should increase to 40%
      margin on each side *)
   if
     !grid_upper_limit -. !grid_lower_limit < 0.2 *. curr_price
@@ -189,30 +211,42 @@ let rec graph_grid
     (* print red (signaling sell) for every price line [curr_price] is
        below and green (signaling buy) for every price line [curr_price]
        is above *)
-    if price_below then
-      ANSITerminal.print_string [ ANSITerminal.red ]
-      @@ string_of_float counter_price
-      ^ grid_price_line
-    else
-      ANSITerminal.print_string [ ANSITerminal.green ]
-      @@ string_of_float counter_price
-      ^ grid_price_line;
+    if price_below then print_grid_red counter_price
+    else print_grid_green counter_price;
     (* if [curr_price] within the bounds of [counter_price] and
        succeeding counter_price, print out curr_price *)
-    if
-      curr_price < counter_price
-      && curr_price > counter_price -. !grid_size
-    then
-      ANSITerminal.print_string [ ANSITerminal.green ]
-      @@ "\n" ^ space_place_holder
-      ^ string_of_float curr_price
-      ^ ":  x" ^ "\n"
-    else print_endline grid_linebreak;
+    let upper = counter_price in
+    let lower = counter_price -. !grid_size in
+    if curr_price < upper && curr_price > lower then begin
+      update_global_bounds upper lower;
+      print_curr_price curr_price
+    end
+    else print_endline "\n\n";
+    (* move to next iteration with grid lines below curr price *)
     let next_lower_price = counter_price -. !grid_size in
     graph_grid curr_price next_lower_price
       (curr_price < next_lower_price)
   end
 
+and update_global_bounds upper lower =
+  grid_upper := upper;
+  grid_lower := lower
+
+and print_grid_red counter_price =
+  ANSITerminal.print_string [ ANSITerminal.red ]
+  @@ string_of_float counter_price
+  ^ grid_price_line
+
+and print_grid_green counter_price =
+  ANSITerminal.print_string [ ANSITerminal.green ]
+  @@ string_of_float counter_price
+  ^ grid_price_line
+
+and print_curr_price curr_price =
+  ANSITerminal.print_string [ ANSITerminal.green ]
+  @@ "\n" ^ space_place_holder
+  ^ string_of_float curr_price
+  ^ ":  x" ^ "\n"
 (********************************************************************
     Main Loop
  ********************************************************************)
@@ -229,7 +263,7 @@ let rec main_loop wait_period st =
   print_endline @@ "Date: " ^ State.curr_date st coin_name_const;
 
   (* storing decision in value to be later passed into State *)
-  let indic_decision = evaluate_indicators @@ weight_indicators st in
+  let indic_decision = evaluate_indicators @@ indicator_comb st in
   ansiterminal_print indic_decision;
 
   (* storing "profits" from if algorithm just bought the coin and held,
@@ -329,7 +363,10 @@ let rec main () =
   (* ask for user input parameters for grid search algorithm *)
   ANSITerminal.print_string [ ANSITerminal.red ]
     "\n\
-     What is the upper price bound of your grid? (Enter price as float) \n";
+     What is the upper price bound of your grid? As the price of the \
+     coin changes, our algorithm with automatically resize this bound \
+     for you in order to provide a reasonable ratio for the upper and \
+     lower bounds. (Enter price as float) \n";
   print_string ">";
   set_grid_bound_parameter true;
   ANSITerminal.print_string [ ANSITerminal.red ]
