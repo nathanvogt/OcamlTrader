@@ -3,7 +3,7 @@ include Feeder
 include State
 include Lwt_io
 
-(* ------ global variables ------ *)
+(* ------ initializing global variables ------ *)
 
 (** Global list of indicators. Requires that indicators spelled
     correctly. Some, like coin_name, are hard coded for now *)
@@ -67,7 +67,7 @@ let pause_message =
    >"
 
 (********************************************************************
-    Helper Functions
+    Indicator/Decision Functions
  ********************************************************************)
 (* helper function taking average based on pipeline ordering *)
 let average den num = num /. den
@@ -115,6 +115,10 @@ let evaluate_indicators weight =
   if weight <= 30. then State.Buy
   else if weight <= 70. then State.Wait
   else State.Sell
+
+(********************************************************************
+    Basic Formatted Print Helper Functions
+ ********************************************************************)
 
 (* helper function printing ansiterminal color unit of decision *)
 let ansiterminal_print decision =
@@ -188,17 +192,17 @@ let update_file filename str =
     ~f:(fun () -> Core.fprintf outc "%s\n" str)
     ~finally:(fun () -> Core.Out_channel.close outc)
 
+(********************************************************************
+    Graph Helper Functions
+ ********************************************************************)
+
 (* updating the upper and lower limits based on price. recursive in
    order to ensure graph resizes until fit *)
 let rec resize_graph curr_price =
   let margin = 2. *. !grid_size in
-  (* first check if bounds are so wide that lower limit becomes
-     negative *)
   if !grid_upper_limit -. (!grid_size *. float_of_int num_splits) < 0.
   then grid_lower_limit := 0.
   else ();
-  (* next check if bounds are too small or large, should increase to 40%
-     margin on each side *)
   if
     !grid_upper_limit -. !grid_lower_limit < 0.2 *. curr_price
     || !grid_upper_limit -. !grid_lower_limit > 0.8 *. curr_price
@@ -212,7 +216,6 @@ let rec resize_graph curr_price =
   else if curr_price +. margin > !grid_upper_limit then
     adjust_margin_up curr_price num_splits
   else ()
-(* resizing complete *)
 
 (* helper function to adjust bounds of graph *)
 and adjust_bounds curr_price num_splits =
@@ -237,6 +240,34 @@ and adjust_margin_up curr_price num_splits =
     !grid_upper_limit +. (!grid_size *. float_of_int (num_splits / 2));
   resize_graph curr_price
 
+(* helper function mutating global variables for upper and lower
+   bounds *)
+let update_global_bounds upper lower =
+  grid_upper := upper;
+  grid_lower := lower
+
+(* helper function pretty printing grid above the current price as
+   red *)
+let print_grid_red counter_price =
+  ANSITerminal.print_string [ ANSITerminal.red ]
+  @@ string_of_float counter_price
+  ^ grid_price_line
+
+(* helper funciton pretty printing grid below the current price as
+   green *)
+let print_grid_green counter_price =
+  ANSITerminal.print_string [ ANSITerminal.green ]
+  @@ string_of_float counter_price
+  ^ grid_price_line
+
+(* helper function prining the current price within grid represented as
+   'x' *)
+let print_curr_price curr_price =
+  ANSITerminal.print_string [ ANSITerminal.green ]
+  @@ "\n" ^ space_place_holder
+  ^ string_of_float curr_price
+  ^ ":  x" ^ "\n"
+
 (* [graph_grid] prints out nicely the upper and lower bounds of the
    price, current price, and resizes if needed *)
 let rec graph_grid
@@ -257,26 +288,9 @@ let rec graph_grid
     graph_grid curr_price next_lower_price
       (curr_price < next_lower_price))
 
-and update_global_bounds upper lower =
-  grid_upper := upper;
-  grid_lower := lower
-
-and print_grid_red counter_price =
-  ANSITerminal.print_string [ ANSITerminal.red ]
-  @@ string_of_float counter_price
-  ^ grid_price_line
-
-and print_grid_green counter_price =
-  ANSITerminal.print_string [ ANSITerminal.green ]
-  @@ string_of_float counter_price
-  ^ grid_price_line
-
-and print_curr_price curr_price =
-  ANSITerminal.print_string [ ANSITerminal.green ]
-  @@ "\n" ^ space_place_holder
-  ^ string_of_float curr_price
-  ^ ":  x" ^ "\n"
-
+(********************************************************************
+    Main Loop
+ ********************************************************************)
 (* helper function taking in a state instance and pretty printing out
    the price of the currency for that day. It also computes the decision
    of the algorithm and stores it in mutable global variables. Finally,
@@ -322,10 +336,6 @@ let pretty_print_grid st market_info_string state_action_tup =
     (State.price_close st coin_name_const)
     !grid_upper_limit
     (State.price_close st coin_name_const < !grid_upper_limit)
-
-(********************************************************************
-    Main Loop
- ********************************************************************)
 
 (** [main_loop state] is the repeating loop of our program that takes
     [state] from previous timestep and makes a decision, then receives
