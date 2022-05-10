@@ -63,11 +63,6 @@ let feeder_data f =
 let is_valid_coin coin_name j =
   if List.length j > 0 then j else raise (InvalidCoin coin_name)
 
-(* TODO: could be buggy, should get coin_specfic data *)
-(* let data_of_coin coin_name j = j |> member "coins" |> to_list |>
-   filter_member coin_name |> is_valid_coin coin_name |> List.hd |>
-   data_of_json *)
-
 (* ------ initializing indicators ------ *)
 exception InvalidIndicator of string
 
@@ -358,42 +353,48 @@ let valid_buy acc buy_price = acc.cash_balance >= buy_price
 (* helper function making sure there is position to sell currency.*)
 let valid_sell acc = acc.positions <> []
 
+(* helper function making adjustments to [st] for when algorithm decides
+   to buy. *)
+let buy_decision st =
+  if valid_buy st.acc_info (get_closing_price coin_name_const st.data)
+  then
+    let buy_state =
+      {
+        st with
+        acc_info =
+          buy_account st.acc_info
+            (get_closing_price coin_name_const st.data);
+      }
+    in
+    (buy_state, buy_state.acc_info.p_l)
+  else begin
+    ANSITerminal.print_string [ ANSITerminal.yellow ]
+    @@ "Insufficient funds.\n";
+    (st, st.acc_info.p_l)
+  end
+
+(* helper function making adjustments to [st] for when algorithm decides
+   to sell. *)
+let sell_decision st =
+  if valid_sell st.acc_info then
+    let sell_state =
+      {
+        st with
+        acc_info =
+          sell_account st.acc_info
+            (get_closing_price coin_name_const st.data);
+      }
+    in
+    (sell_state, sell_state.acc_info.p_l)
+  else begin
+    ANSITerminal.print_string [ ANSITerminal.yellow ]
+    @@ "No positions to sell.\n";
+    (st, st.acc_info.p_l)
+  end
+
 let decision_action st = function
-  | Buy ->
-      if
-        valid_buy st.acc_info
-          (get_closing_price coin_name_const st.data)
-      then
-        let buy_state =
-          {
-            st with
-            acc_info =
-              buy_account st.acc_info
-                (get_closing_price coin_name_const st.data);
-          }
-        in
-        (buy_state, buy_state.acc_info.p_l)
-      else begin
-        ANSITerminal.print_string [ ANSITerminal.yellow ]
-        @@ "Insufficient funds.\n";
-        (st, st.acc_info.p_l)
-      end
-  | Sell ->
-      if valid_sell st.acc_info then
-        let sell_state =
-          {
-            st with
-            acc_info =
-              sell_account st.acc_info
-                (get_closing_price coin_name_const st.data);
-          }
-        in
-        (sell_state, sell_state.acc_info.p_l)
-      else begin
-        ANSITerminal.print_string [ ANSITerminal.yellow ]
-        @@ "No positions to sell.\n";
-        (st, st.acc_info.p_l)
-      end
+  | Buy -> buy_decision st
+  | Sell -> sell_decision st
   | Wait -> (st, st.acc_info.p_l)
 
 let all_time_profit st coin_name start_position_size =
