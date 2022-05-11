@@ -3,7 +3,7 @@ include Feeder
 include State
 include Lwt_io
 
-(* ------ global variables ------ *)
+(* ------ initializing global variables ------ *)
 
 (** Global list of indicators. Requires that indicators spelled
     correctly. Some, like coin_name, are hard coded for now *)
@@ -16,10 +16,16 @@ let budget = 10000.00
    floor of [budget]/starting_coin_price *)
 let starting_pos = ref 0.
 
+(* global reference to the price value of grid line above price *)
+let grid_upper = ref 0.
+
+(* global reference to the price value of grid line below price *)
+let grid_lower = ref 0.
+
 (* string representation of report meant to be printed to file *)
 let report = ref @@ "Report of " ^ coin_name_const ^ " purchases: \n"
 let report_file = "report.txt"
-let num_splits = 8
+let num_splits = 14
 let grid_upper_limit = ref 0.
 let grid_lower_limit = ref 0.
 let grid_size = ref 0.
@@ -30,13 +36,38 @@ let grid_price_line =
   ":     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - \
    - - - - -"
 
-let grid_linebreak = "\n\n"
-
 (* space before price point: 30 spaces *)
 let space_place_holder = "                              "
 
+(* messages to be printed at start of game prompting user input *)
+let intro_message =
+  "\n\n\
+   Welcome to crypto trader! If you would like an introduction to our \
+   trader, please type 'y' or 'yes'. Else, type 'n', 'no', or \
+   'continue' to begin trading! \n\
+   >"
+
+let upper_message =
+  "\n\
+   What is the upper price bound of your grid? As the price of the \
+   coin changes, our algorithm with automatically resize this bound \
+   for you in order to provide a reasonable ratio for the upper and \
+   lower bounds. (Enter price as float) \n\
+   >"
+
+let lower_message =
+  "\n\
+   What is the lower price bound of your grid? (Enter price as float) \n\
+   >"
+
+let pause_message =
+  "\n\
+   How long would you like to pause between each day? (Enter float in \
+   seconds) \n\
+   >"
+
 (********************************************************************
-    Helper Functions
+    Indicator/Decision Functions
  ********************************************************************)
 (* helper function taking average based on pipeline ordering *)
 let average den num = num /. den
@@ -48,17 +79,33 @@ let average den num = num /. den
 let rec indication_naive acc (indications : State.indicator_type list) =
   match indications with
   | [] -> acc
-  | h :: t -> begin
+  | h :: t -> (
       match h with
       | RSI (rsi, _, _, _, _) -> indication_naive (acc +. rsi) t
-      | MACD (macd, _, _, _) -> indication_naive (acc +. macd) t
-    end
+      | MACD (macd, _, _, _) -> indication_naive (acc +. macd) t)
 
-(* hueristic indicator weighting just taking average *)
+(* heuristic taking simple average of indicators. @nathan: here is
+   somewhere that could use a hyperparameter to be tuned *)
 let weight_indicators st =
   State.indicator_values st
   |> indication_naive 0.0
   |> average @@ float_of_int (List.length indicators)
+
+(* heuristic returning value of whether closing price has crossed any of
+   upper or lower grid lines. returns float value similar to that of
+   indicators between 0-100. @nathan: here is somewhere that could use a
+   hyperparameter to be tuned *)
+let grid_indicator price_close =
+  if price_close > !grid_upper then (* possible hyperparameter *) 10.
+  else if price_close < !grid_lower then (* possible hyperparameter *)
+    0.
+  else (* possible hyperparameter *) 50.
+
+(* main function returning a combination of various indicators for a
+   final decision *)
+let indicator_comb st =
+  weight_indicators st
+  +. grid_indicator (State.price_close st coin_name_const)
 
 (* helper function receiving decision and taking corresponding action
 
@@ -68,6 +115,10 @@ let evaluate_indicators weight =
   if weight <= 30. then State.Buy
   else if weight <= 70. then State.Wait
   else State.Sell
+
+(********************************************************************
+    Basic Formatted Print Helper Functions
+ ********************************************************************)
 
 (* helper function printing ansiterminal color unit of decision *)
 let ansiterminal_print decision =
@@ -97,6 +148,18 @@ let is_valid_input input =
   match float_of_string input with
   | exception Failure _ -> false
   | _ -> true
+
+(* helper function ensuring user command is within list of commands *)
+let is_valid_command command =
+  let input_lower = String.lowercase_ascii command in
+  match input_lower with
+  | "y"
+  | "yes"
+  | "n"
+  | "no"
+  | "continue" ->
+      true
+  | _ -> false
 
 (* colorfying the profit that is printed in terminal *)
 let profit_pretty_print prof_header prof_loss : unit =
@@ -129,43 +192,81 @@ let update_file filename str =
     ~f:(fun () -> Core.fprintf outc "%s\n" str)
     ~finally:(fun () -> Core.Out_channel.close outc)
 
+(********************************************************************
+    Graph Helper Functions
+ ********************************************************************)
+
 (* updating the upper and lower limits based on price. recursive in
    order to ensure graph resizes until fit *)
 let rec resize_graph curr_price =
   let margin = 2. *. !grid_size in
-  (* first check if bounds are so wide that lower limit becomes
-     negative *)
   if !grid_upper_limit -. (!grid_size *. float_of_int num_splits) < 0.
   then grid_lower_limit := 0.
   else ();
-  (* next check if bounds are too small or large, should increase to 30%
-     margin on each side *)
   if
     !grid_upper_limit -. !grid_lower_limit < 0.2 *. curr_price
-    || !grid_upper_limit -. !grid_lower_limit > 1.2 *. curr_price
+    || !grid_upper_limit -. !grid_lower_limit > 0.8 *. curr_price
   then (
     ANSITerminal.print_string
       [ ANSITerminal.magenta ]
       "Adjust bound ratios.\n";
-    grid_lower_limit := curr_price -. (0.4 *. curr_price);
-    grid_upper_limit := curr_price +. (0.4 *. curr_price);
-    grid_size :=
-      (!grid_upper_limit -. !grid_lower_limit)
-      /. float_of_int num_splits);
-  if curr_price -. margin < !grid_lower_limit then (
-    grid_lower_limit :=
-      !grid_lower_limit -. (!grid_size *. float_of_int (num_splits / 2));
-    grid_upper_limit :=
-      !grid_upper_limit -. (!grid_size *. float_of_int (num_splits / 2));
-    resize_graph curr_price)
-  else if curr_price +. margin > !grid_upper_limit then (
-    grid_lower_limit :=
-      !grid_lower_limit +. (!grid_size *. float_of_int (num_splits / 2));
-    grid_upper_limit :=
-      !grid_upper_limit +. (!grid_size *. float_of_int (num_splits / 2));
-    resize_graph curr_price)
+    adjust_bounds curr_price num_splits);
+  if curr_price -. margin < !grid_lower_limit then
+    adjust_margin_down curr_price num_splits
+  else if curr_price +. margin > !grid_upper_limit then
+    adjust_margin_up curr_price num_splits
   else ()
-(* resizing complete *)
+
+(* helper function to adjust bounds of graph *)
+and adjust_bounds curr_price num_splits =
+  grid_lower_limit := curr_price -. (0.2 *. curr_price);
+  grid_upper_limit := curr_price +. (0.2 *. curr_price);
+  grid_size :=
+    (!grid_upper_limit -. !grid_lower_limit) /. float_of_int num_splits
+
+(* helper function subtracting from margin *)
+and adjust_margin_down curr_price num_splits =
+  grid_lower_limit :=
+    !grid_lower_limit -. (!grid_size *. float_of_int (num_splits / 2));
+  grid_upper_limit :=
+    !grid_upper_limit -. (!grid_size *. float_of_int (num_splits / 2));
+  resize_graph curr_price
+
+(* helper function adding to margin *)
+and adjust_margin_up curr_price num_splits =
+  grid_lower_limit :=
+    !grid_lower_limit +. (!grid_size *. float_of_int (num_splits / 2));
+  grid_upper_limit :=
+    !grid_upper_limit +. (!grid_size *. float_of_int (num_splits / 2));
+  resize_graph curr_price
+
+(* helper function mutating global variables for upper and lower
+   bounds *)
+let update_global_bounds upper lower =
+  grid_upper := upper;
+  grid_lower := lower
+
+(* helper function pretty printing grid above the current price as
+   red *)
+let print_grid_red counter_price =
+  ANSITerminal.print_string [ ANSITerminal.red ]
+  @@ string_of_float counter_price
+  ^ grid_price_line
+
+(* helper funciton pretty printing grid below the current price as
+   green *)
+let print_grid_green counter_price =
+  ANSITerminal.print_string [ ANSITerminal.green ]
+  @@ string_of_float counter_price
+  ^ grid_price_line
+
+(* helper function prining the current price within grid represented as
+   'x' *)
+let print_curr_price curr_price =
+  ANSITerminal.print_string [ ANSITerminal.green ]
+  @@ "\n" ^ space_place_holder
+  ^ string_of_float curr_price
+  ^ ":  x" ^ "\n"
 
 (* [graph_grid] prints out nicely the upper and lower bounds of the
    price, current price, and resizes if needed *)
@@ -174,69 +275,41 @@ let rec graph_grid
     (counter_price : float)
     (price_below : bool) : unit =
   if counter_price < !grid_lower_limit then print_newline ()
-  else begin
-    (* print red (signaling sell) for every price line [curr_price] is
-       below and green (signaling buy) for every price line [curr_price]
-       is above *)
-    if price_below then
-      ANSITerminal.print_string [ ANSITerminal.red ]
-      @@ string_of_float counter_price
-      ^ grid_price_line
-    else
-      ANSITerminal.print_string [ ANSITerminal.green ]
-      @@ string_of_float counter_price
-      ^ grid_price_line;
-    (* if [curr_price] within the bounds of [counter_price] and
-       succeeding counter_price, print out curr_price *)
-    if
-      curr_price < counter_price
-      && curr_price > counter_price -. !grid_size
-    then
-      ANSITerminal.print_string [ ANSITerminal.green ]
-      @@ "\n" ^ space_place_holder
-      ^ string_of_float curr_price
-      ^ ":  x" ^ "\n"
-    else print_endline grid_linebreak;
+  else (
+    if price_below then print_grid_red counter_price
+    else print_grid_green counter_price;
+    let upper = counter_price in
+    let lower = counter_price -. !grid_size in
+    if curr_price <= upper && curr_price >= lower then (
+      update_global_bounds upper lower;
+      print_curr_price curr_price)
+    else print_endline "\n";
     let next_lower_price = counter_price -. !grid_size in
     graph_grid curr_price next_lower_price
-      (curr_price < next_lower_price)
-  end
+      (curr_price < next_lower_price))
 
 (********************************************************************
     Main Loop
  ********************************************************************)
-
-(** [main_loop state] is the repeating loop of our program that takes
-    [state] from previous timestep and makes a decision, then receives
-    new data from feeder and passes new state *)
-let rec main_loop wait_period st =
-  (* formatting *)
-  print_string "\n\n";
-
-  (* storing data in value to be later concatenated in report *)
+(* helper function taking in a state instance and pretty printing out
+   the price of the currency for that day. It also computes the decision
+   of the algorithm and stores it in mutable global variables. Finally,
+   it is responsible for sending live text-version updates to
+   report.txt. *)
+let print_report_in_loop st =
   let data = State.data_print coin_name_const st in
   print_endline @@ "Date: " ^ State.curr_date st coin_name_const;
-
-  (* storing decision in value to be later passed into State *)
-  let indic_decision = evaluate_indicators @@ weight_indicators st in
+  let indic_decision = evaluate_indicators @@ indicator_comb st in
   ansiterminal_print indic_decision;
-
-  (* storing "profits" from if algorithm just bought the coin and held,
-     used as comparison to actual algorithm *)
   let all_time_profits =
     "All time profit: "
-    ^ string_of_float (State.all_time_profit st coin_name_const)
+    ^ string_of_float
+        (State.all_time_profit st coin_name_const !starting_pos)
   in
-
-  (* tuple with first element being new state, second being string
-     representation of action executed *)
   let state_action_tup = State.decision_action st indic_decision in
-
-  (* storing algorithm profits in string *)
   let algo_profits =
     "Algorithm profit: " ^ string_of_float (snd state_action_tup)
   in
-
   let market_info_string =
     market_positions_tostring (fst state_action_tup)
   in
@@ -245,13 +318,16 @@ let rec main_loop wait_period st =
     ^ deicision_to_string indic_decision
     ^ market_info_string ^ algo_profits ^ all_time_profits ^ "\n\n"
   in
+  (step_data, market_info_string, state_action_tup)
 
-  (* reverse order so newest printed on top *)
-  report := step_data ^ !report;
+(* helper function taking in input from currency and algorithm decision
+   to pretty print comparison between algorithm and naive trades, as
+   well as a live grid in the terminal *)
+let pretty_print_grid st market_info_string state_action_tup =
   ANSITerminal.print_string [ ANSITerminal.blue ] market_info_string;
   profit_pretty_print "Algorithm profit: " (snd state_action_tup);
   profit_pretty_print "All time profit: "
-    (State.all_time_profit st coin_name_const);
+    (State.all_time_profit st coin_name_const !starting_pos);
   ANSITerminal.print_string [ ANSITerminal.yellow ]
   @@ "Real time data is sent to " ^ report_file ^ "\n";
   update_file report_file !report;
@@ -259,7 +335,18 @@ let rec main_loop wait_period st =
   graph_grid
     (State.price_close st coin_name_const)
     !grid_upper_limit
-    (State.price_close st coin_name_const < !grid_upper_limit);
+    (State.price_close st coin_name_const < !grid_upper_limit)
+
+(** [main_loop state] is the repeating loop of our program that takes
+    [state] from previous timestep and makes a decision, then receives
+    new data from feeder and passes new state *)
+let rec main_loop wait_period st =
+  print_string "\n\n";
+  let step_data, market_info_string, state_action_tup =
+    print_report_in_loop st
+  in
+  report := step_data ^ !report;
+  pretty_print_grid st market_info_string state_action_tup;
   (* update report *)
   match Feeder.next_day () with
   | None ->
@@ -271,6 +358,10 @@ let rec main_loop wait_period st =
       Unix.sleepf wait_period;
       State.update_data (fst state_action_tup) new_data
       |> main_loop wait_period
+
+(********************************************************************
+  Starting Trading Bot Program
+  ********************************************************************)
 
 (* helper function setting parameters for user input *)
 let rec set_wait_time_parameter () =
@@ -292,12 +383,12 @@ let rec set_wait_time_parameter () =
             update_naive_pos new_data;
             State.init_state indicators budget new_data
             |> main_loop wait_period)
-      else begin
-        print_string "Not a valid float. Please try again.\n";
-        print_string ">";
-        set_wait_time_parameter ()
-      end
+      else (
+        print_string "Not a valid float. Please try again.\n>";
+        set_wait_time_parameter ())
 
+(* helper function updating the mutable upper and lower bounds to the
+   bot's grid based on user input *)
 let rec set_grid_bound_parameter (set_upper : bool) =
   match Stdlib.read_line () with
   | exception End_of_file -> ()
@@ -305,36 +396,51 @@ let rec set_grid_bound_parameter (set_upper : bool) =
       if is_valid_input input then
         if set_upper then grid_upper_limit := float_of_string input
         else grid_lower_limit := float_of_string input
-      else begin
-        print_string "Not a valid float. Please try again.\n";
-        print_string ">";
-        set_grid_bound_parameter set_upper
-      end
+      else (
+        ANSITerminal.print_string
+          [ ANSITerminal.magenta ]
+          "Not a valid float. Please try again.\n>";
+        set_grid_bound_parameter set_upper)
 
-(** [main ()] prompts for the game to play, then starts it. *)
+(* reading from introduction.txt to print helpful information *)
+let get_instruction_text () =
+  Core.In_channel.read_lines "./introduction.txt"
+
+(* helper function printing instructions to crypto trader if
+   necessary *)
+let rec print_instructions () =
+  match Stdlib.read_line () with
+  | exception End_of_file -> ()
+  | command ->
+      if is_valid_command command then
+        match command with
+        | "y"
+        | "yes" ->
+            ANSITerminal.print_string [ ANSITerminal.cyan ]
+            @@ List.fold_left
+                 (fun acc x -> acc ^ x)
+                 ""
+                 (get_instruction_text ())
+        | _ -> print_newline ()
+      else (
+        ANSITerminal.print_string
+          [ ANSITerminal.magenta ]
+          "Not a valid command. Please try again.\n>";
+        print_instructions ())
+
+(** [main ()] asks users for parameters for grid trading algorithm, as
+    well as stop time between each trade on historical data. Then starts
+    the crypto trading bot *)
 let rec main () =
-  ANSITerminal.print_string [ ANSITerminal.red ]
-    "\n\nWelcome to crypto trader \n";
-  (* ask for user input parameters for grid search algorithm *)
-  ANSITerminal.print_string [ ANSITerminal.red ]
-    "\n\
-     What is the upper price bound of your grid? (Enter price as float) \n";
-  print_string ">";
+  ANSITerminal.print_string [ ANSITerminal.red ] intro_message;
+  print_instructions ();
+  ANSITerminal.print_string [ ANSITerminal.red ] upper_message;
   set_grid_bound_parameter true;
-  ANSITerminal.print_string [ ANSITerminal.red ]
-    "\n\
-     What is the lower price bound of your grid? (Enter price as float) \n";
-  print_string ">";
+  ANSITerminal.print_string [ ANSITerminal.red ] lower_message;
   set_grid_bound_parameter false;
   grid_size :=
     (!grid_upper_limit -. !grid_lower_limit) /. float_of_int num_splits;
-  (* ask for user input parameters for stop time between each trade on
-     historical data *)
-  ANSITerminal.print_string [ ANSITerminal.red ]
-    "\n\
-     How long would you like to pause between each day? (Enter float \
-     in seconds) \n";
-  print_string ">";
+  ANSITerminal.print_string [ ANSITerminal.red ] pause_message;
   set_wait_time_parameter ()
 
 (* Execute the game engine. *)

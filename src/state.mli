@@ -79,8 +79,8 @@ val positions_held : t -> string -> float
 (** [positions_held st coin_name] returns float value of the number of
     positions held of [coin_name] *)
 
-val all_time_profit : t -> string -> float
-(** [all_time_profit st coin_name] returns the profit we would make
-    assuming we bought [coin_name] from the point the bot is initiated,
-    until current time assumign we do not sell. It can be used to gauge
-    the effectiveness of our algorithm. *)
+val all_time_profit : t -> string -> float -> float
+(** [all_time_profit st coin_name position_size] returns the profit we
+    would make assuming we bought [position_size] [coin_name]'s from the
+    point the bot is initiated, until current time assumign we do not
+    sell. It can be used to gauge the effectiveness of our algorithm. *)
