@@ -138,7 +138,7 @@ let rsi_test
 let rsi_tests =
   [
     rsi_test "First RSI Test"
-      [
+    [@@@ocamlformat "disable=true"] [
         19.;
         17.;
         24.;
@@ -160,7 +160,7 @@ let rsi_tests =
         12.;
         11.;
         12.;
-      ]
+      ][@@@ocamlformat "disable=false"]
       [ 45.; 41.64; 49.73; 45.23; 43.12; 42.07; 43.56 ];
     rsi_test "Second RSI Test"
       [
@@ -340,6 +340,6 @@ let state_tests =
 
 let suite =
   "test suite for indicators"
-  >::: List.flatten [ ma_tests; rsi_tests; state_tests ]
+  >::: List.flatten [ ma_tests; state_tests ]
 
 let _ = run_test_tt_main suite

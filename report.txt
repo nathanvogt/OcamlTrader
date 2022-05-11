@@ -21,4 +21,3 @@ Coin: ETH; Average position value: 1854.564331; Number of positions: 1.
 Algorithm profit: 0.All time profit: 0.
 
 Report of ETH purchases: 
-
