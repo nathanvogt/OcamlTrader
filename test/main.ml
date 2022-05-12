@@ -163,7 +163,7 @@ let rsi_tests =
       44.];
   ]
 
-[@@@ocamlformat "disable=true"]
+[@@@ocamlformat "disable=false"]
 
 (********************************************************************
   Testing State
@@ -247,75 +247,105 @@ let state_tests =
       positions_list_two 5.;
   ]
 
-let multiple_next_day n = let _ = Feeder.reset_reader () in 
-  let rec aux acc count = if count = 0 then acc else aux (Feeder.next_day () :: acc) (count - 1)
-in aux [] n |> List.filter (fun x -> match x with | None -> false | _ -> true)
+let multiple_next_day n =
+  let _ = Feeder.reset_reader () in
+  let rec aux acc count =
+    if count = 0 then acc
+    else aux (Feeder.next_day () :: acc) (count - 1)
+  in
+  aux [] n
+  |> List.filter (fun x ->
+         match x with
+         | None -> false
+         | _ -> true)
 
 let suite =
-  let _ = Feeder.init_reader (); in
+  let _ = Feeder.init_reader () in
   "test suite for indicators"
-  >::: List.flatten [ 
-  ma_tests; 
-  (* rsi_tests;  *)
+  >::: List.flatten [ ma_tests (* rsi_tests; *) ]
+
+let feeder_lookback_test name n expected =
+  let n = List.length @@ multiple_next_day n in
+  if n <> expected then
+    print_endline @@ "\n=========Error in: " ^ name
+    ^ ":: not equal=======\n"
+  else print_string "."
+
+let multiple_next_day_test name n expected =
+  let n = List.length @@ multiple_next_day n in
+  if n <> expected then
+    print_endline @@ "\n=========Error in: " ^ name
+    ^ ":: not equal=======\n"
+  else print_string "."
+
+let run_feeder_tests f tests = List.iter f tests
+
+let lookback_tests =
+  [
+    ("lookback normal amount", 12, 12);
+    ("lookback normal amount 2", 24, 24);
+    ("lookback large amount", 99, 99);
+    ("lookback large amount 2", 150, 150);
+    ("lookback large amount even", 202, 202);
+    ("lookback large amount odd", 305, 305);
+    ("lookback max amount", 365, 365);
+    ("lookback edge case 0", 0, 0);
+    ("lookback edge case 1", 1, 1)
+    (* ("lookback throw error", 400, -1); *);
   ]
 
-let feeder_lookback_test name n expected = 
-  let n = List.length @@ multiple_next_day n in 
-  if n <> expected then print_endline @@ "\n=========Error in: "^name^":: not equal=======\n"
-  else print_string "."
-  
+let next_day_quantity_tests =
+  [
+    ("next day normal amount", 12, 12);
+    ("next day normal amount 2", 24, 24);
+    ("next day large amount", 99, 99);
+    ("next day large amount 2", 150, 150);
+    ("next day large amount even", 202, 202);
+    ("next day large amount odd", 305, 305);
+    ("next day max amount minus 1", 365, 365);
+    ("next day edge case 0", 0, 0);
+    ("next day edge case 1", 1, 1);
+    ("next day edge case max amount", 366, 366);
+    ("next day exceed max amount", 400, 366);
+  ]
 
-let multiple_next_day_test name n expected = 
-  let n = List.length @@ multiple_next_day n in 
-  if n <> expected then print_endline @@ "\n=========Error in: "^name^":: not equal=======\n"
-  else print_string "."
-
-let run_feeder_tests f tests = 
-  List.iter f tests
-
-let lookback_tests = [
-  ("lookback normal amount", 12, 12);
-  ("lookback normal amount 2", 24, 24);
-  ("lookback large amount", 99, 99);
-  ("lookback large amount 2", 150, 150);
-  ("lookback large amount even", 202, 202);
-  ("lookback large amount odd", 305, 305);
-  ("lookback max amount", 365, 365);
-  ("lookback edge case 0", 0, 0);
-  ("lookback edge case 1", 1, 1);
-  (* ("lookback throw error", 400, -1); *)
-]
-
-let next_day_quantity_tests = [
-  ("next day normal amount", 12, 12);
-  ("next day normal amount 2", 24, 24);
-  ("next day large amount", 99, 99);
-  ("next day large amount 2", 150, 150);
-  ("next day large amount even", 202, 202);
-  ("next day large amount odd", 305, 305);
-  ("next day max amount minus 1", 365, 365);
-  ("next day edge case 0", 0, 0);
-  ("next day edge case 1", 1, 1);
-  ("next day edge case max amount", 366, 366);
-  ("next day exceed max amount", 400, 366);
-]
-
-(* low price should be <= than all other price values, and max price should be >= all other price values*)
-let validate_feeder = function None -> print_endline "\n====expected day of market data but instead got None===\n"
-| Some d -> let low = Feeder.low d in 
-let low_valid = if (low <= Feeder.open_price d) && (low <= Feeder.close_price d) && (low <= Feeder.high d) then true else false in 
-let high = Feeder.high d in 
-let high_valid = if (high >= Feeder.open_price d) && (high >= Feeder.close_price d) then true else false in 
-if low_valid && high_valid then print_string "." else print_endline @@ "error on day: "^(Feeder.date d)^":: not valid"
+(* low price should be <= than all other price values, and max price
+   should be >= all other price values*)
+let validate_feeder = function
+  | None ->
+      print_endline
+        "\n====expected day of market data but instead got None===\n"
+  | Some d ->
+      let low = Feeder.low d in
+      let low_valid =
+        if
+          low <= Feeder.open_price d
+          && low <= Feeder.close_price d
+          && low <= Feeder.high d
+        then true
+        else false
+      in
+      let high = Feeder.high d in
+      let high_valid =
+        if high >= Feeder.open_price d && high >= Feeder.close_price d
+        then true
+        else false
+      in
+      if low_valid && high_valid then print_string "."
+      else
+        print_endline @@ "error on day: " ^ Feeder.date d
+        ^ ":: not valid"
 
 let _ = multiple_next_day 366 |> List.iter validate_feeder
 
-let _ = run_feeder_tests 
-(fun (name, n, expect) -> feeder_lookback_test name n expect) lookback_tests
+let _ =
+  run_feeder_tests
+    (fun (name, n, expect) -> feeder_lookback_test name n expect)
+    lookback_tests
 
-let _ = run_feeder_tests
-(fun (name, n, expect) -> multiple_next_day_test name n expect) next_day_quantity_tests
-
+let _ =
+  run_feeder_tests
+    (fun (name, n, expect) -> multiple_next_day_test name n expect)
+    next_day_quantity_tests
 
 let _ = run_test_tt_main suite
-
