@@ -78,9 +78,9 @@ CAMLprim value lookback(value days)
             fseek(f, -1, SEEK_CUR);
         }
     }
-    char res[255 * anchor];
+    char res[1023 * anchor];
     memset(res, 0, sizeof res);
-    char buff[255];
+    char buff[1023];
     int first = 1;
     while (fscanf(f, "%s", buff) != -1)
     {
