@@ -300,11 +300,22 @@ let next_day_quantity_tests = [
   ("next day exceed max amount", 400, 366);
 ]
 
+(* low price should be <= than all other price values, and max price should be >= all other price values*)
+let validate_feeder = function None -> print_endline "\n====expected day of market data but instead got None===\n"
+| Some d -> let low = Feeder.low d in 
+let low_valid = if (low <= Feeder.open_price d) && (low <= Feeder.close_price d) && (low <= Feeder.high d) then true else false in 
+let high = Feeder.high d in 
+let high_valid = if (high >= Feeder.open_price d) && (high >= Feeder.close_price d) then true else false in 
+if low_valid && high_valid then print_string "." else print_endline @@ "error on day: "^(Feeder.date d)^":: not valid"
+
+let _ = multiple_next_day 366 |> List.iter validate_feeder
+
 let _ = run_feeder_tests 
 (fun (name, n, expect) -> feeder_lookback_test name n expect) lookback_tests
 
 let _ = run_feeder_tests
 (fun (name, n, expect) -> multiple_next_day_test name n expect) next_day_quantity_tests
+
 
 let _ = run_test_tt_main suite
 
