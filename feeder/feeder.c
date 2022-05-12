@@ -27,13 +27,24 @@ CAMLprim value initReader()
     pos = 0L;
     return Val_unit;
 }
+CAMLprim value resetReader()
+{
+    if (f == NULL) 
+    {
+        printf("can't reset uninitialized file reader");
+        return Val_unit;
+    }
+    fseek(f, 0L, SEEK_SET);
+    pos = 0L;
+    return Val_unit;
+}
 CAMLprim value nextDay()
 {
     if (f == NULL)
     {
         return caml_copy_string(ur);
     }
-    char buff[255];
+    char buff[1023];
     int res = fscanf(f, "%s", buff);
     if (res == -1)
     { // end of file

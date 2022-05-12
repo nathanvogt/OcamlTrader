@@ -338,8 +338,49 @@ let state_tests =
       positions_list_two 5.;
   ]
 
+
+let lookback_tests = [
+  "num of entries: normal case" >:: (fun _ -> assert_equal 
+  (Feeder.lookback "ETH" 113 |> List.length) (113));
+  "num of entries: second normal case" >:: (fun _ -> assert_equal 
+  (Feeder.lookback "ETH" 55 |> List.length) (55));
+  "num of entries: edge case 1" >:: (fun _ -> assert_equal
+  (Feeder.init_reader ();Feeder.lookback "ETH" 1 |> List.length) 1);
+  "num of entries: edge case 0" >:: (fun _ -> assert_equal
+  (Feeder.init_reader ();Feeder.lookback "ETH" 0 |> List.length) 0);
+  "num of entries: edge case max" >:: (fun _ -> assert_equal
+  (Feeder.init_reader ();Feeder.lookback "ETH" 366 |> List.length) 366);
+]
+
+let multiple_next_day n = let _ = Feeder.reset_reader () in 
+  let rec aux acc count = if count = 0 then acc else aux (Feeder.next_day () :: acc) (count - 1)
+in aux [] n |> List.filter (fun x -> match x with | None -> false | _ -> true)
+
+let feeder_nextday_tests = [
+  "see first day" >:: (fun _ -> assert_equal 
+  (match Feeder.next_day () with 
+  | Some d -> Feeder.to_string d | None -> failwith "next day broke") ("1923.86377, 1854.564331, 1930.779785, 1845.119995, 19344589211.2021-03-14"));
+  "call next day multiple times" >:: (fun _ -> assert_equal 
+  (List.length @@ multiple_next_day 12) (12));
+  "call next day multiple times 2" >:: (fun _ -> assert_equal 
+  (List.length @@ multiple_next_day 53) (53));
+  "call next day exceed max times" >:: (fun _ -> assert_equal 
+  (List.length @@ multiple_next_day 400) (366));
+  "call next day exceed multiple times even" >:: (fun _ -> assert_equal 
+  (List.length @@ multiple_next_day 40) (40));
+  (* next test: multiple next day calls *)
+  (* test idea: call next day 366 times *)
+]
+
 let suite =
+  let _ = Feeder.init_reader (); in
   "test suite for indicators"
-  >::: List.flatten [ ma_tests; rsi_tests; state_tests ]
+  >::: List.flatten [ 
+  ma_tests; 
+  (* rsi_tests;  *)
+  state_tests;
+  lookback_tests;
+  feeder_nextday_tests;
+  ]
 
 let _ = run_test_tt_main suite
