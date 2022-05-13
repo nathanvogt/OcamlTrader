@@ -18,6 +18,7 @@ type feeder_data = {
 type indicator_type =
   | RSI of float * float * float * float * float
   | MACD of float * float * float * float
+  | OBV of int * float
 
 type decision =
   | Buy
@@ -37,15 +38,13 @@ type account = {
 (* price of coin at time state is initiated *)
 let initial_coin_price = ref 0.
 
-type trends = {
-  crits : Trend.crit_point list
-}
+type trends = { crits : Trend.crit_point list }
 
 type t = {
   data : (string * feeder_data) list;
   indicators : indicator_type list;
   acc_info : account;
-  trends : trends
+  trends : trends;
 }
 
 exception InvalidCoin of string
@@ -76,12 +75,12 @@ exception InvalidIndicator of string
 let initialize = function
   | RSI (0., 0., 0., 0., 0.) ->
       let prev_avg_gain, prev_avg_loss =
-        Feeder.lookback "RSI" 14 |> Ma.gain_loss (0., 0.)
+        Feeder.lookback "ETH" 14 |> Ma.gain_loss (0., 0.)
       in
       RSI (0., 0., 0., prev_avg_gain, prev_avg_loss)
   | MACD (0., 0., 0., 0.) ->
-      let ema_26 = Feeder.lookback "MACD" 26 |> Ma.avg in
-      let ema_12 = Feeder.lookback "MACD" 12 |> Ma.avg in
+      let ema_26 = Feeder.lookback "ETH" 26 |> Ma.avg in
+      let ema_12 = Feeder.lookback "ETH" 12 |> Ma.avg in
       MACD (0., 0., ema_12, ema_26)
   | _ -> raise (Failure "Indicator initialization error")
 
@@ -94,6 +93,8 @@ let rec initiate_indicators_aux = function
         :: initiate_indicators_aux t
       else if h = "MACD" then
         initialize (MACD (0., 0., 0., 0.)) :: initiate_indicators_aux t
+      else if h = "OBV" then
+        initialize (OBV (0, 0.)) :: initiate_indicators_aux t
       else raise (InvalidIndicator h)
 
 (* helper function taking in string list of indicators and returning
@@ -133,9 +134,8 @@ let init_state indic_names budget f =
       data = [ (Feeder.coin_name f, feeder_data f) ];
       indicators = initiate_indicators indic_names;
       acc_info = init_account budget;
-      trends = {
-        crits = Trend.crit_points_days @@ Feeder.lookback "ETH" 360
-      }
+      trends =
+        { crits = Trend.crit_points_days @@ Feeder.lookback "ETH" 360 };
     }
   in
   initial_coin_price := Feeder.close_price f;
