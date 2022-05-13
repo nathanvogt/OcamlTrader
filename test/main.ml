@@ -452,6 +452,21 @@ let state_tests =
       positions_list_two 5.;
   ]
 
+let closes = Feeder.init_reader (); Feeder.lookback "ETH" 360
+let crits = Trend.crit_points_days closes
+
+
+let filter_tests = [
+  ("filter nothing" >:: (fun _ ->
+    assert_equal (List.length crits)
+    (Trend.filter_crit_points crits 0. 
+  |> List.length)));
+  ("filter everything" >:: (fun _ ->
+    assert_equal (1)
+    (Trend.filter_crit_points crits 999999. 
+  |> List.length)));
+]
+
 let multiple_next_day n =
   let _ = Feeder.reset_reader () in
   let rec aux acc count =
@@ -480,7 +495,11 @@ let suite =
   let _ = Feeder.init_reader () in
   "test suite for indicators"
   >::: List.flatten
-         [ ma_tests; obv_tests; macd_update_val_tests (* rsi_tests *) ]
+         [ ma_tests; obv_tests; 
+         macd_update_val_tests 
+         (* rsi_tests *); 
+          filter_tests;
+        ]
 
 let num_feedback_tests = ref 0
 
@@ -498,6 +517,7 @@ let multiple_next_day_test name n expected =
   if n <> expected then
     print_endline @@ "F"
   else  print_string "."
+
 let multiple_next_day_test name n expected =
   let n = List.length @@ multiple_next_day n in
   if n <> expected then print_endline @@ "F"
