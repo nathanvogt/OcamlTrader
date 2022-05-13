@@ -204,64 +204,64 @@ let obv_tests =
     (* pricing for days 1-10 taken from
        https://www.investopedia.com/terms/o/onbalancevolume.asp*)
     obv_test
-      "OBV Test of Day 1: closing price equals $10, volume equals \
-       25,200 shares; Expected OBV = 0"
+      "OBV Test of Day 1: closing price = $10, volume = 25,200 shares; \
+       Expected OBV = 0"
       25200 10.01 25200 10. "ETH" (0, 10.);
     obv_test
-      "OBV Test of Day 2: closing price equals $10.15, volume equals \
-       30,000 shares; Expected OBV = 30,000"
+      "OBV Test of Day 2: closing price = $10.15, volume = 30,000 \
+       shares; Expected OBV = 30,000"
       0 10. 30000 10.15 "ETH" (30000, 10.15);
     obv_test
-      "OBV Test of Day 3: closing price equals $10.17, volume equals \
-       25,600 shares; Expected OBV = 55,600"
+      "OBV Test of Day 3: closing price = $10.17, volume = 25,600 \
+       shares; Expected OBV = 55,600"
       30000 10.15 25600 10.17 "ETH" (55600, 10.17);
     obv_test
-      "OBV Test of Day 4: closing price equals $10.13, volume equals \
-       32,000 shares; Expected OBV = 23,600"
+      "OBV Test of Day 4: closing price = $10.13, volume = 32,000 \
+       shares; Expected OBV = 23,600"
       55600 10.17 32000 10.13 "ETH" (23600, 10.13);
     obv_test
-      "OBV Test of Day 5: closing price equals $10.11, volume equals \
-       23,000 shares; Expected OBV = 600"
+      "OBV Test of Day 5: closing price = $10.11, volume = 23,000 \
+       shares; Expected OBV = 600"
       23600 10.13 23000 10.11 "ETH" (600, 10.11);
     obv_test
-      "OBV Test of Day 6: closing price equals $10.15, volume equals \
-       40,000 shares; Expected OBV = 40,600"
+      "OBV Test of Day 6: closing price = $10.15, volume = 40,000 \
+       shares; Expected OBV = 40,600"
       600 10.11 40000 10.15 "ETH" (40600, 10.15);
     obv_test
-      "OBV Test of Day 7: closing price equals $10.20, volume equals \
-       36,000 shares; Expected OBV = 76,600"
+      "OBV Test of Day 7: closing price = $10.20, volume = 36,000 \
+       shares; Expected OBV = 76,600"
       40600 10.15 36000 10.20 "ETH" (76600, 10.20);
     obv_test
-      "OBV Test of Day 8: closing price equals $10.20, volume equals \
-       20,500 shares; Expected OBV = 76,600"
+      "OBV Test of Day 8: closing price = $10.20, volume = 20,500 \
+       shares; Expected OBV = 76,600"
       76600 10.20 20500 10.20 "ETH" (76600, 10.20);
     obv_test
-      "OBV Test of Day 9: closing price equals $10.22, volume equals \
-       23,000 shares; Expected OBV = 99,600"
+      "OBV Test of Day 9: closing price = $10.22, volume = 23,000 \
+       shares; Expected OBV = 99,600"
       76600 10.20 23000 10.22 "ETH" (99600, 10.22);
     obv_test
-      "OBV Test of Day 10: closing price equals $10.21, volume equals \
-       27,500 shares; Expected OBV = 72,100"
+      "OBV Test of Day 10: closing price = $10.21, volume = 27,500 \
+       shares; Expected OBV = 72,100"
       99600 10.22 27500 10.21 "ETH" (72100, 10.21);
     obv_test
-      "OBV Test of Day 11: closing price equals $10.24, volume equals \
-       32,500 shares; Expected OBV = 104,600"
+      "OBV Test of Day 11: closing price = $10.24, volume = 32,500 \
+       shares; Expected OBV = 104,600"
       72100 10.21 32500 10.24 "ETH" (104600, 10.24);
     obv_test
-      "OBV Test of Day 12: closing price equals $10.26, volume equals \
-       18,500 shares; Expected OBV = 123100"
+      "OBV Test of Day 12: closing price = $10.26, volume = 18,500 \
+       shares; Expected OBV = 123100"
       104600 10.24 18500 10.26 "ETH" (123100, 10.26);
     obv_test
-      "OBV Test of Day 13: closing price equals $10.14, volume equals \
-       22,500 shares; Expected OBV = 100600"
+      "OBV Test of Day 13: closing price = $10.14, volume = 22,500 \
+       shares; Expected OBV = 100600"
       123100 10.26 22500 10.14 "ETH" (100600, 10.14);
     obv_test
-      "OBV Test of Day 14: closing price equals $10.12, volume equals  \
-       12,500 shares; Expected OBV = 88100"
+      "OBV Test of Day 14: closing price = $10.12, volume =  12,500 \
+       shares; Expected OBV = 88100"
       100600 10.14 12500 10.12 "ETH" (88100, 10.12);
     obv_test
-      "OBV Test of Day 15: closing price equals $10.24, volume equals \
-       26,500 shares; Expected OBV = 72,100"
+      "OBV Test of Day 15: closing price = $10.24, volume = 26,500 \
+       shares; Expected OBV = 72,100"
       88100 10.12 26500 10.24 "ETH" (114600, 10.24);
   ]
 
@@ -452,9 +452,10 @@ let state_tests =
       positions_list_two 5.;
   ]
 
-let closes = Feeder.init_reader (); Feeder.lookback "ETH" 360
-let crits = Trend.crit_points_days closes
-
+let closes =
+  Feeder.init_reader ();
+  Feeder.lookback "ETH" 360
+let crits = Trend.crit_points_days closes 
 let filter_test name param expected = 
   (name >:: (fun _ ->
     assert_equal
@@ -501,28 +502,24 @@ let suite =
   let _ = Feeder.init_reader () in
   "test suite for indicators"
   >::: List.flatten
-         [ ma_tests; obv_tests; 
-         macd_update_val_tests 
-         (* rsi_tests *); 
-          filter_tests;
-        ]
+         [
+           ma_tests;
+           obv_tests;
+           macd_update_val_tests (* rsi_tests *);
+           filter_tests;
+         ]
 
 let num_feedback_tests = ref 0
 
 let feeder_lookback_test name n expected =
   let n = List.length @@ multiple_next_day n in
   num_feedback_tests := !num_feedback_tests + 1;
-  if n <> expected then
-    print_endline @@ "F"
-  else
-   print_string "."
+  if n <> expected then print_endline @@ "F" else print_string "."
 
 let multiple_next_day_test name n expected =
   let n = List.length @@ multiple_next_day n in
   num_feedback_tests := !num_feedback_tests + 1;
-  if n <> expected then
-    print_endline @@ "F"
-  else  print_string "."
+  if n <> expected then print_endline @@ "F" else print_string "."
 
 let multiple_next_day_test name n expected =
   let n = List.length @@ multiple_next_day n in
@@ -542,8 +539,8 @@ let lookback_tests =
     ("lookback large amount odd", 305, 305);
     ("lookback max amount", 365, 365);
     ("lookback edge case 0", 0, 0);
-    ("lookback edge case 1", 1, 1);
-    (* ("lookback throw error", 400, -1); *)
+    ("lookback edge case 1", 1, 1)
+    (* ("lookback throw error", 400, -1); *);
   ]
 
 let next_day_quantity_tests =
@@ -585,8 +582,7 @@ let validate_feeder = function
       in
       num_feedback_tests := !num_feedback_tests + 1;
       if low_valid && high_valid then print_string "."
-      else
-        print_endline @@ "F"
+      else print_endline @@ "F"
 
 let time_initial = Unix.gettimeofday ()
 let _ = multiple_next_day 366 |> List.iter validate_feeder

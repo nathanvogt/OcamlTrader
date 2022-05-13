@@ -4,6 +4,7 @@ include State
 include Lwt_io
 include Trend
 include Maths
+include Decision
 
 (* ========== HYPERPARAMS ============= *)
 let grid_up_hyperparam = 2.
@@ -80,62 +81,6 @@ let pause_message =
 (********************************************************************
     Indicator/Decision Functions
  ********************************************************************)
-(* helper function taking average based on pipeline ordering *)
-let average den num = num /. den
-
-(** [indication_naive indications acc ] takes in indication list
-    [indications] average of all indicator measures. It is naive because
-    no normalization is made, nor is there distinction between the type
-    of indicator. *)
-let rec indication_naive acc (indications : State.indicator_type list) =
-  match indications with
-  | [] -> acc
-  | h :: t -> (
-      match h with
-      | RSI (rsi, _, _, _, _) -> indication_naive (acc +. rsi) t
-      | MACD (macd, _, _, _) -> indication_naive (acc +. macd) t
-      | OBV (obv, _) -> indication_naive (acc +. 0.) t)
-(* place holder for now *)
-
-(* heuristic taking simple average of indicators. @nathan: here is
-   somewhere that could use a hyperparameter to be tuned *)
-let weight_indicators st =
-  State.indicator_values st
-  |> indication_naive 0.0
-  |> average @@ float_of_int (List.length indicators)
-
-(* heuristic returning value of whether closing price has crossed any of
-   upper or lower grid lines. returns float value similar to that of
-   indicators between 0-100. *)
-let grid_indicator price_close =
-  if price_close > !grid_upper then grid_up_hyperparam
-  else if price_close < !grid_lower then
-    (* possible hyperparameter *)
-    grid_down_hyperparam
-  else grid_neutral_hyperparam
-
-(* main function returning a combination of various indicators for a
-   final decision *)
-let indicator_comb st =
-  let price = State.price_close st "ETH" in
-  [
-    Trend.trend_line_indicator (State.crit_points st) price;
-    grid_indicator (State.price_close st coin_name_const);
-  ]
-  |> List.fold_left (fun acc x -> acc +. x) 0.
-  |> Maths.tanh tanh_range_hyperparam tanh_spread_hyperparam
-  |> ( +. ) tanh_range_hyperparam
-(* weight_indicators st +. grid_indicator (State.price_close st
-   coin_name_const) *)
-
-(* helper function receiving decision and taking corresponding action
-
-   later need to make this smarter: don't sell when we don't have
-   position sizes control the total budget it buys and sells -jun *)
-let evaluate_indicators weight =
-  if weight <= 30. then State.Buy
-  else if weight <= 70. then State.Wait
-  else State.Sell
 
 (********************************************************************
     Basic Formatted Print Helper Functions
@@ -320,7 +265,7 @@ let rec graph_grid
 let print_report_in_loop st =
   let data = State.data_print coin_name_const st in
   print_endline @@ "Date: " ^ State.curr_date st coin_name_const;
-  let indic_decision = evaluate_indicators @@ indicator_comb st in
+  let indic_decision = Decision.final_decision in
   ansiterminal_print indic_decision;
   let all_time_profits =
     "All time profit: "

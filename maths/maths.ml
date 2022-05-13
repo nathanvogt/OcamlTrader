@@ -10,11 +10,11 @@ let e = 2.7182818284
 let sigmoid x = 
   1. /. (1. +. (1. /. (e ** x)))
 
-let tanh_dep x = 
-(((e ** x) -. ((1. +. epsilon) /. 
+let tanh_off o x = 
+((((e ** x) -. ((1. +. epsilon) /. 
 ((e ** x) +. epsilon))) +. epsilon) /. 
 (((e ** x) +. ((1. +. epsilon) /. 
-((e ** x) +. epsilon))) +. epsilon)
+((e ** x) +. epsilon))) +. epsilon)) +. o
 
 let tanh r s x = 
 (r *. ((e ** (x /. s)) -. 
