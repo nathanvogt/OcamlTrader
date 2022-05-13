@@ -15,10 +15,10 @@
     Current OBV = Previous OBV; Source:
     https://www.investopedia.com/terms/o/onbalancevolume.asp *)
 
-val update_val : int -> float -> int -> float -> string -> float * int
+val update_val : int -> float -> int -> float -> string -> int * float
 (** [update_val prev_obv prev_close vol close coin] takes in the
     previous OBV [prev_obv] as an [int], the previous close [prev_close]
     as a [float], today's volume [vol] as an [int], today's close price
     as a [float], and the coin name as a [string]; returns a tuple of
     today's close price [close] and today's OBV value [today_obv] in the
-    form [(close, today_obv)] *)
+    form [(today_obv, close)] *)
