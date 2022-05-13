@@ -1,4 +1,6 @@
-(** [rsi] implements the RSI indicator *)
+(** [rsi] implements the RSI indicator, which has a range of 0 to 100.
+    If < 30, stock is oversold and price may rise, while >70 indicates
+    stock is overbought and price may dip. *)
 
 val update_val :
   float ->
