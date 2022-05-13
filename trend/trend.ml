@@ -10,7 +10,8 @@ let tanh_spread_hyperparam = 6.0
 
 (* ========================== *)
 
-type crit_point = Maximum of float | Minimum of float
+type crit_point = Maximum of float 
+| Minimum of float
 
 let float_of_crit crit = match crit with 
 | Maximum f | Minimum f -> f

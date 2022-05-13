@@ -455,16 +455,22 @@ let state_tests =
 let closes = Feeder.init_reader (); Feeder.lookback "ETH" 360
 let crits = Trend.crit_points_days closes
 
+let filter_test name param expected = 
+  (name >:: (fun _ ->
+    assert_equal
+    (Trend.filter_crit_points crits param 
+  |> List.length)
+  (expected)))
 
 let filter_tests = [
-  ("filter nothing" >:: (fun _ ->
-    assert_equal (List.length crits)
-    (Trend.filter_crit_points crits 0. 
-  |> List.length)));
-  ("filter everything" >:: (fun _ ->
-    assert_equal (1)
-    (Trend.filter_crit_points crits 999999. 
-  |> List.length)));
+  filter_test "filter everyting"
+  99999. 1;
+  filter_test "filter nothing"
+  0. (List.length crits);
+  filter_test "filter light"
+  30. 79;
+  filter_test "heavy filter"
+  300. 32;
 ]
 
 let multiple_next_day n =
