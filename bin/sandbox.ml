@@ -1,4 +1,4 @@
-include Feeder
+(* include Feeder
 include Trend
 
 let closes = Feeder.init_reader (); Feeder.lookback "ETH" 360
@@ -16,4 +16,4 @@ in bruh 4000.0  *)
 
 let _ = List.length crits |> string_of_int |> fun s -> "crits: "^s |> print_endline
 let filtered = Trend.filter_crit_points crits 30. 
-let _ = List.length filtered |> string_of_int |> fun s -> "filtered: "^s |> print_endline
+let _ = List.length filtered |> string_of_int |> fun s -> "filtered: "^s |> print_endline *)
