@@ -5,8 +5,8 @@ High: 1889.196655
 Low: 1749.606323
 Close: 1791.702271
 Volume: 26244738810.
-BUY!
-Coin: ETH; Average position value: 1823.133301; Number of positions: 2.
+WAIT!
+Coin: ETH; Average position value: 1854.564331; Number of positions: 1.
 Algorithm profit: 0.All time profit: -314.3103
 
 Coin: ETH

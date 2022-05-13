@@ -8,8 +8,14 @@ exception UninitializedReader
 external init_reader : unit -> unit = "initReader"
 (** Initializes the file reader that reads raw historical data *)
 
+external reset_reader : unit -> unit = "resetReader"
+(** [reset_reader] resets file reader back to the start of historical data.
+    Checks: reader must already be initialized *)
+
 val next_day : unit -> t option
 (** Returuns the next day of historical data *)
+
+val to_string : t -> string
 
 val open_price : t -> float
 (** [open_price d] returns the opening price from the day of historical

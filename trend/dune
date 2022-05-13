@@ -1,0 +1,4 @@
+(library
+ (name trend)
+ (public_name Trend)
+ (libraries  Feeder))

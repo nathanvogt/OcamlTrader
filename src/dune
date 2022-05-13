@@ -1,4 +1,4 @@
 (library
  (name indicator)
  (public_name Indicator)
- (libraries yojson ounit2 ANSITerminal Feeder))
+ (libraries yojson ounit2 ANSITerminal Feeder Trend))

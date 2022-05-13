@@ -11,9 +11,14 @@ exception UninitializedReader
 
 external init_reader : unit -> unit = "initReader"
 external read_next_day : unit -> string = "nextDay"
+external reset_reader : unit -> unit = "resetReader"
 (* TODO: init reader with path parameter *)
 
 external lookback_raw : int -> string = "lookback"
+
+let to_string x = [x.open_price; x.close_price; x.high; x.low; x.volume;]
+|> List.map (fun x -> (string_of_float x)) |> String.concat ", " |> 
+fun s -> s ^ x.date
 
 let construct_t s =
   let l = String.split_on_char ',' s in
@@ -65,3 +70,4 @@ let lookback_g (days : int) : t list =
 (* TODO: ocaml raw results to return parameterized values *)
 let lookback (coin : string) (days : int) : float list =
   lookback_g days |> List.map (fun x -> close_price x)
+
