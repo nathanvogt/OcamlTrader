@@ -82,6 +82,7 @@ let initialize = function
       let ema_26 = Feeder.lookback "ETH" 26 |> Ma.avg in
       let ema_12 = Feeder.lookback "ETH" 12 |> Ma.avg in
       MACD (0., 0., ema_12, ema_26)
+  | OBV (0, 0.) as obv -> obv
   | _ -> raise (Failure "Indicator initialization error")
 
 (* recursive helpfer function to initiate indicators *)
@@ -214,6 +215,13 @@ let new_indic_val (st : t) = function
           ema_12 ema_26 coin_name_const
       in
       MACD (curr_macd, curr_price, curr_avg_gain, curr_avg_loss)
+  | OBV (prev_obv, prev_close) ->
+      let vol = int_of_float (price_vol st coin_name_const) in
+      let close = price_close st coin_name_const in
+      let curr_obv, curr_close =
+        Obv.update_val prev_obv prev_close vol close coin_name_const
+      in
+      OBV (curr_obv, curr_close)
 
 (* helper function receiving new data and calling indicator functions to
    update indicator field *)
