@@ -1,5 +1,6 @@
 include Feeder
 include ANSITerminal
+include Trend
 
 (* hardcoded: TODO, to be fixed later *)
 let coin_name_const = "ETH"
@@ -36,10 +37,15 @@ type account = {
 (* price of coin at time state is initiated *)
 let initial_coin_price = ref 0.
 
+type trends = {
+  crits : Trend.crit_point list
+}
+
 type t = {
   data : (string * feeder_data) list;
   indicators : indicator_type list;
   acc_info : account;
+  trends : trends
 }
 
 exception InvalidCoin of string
@@ -127,6 +133,9 @@ let init_state indic_names budget f =
       data = [ (Feeder.coin_name f, feeder_data f) ];
       indicators = initiate_indicators indic_names;
       acc_info = init_account budget;
+      trends = {
+        crits = Trend.crit_points_days @@ Feeder.lookback "ETH" 360
+      }
     }
   in
   initial_coin_price := Feeder.close_price f;
@@ -170,6 +179,7 @@ let rec get_market_val_aux coin (get_avg_pos : bool) = function
       if coin = cn then if get_avg_pos then avg_pos else pos_val
       else get_market_val_aux coin get_avg_pos t
 
+let crit_points st = st.trends.crits
 let price_high st coin_name = get_data_aux coin_name High st.data
 let price_low st coin_name = get_data_aux coin_name Low st.data
 let price_open st coin_name = get_data_aux coin_name Open st.data

@@ -2,6 +2,17 @@ include Indicator
 include Feeder
 include State
 include Lwt_io
+include Trend
+include Maths
+
+(* ========== HYPERPARAMS ============= *)
+let grid_up_hyperparam = 10.
+let grid_down_hyperparam = Float.neg 10. 
+let grid_neutral_hyperparam = 0.
+let spread_hyperparam = 7.0
+let tanh_range_hyperparam = 50.0
+let tanh_spread_hyperparam = 15.0
+(* ==================================== *)
 
 (* ------ initializing global variables ------ *)
 
@@ -93,19 +104,28 @@ let weight_indicators st =
 
 (* heuristic returning value of whether closing price has crossed any of
    upper or lower grid lines. returns float value similar to that of
-   indicators between 0-100. @nathan: here is somewhere that could use a
-   hyperparameter to be tuned *)
+   indicators between 0-100. *)
 let grid_indicator price_close =
-  if price_close > !grid_upper then (* possible hyperparameter *) 10.
+  if price_close > !grid_upper then grid_up_hyperparam
   else if price_close < !grid_lower then (* possible hyperparameter *)
-    0.
-  else (* possible hyperparameter *) 50.
+    grid_down_hyperparam
+  else grid_neutral_hyperparam
 
 (* main function returning a combination of various indicators for a
    final decision *)
 let indicator_comb st =
-  weight_indicators st
-  +. grid_indicator (State.price_close st coin_name_const)
+  let price = State.price_close st "ETH" in 
+  [
+    (Trend.trend_line_indicator (State.crit_points st) price);
+    (grid_indicator (State.price_close st coin_name_const));
+  ] |>
+  List.fold_left (fun acc x -> acc +. x) 0.
+  |> Maths.tanh tanh_range_hyperparam tanh_spread_hyperparam
+  |> ( +. ) tanh_range_hyperparam
+  (* weight_indicators st
+  +. grid_indicator (State.price_close st coin_name_const) *)
+
+
 
 (* helper function receiving decision and taking corresponding action
 
