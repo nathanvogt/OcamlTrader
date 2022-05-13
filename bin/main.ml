@@ -93,7 +93,9 @@ let rec indication_naive acc (indications : State.indicator_type list) =
   | h :: t -> (
       match h with
       | RSI (rsi, _, _, _, _) -> indication_naive (acc +. rsi) t
-      | MACD (macd, _, _, _) -> indication_naive (acc +. macd) t)
+      | MACD (macd, _, _, _) -> indication_naive (acc +. macd) t
+      | OBV (obv, _) -> indication_naive (acc +. 0.) t)
+(* place holder for now *)
 
 (* heuristic taking simple average of indicators. @nathan: here is
    somewhere that could use a hyperparameter to be tuned *)

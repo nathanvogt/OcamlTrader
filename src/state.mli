@@ -10,6 +10,7 @@
 type indicator_type =
   | RSI of float * float * float * float * float
   | MACD of float * float * float * float
+  | OBV of int * float
 
 (** Deicsion type to be passed after evaluation on training metrics, and
     for account to be updated accordingly. This is exposed by the state

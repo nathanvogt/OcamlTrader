@@ -1,4 +1,9 @@
-let update_val prev_obv prev_close vol close coin =
-  if close > prev_close then (close, prev_obv + vol)
-  else if close = prev_close then (close, prev_obv)
+let update_val
+    (prev_obv : int)
+    (prev_close : float)
+    (vol : int)
+    (close : float)
+    coin =
+  if close > prev_close then (prev_obv + vol, close)
+  else if close = prev_close then (prev_obv, close)
   else (prev_obv - vol, close)
