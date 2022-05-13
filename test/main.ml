@@ -424,9 +424,9 @@ let _ =
 
 let time_final = Unix.gettimeofday ()
 
-let delta_time = (time_final -. time_initial)
+let delta_time = (time_final -. time_initial) *. 100.
 
-let _ = "\nRan "^(string_of_int !num_feedback_tests)^
+let _ = "\nRan: "^(string_of_int !num_feedback_tests)^
 " feeder tests in: "^(string_of_float delta_time)^
 " seconds" |> print_endline
 
