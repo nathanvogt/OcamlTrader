@@ -5,8 +5,6 @@ include Maths
 
 (* ==========HYPERPARAMETERS========== *)
 let spread_hyperparam = 7.0
-let tanh_range_hyperparam = 5.0
-let tanh_spread_hyperparam = 6.0
 
 (* ========================== *)
 

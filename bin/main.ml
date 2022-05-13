@@ -6,20 +6,12 @@ include Trend
 include Maths
 include Decision
 
-(* ========== HYPERPARAMS ============= *)
-let grid_up_hyperparam = 2.
-let grid_down_hyperparam = Float.neg 20.
-let grid_neutral_hyperparam = 0.
-let spread_hyperparam = 7.0
-let tanh_range_hyperparam = 50.0
-let tanh_spread_hyperparam = 15.0
-(* ==================================== *)
 
 (* ------ initializing global variables ------ *)
 
 (** Global list of indicators. Requires that indicators spelled
     correctly. Some, like coin_name, are hard coded for now *)
-let indicators = [ "RSI"; "MACD" ]
+let indicators = [ "RSI"; "MACD"; "OBV"; ]
 
 let coin_name_const = "ETH"
 let budget = 10000.00
@@ -88,24 +80,43 @@ indicate the suggestion to sell  *)
 
 (* ======= HYPERPARAMS ========= *)
 let grid_up_hyperparam = 5.
+(* buy influence associated with crossing the grid above *)
 let grid_down_hyperparam = Float.neg 10.
+(* sell influence associated with crossing the grid below *)
 let grid_neutral_hyperparam = 0.
+(* buy or sell influence associated with not crossing a grid *)
 let spread_hyperparam = 7.0
+(* range of proximity effect of trend lines *)
+
 let tanh_range_hyperparam = 50.0
+(* scales output range of tanh *)
 let tanh_spread_hyperparam = 15.0
+(* scales the steepness of the tanh function *)
 
 let trend_lines_weight = 1.
+(* influence of trend lines in final decision *)
 let trend_lines_bias = 0.
+(* offset of trend line influence in final decision *)
 let grid_line_weight = 1.
+(* influence of grid lines in final decision *)
 let grid_line_bias = 0.
+(* offset of grid line influence in final decision *)
 let rsi_weight = 0.
+(* influence of rsi indicator in final decision *)
 let rsi_bias = 0.
+(* offset of rsi indicator influence in final decision *)
 let macd_weight = 0.
+(* influence of macd indicator in final decision *)
 let macd_bias = 0.
+(* offset of macd indicator influence in final decision *)
 let obv_weight = 0.
+(* influence of obv indicator in final decision *)
 let obv_bias = 0.
+(* offset of obv indicator influence in final decision *)
 let so_weight = 0.
+(* influence of so indicator in final decision *)
 let so_bias = 0.
+(* offset of so indicator influence in final decision *)
 (* ============================= *)
 (* helper function taking average based on pipeline ordering *)
 let average den num = num /. den
