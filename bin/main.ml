@@ -7,7 +7,7 @@ include Maths
 
 (* ========== HYPERPARAMS ============= *)
 let grid_up_hyperparam = 10.
-let grid_down_hyperparam = Float.neg 10. 
+let grid_down_hyperparam = Float.neg 10.
 let grid_neutral_hyperparam = 0.
 let spread_hyperparam = 7.0
 let tanh_range_hyperparam = 50.0
@@ -93,7 +93,9 @@ let rec indication_naive acc (indications : State.indicator_type list) =
   | h :: t -> (
       match h with
       | RSI (rsi, _, _, _, _) -> indication_naive (acc +. rsi) t
-      | MACD (macd, _, _, _) -> indication_naive (acc +. macd) t)
+      | MACD (macd, _, _, _) -> indication_naive (acc +. macd) t
+      | OBV (obv, _) -> indication_naive (acc +. 0.) t)
+(* place holder for now *)
 
 (* heuristic taking simple average of indicators. @nathan: here is
    somewhere that could use a hyperparameter to be tuned *)
@@ -107,25 +109,24 @@ let weight_indicators st =
    indicators between 0-100. *)
 let grid_indicator price_close =
   if price_close > !grid_upper then grid_up_hyperparam
-  else if price_close < !grid_lower then (* possible hyperparameter *)
+  else if price_close < !grid_lower then
+    (* possible hyperparameter *)
     grid_down_hyperparam
   else grid_neutral_hyperparam
 
 (* main function returning a combination of various indicators for a
    final decision *)
 let indicator_comb st =
-  let price = State.price_close st "ETH" in 
+  let price = State.price_close st "ETH" in
   [
-    (Trend.trend_line_indicator (State.crit_points st) price);
-    (grid_indicator (State.price_close st coin_name_const));
-  ] |>
-  List.fold_left (fun acc x -> acc +. x) 0.
+    Trend.trend_line_indicator (State.crit_points st) price;
+    grid_indicator (State.price_close st coin_name_const);
+  ]
+  |> List.fold_left (fun acc x -> acc +. x) 0.
   |> Maths.tanh tanh_range_hyperparam tanh_spread_hyperparam
   |> ( +. ) tanh_range_hyperparam
-  (* weight_indicators st
-  +. grid_indicator (State.price_close st coin_name_const) *)
-
-
+(* weight_indicators st +. grid_indicator (State.price_close st
+   coin_name_const) *)
 
 (* helper function receiving decision and taking corresponding action
 
