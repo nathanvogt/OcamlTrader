@@ -452,6 +452,21 @@ let state_tests =
       positions_list_two 5.;
   ]
 
+let closes = Feeder.init_reader (); Feeder.lookback "ETH" 360
+let crits = Trend.crit_points_days closes
+
+
+let filter_tests = [
+  ("filter nothing" >:: (fun _ ->
+    assert_equal (List.length crits)
+    (Trend.filter_crit_points crits 0. 
+  |> List.length)));
+  ("filter everything" >:: (fun _ ->
+    assert_equal (1)
+    (Trend.filter_crit_points crits 999999. 
+  |> List.length)));
+]
+
 let multiple_next_day n =
   let _ = Feeder.reset_reader () in
   let rec aux acc count =
@@ -480,15 +495,28 @@ let suite =
   let _ = Feeder.init_reader () in
   "test suite for indicators"
   >::: List.flatten
-         [ ma_tests; obv_tests; macd_update_val_tests (* rsi_tests *) ]
+         [ ma_tests; obv_tests; 
+         macd_update_val_tests 
+         (* rsi_tests *); 
+          filter_tests;
+        ]
 
 let num_feedback_tests = ref 0
 
 let feeder_lookback_test name n expected =
   let n = List.length @@ multiple_next_day n in
-  if n <> expected then print_endline @@ "F"
-  else num_feedback_tests := !num_feedback_tests + 1;
-  print_string "."
+  num_feedback_tests := !num_feedback_tests + 1;
+  if n <> expected then
+    print_endline @@ "F"
+  else
+   print_string "."
+
+let multiple_next_day_test name n expected =
+  let n = List.length @@ multiple_next_day n in
+  num_feedback_tests := !num_feedback_tests + 1;
+  if n <> expected then
+    print_endline @@ "F"
+  else  print_string "."
 
 let multiple_next_day_test name n expected =
   let n = List.length @@ multiple_next_day n in
@@ -508,8 +536,8 @@ let lookback_tests =
     ("lookback large amount odd", 305, 305);
     ("lookback max amount", 365, 365);
     ("lookback edge case 0", 0, 0);
-    ("lookback edge case 1", 1, 1)
-    (* ("lookback throw error", 400, -1); *);
+    ("lookback edge case 1", 1, 1);
+    (* ("lookback throw error", 400, -1); *)
   ]
 
 let next_day_quantity_tests =
@@ -549,10 +577,10 @@ let validate_feeder = function
         then true
         else false
       in
-      if low_valid && high_valid then (
-        num_feedback_tests := !num_feedback_tests + 1;
-        print_string ".")
-      else print_endline @@ "F"
+      num_feedback_tests := !num_feedback_tests + 1;
+      if low_valid && high_valid then print_string "."
+      else
+        print_endline @@ "F"
 
 let time_initial = Unix.gettimeofday ()
 let _ = multiple_next_day 366 |> List.iter validate_feeder
