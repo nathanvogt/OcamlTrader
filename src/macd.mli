@@ -1,5 +1,9 @@
 (** [macd] contains the implementation for the MACD moving indicator,
-    which is [12 day EMA - 26 day EMA] *)
+    which is [12 day EMA - 26 day EMA]. Positive MACD value indicates
+    increasing upward momentum, which indicates traders should refrain
+    from taking short-term positions. Negative MACD value indicates that
+    downward trend is stronger, hence it is not a good time to buy.
+    Source: https://www.investopedia.com/trading/macd/*)
 
 val update_val :
   float ->

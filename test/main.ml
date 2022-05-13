@@ -3,6 +3,7 @@ open Indicator
 open Ma
 open Rsi
 open Obv
+open So
 
 (* OTHER POSSIBLE TESTS: *)
 (* - new_indic_val in state.ml *)
@@ -222,6 +223,13 @@ let obv_tests =
       88100 10.12 26500 10.24 "ETH" (114600, 10.24);
   ]
 
+(* helper function to truncate floats *)
+let truncatef x = snd (modf (x *. 1000.)) /. 1000.
+
+(* helper function to truncate float tuples *)
+let truncate5 (x1, x2, x3, x4, x5) =
+  (truncatef x1, truncatef x2, truncatef x3, truncatef x4, truncatef x5)
+
 (** [rsi_update_val_test] tests Rsi.update_val *)
 let rsi_update_val_test
     (name : string)
@@ -233,16 +241,80 @@ let rsi_update_val_test
     (coin : string)
     (expected_output : float * float * float * float * float) =
   name >:: fun _ ->
-  assert_equal (* ~printer:pp_five_float *) expected_output
+  assert_equal ~printer:pp_five_float expected_output
     (Rsi.update_val prev_rsi price_close prev_price_close prev_avg_gain
-       prev_avg_loss coin)
+       prev_avg_loss coin
+    |> truncate5)
+
+(* helper function that trucates the first float value in a float *
+   float list tuple *)
+let truncate_float_float_lst (x1, x_lst) = (truncatef x1, x_lst)
 
 let rsi_update_val_tests =
-  [ (* rsi_update_val_test "RSI [update_val] test for day 1" 70.53 46.28
-       46. .24 .1 "ETH" (5., 5., 5., 5., 5.) *) ]
+  [
+    rsi_update_val_test "RSI [update_val] test for day 1" 70.53 46.28
+      46.0 0.24 0.1 "ETH"
+      (72.34, 46.28, 0., 0.242, 0.092);
+    rsi_update_val_test "RSI [update_val] test for day 2" 66.32 46.0
+      46.28 0.24 0.1 "ETH"
+      (66.382, 46., 0., 0.222, 0.112);
+    rsi_update_val_test "RSI [update_val] test for day 3" 69.41 46.22
+      46.41 0.22 0.10 "ETH"
+      (65.747, 46.22, 0., 0.204, 0.106);
+    rsi_update_val_test "RSI [update_val] test for day 4" 64.23 46.28
+      46.13 0.28 0.15 "ETH"
+      (66.027, 46.28, 0., 0.27, 0.139);
+    rsi_update_val_test "RSI [update_val] test for day 5" 50.42 38.52
+      29.35 0.36 0.13 "ETH"
+      (89.124, 38.52, 0., 0.989, 0.12);
+  ]
 
-(* helper function to truncate floats *)
-let truncatef x = snd (modf (x *. 1000.)) /. 1000.
+(** [so_update_val_test] tests So.update_val *)
+let so_update_val_test
+    (name : string)
+    (close : float)
+    (past14 : float list)
+    (coin : string)
+    (expected_output : float * float list) =
+  name >:: fun _ ->
+  assert_equal
+    ~printer:(fun (f, f_lst) ->
+      pp_float f ^ ", " ^ pp_list pp_float f_lst)
+    expected_output
+    (So.update_val close past14 coin |> truncate_float_float_lst)
+
+[@@@ocamlformat "disable=true"]
+
+let so_update_val_tests =
+  [
+    so_update_val_test "1st Stochastic Oscillator Test" 125.38
+      [ 124.97; 127.45; 126.27; 124.85; 124.69; 127.31; 125.43; 127.10; 126.90;
+        126.85; 125.28; 124.61; 124.28; 125.05; ] "ETH"
+      ( 34.7, [ 127.45; 126.27; 124.85; 124.69; 127.31; 125.43; 127.1; 126.9; 
+        126.85; 125.28; 124.61; 124.28; 125.05; 125.38 ] );
+    so_update_val_test "2nd Stochastic Oscillator Test" 128.42
+      [ 124.97; 127.45; 126.27; 124.85; 124.69; 127.31; 125.43; 127.10; 126.90;
+        126.85; 125.28; 124.61; 124.28; 125.05; ] "ETH"
+      ( 100.0, [ 127.45; 126.27; 124.85; 124.69; 127.31; 125.43; 127.1; 126.9; 
+        126.85; 125.28; 124.61; 124.28; 125.05; 128.42 ] );
+    so_update_val_test "3rd Stochastic Oscillator Test" 121.52
+      [ 124.97; 127.45; 126.27; 124.85; 124.69; 127.31; 125.43; 127.10; 126.90;
+        126.85; 125.28; 124.61; 124.28; 125.05; ] "ETH"
+      ( 0.0, [127.45; 126.27; 124.85; 124.69; 127.31; 125.43; 127.1; 126.9; 
+        126.85; 125.28; 124.61; 124.28; 125.05; 121.52] );
+    so_update_val_test "4th Stochastic Oscillator Test" 125.01
+      [ 124.97; 127.45; 126.27; 124.85; 124.69; 127.31; 125.43; 127.10; 126.90;
+      126.85; 125.28; 124.61; 124.28; 125.05; ] "ETH"
+      ( 23.028, [127.45; 126.27; 124.85; 124.69; 127.31; 125.43; 127.1; 126.9; 
+        126.85; 125.28; 124.61; 124.28; 125.05; 125.01] );
+    so_update_val_test "5th Stochastic Oscillator Test" 126.38
+      [ 124.97; 127.45; 126.27; 124.85; 124.69; 127.31; 125.43; 127.10; 126.90;
+      126.85; 125.28; 124.61; 124.28; 125.05; ] "ETH"
+      ( 66.246, [127.45; 126.27; 124.85; 124.69; 127.31; 125.43; 127.1; 126.9; 
+        126.85; 125.28; 124.61; 124.28; 125.05; 126.38] );
+  ]
+
+[@@@ocamlformat "disable=false"]
 
 (* helper function to truncate float tuples *)
 let truncate4 (x1, x2, x3, x4) =
@@ -456,7 +528,9 @@ let suite =
          [
            ma_tests;
            obv_tests;
-           macd_update_val_tests (* rsi_tests *);
+           macd_update_val_tests;
+           so_update_val_tests;
+           rsi_update_val_tests;
            filter_tests;
          ]
 
