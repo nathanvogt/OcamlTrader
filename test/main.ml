@@ -259,24 +259,39 @@ let multiple_next_day n =
          | None -> false
          | _ -> true)
 
+let bad_test_1 = [
+  "bad test 1" >:: (fun _ -> assert_equal 
+  (List.length @@ Feeder.lookback "ETH" 34) (34));
+]
+let bad_test_2 = [
+  "bad test 2" >:: (fun _ -> assert_equal 
+  (List.length @@ Feeder.lookback "ETH" 52) (52));
+]
+
 let suite =
   let _ = Feeder.init_reader () in
   "test suite for indicators"
-  >::: List.flatten [ ma_tests (* rsi_tests; *) ]
+  >::: List.flatten [ 
+    ma_tests;
+    (* rsi_tests;  *)
+    (* bad_test_1; *)
+    bad_test_2;
+]
+
+let num_feedback_tests = ref 0
 
 let feeder_lookback_test name n expected =
   let n = List.length @@ multiple_next_day n in
   if n <> expected then
-    print_endline @@ "\n=========Error in: " ^ name
-    ^ ":: not equal=======\n"
-  else print_string "."
+    print_endline @@ "F"
+  else num_feedback_tests := !num_feedback_tests + 1;
+   print_string "."
 
 let multiple_next_day_test name n expected =
   let n = List.length @@ multiple_next_day n in
   if n <> expected then
-    print_endline @@ "\n=========Error in: " ^ name
-    ^ ":: not equal=======\n"
-  else print_string "."
+    print_endline @@ "F"
+  else num_feedback_tests := !num_feedback_tests + 1; print_string "."
 
 let run_feeder_tests f tests = List.iter f tests
 
@@ -331,10 +346,11 @@ let validate_feeder = function
         then true
         else false
       in
-      if low_valid && high_valid then print_string "."
+      if low_valid && high_valid then (num_feedback_tests := !num_feedback_tests + 1; print_string ".")
       else
-        print_endline @@ "error on day: " ^ Feeder.date d
-        ^ ":: not valid"
+        print_endline @@ "F"
+
+let time_initial = Unix.gettimeofday ()
 
 let _ = multiple_next_day 366 |> List.iter validate_feeder
 
@@ -347,5 +363,13 @@ let _ =
   run_feeder_tests
     (fun (name, n, expect) -> multiple_next_day_test name n expect)
     next_day_quantity_tests
+
+let time_final = Unix.gettimeofday ()
+
+let delta_time = (time_final -. time_initial)
+
+let _ = "\nRan "^(string_of_int !num_feedback_tests)^
+" feeder tests in: "^(string_of_float delta_time)^
+" seconds" |> print_endline
 
 let _ = run_test_tt_main suite
