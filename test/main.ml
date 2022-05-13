@@ -2,6 +2,7 @@ open OUnit2
 open Indicator
 open Ma
 open Rsi
+open Obv
 
 (* OTHER POSSIBLE TESTS: *)
 (* - new_indic_val in state.ml *)
@@ -30,12 +31,16 @@ let cmp_set_like_lists lst1 lst2 =
 (** [pp_string s] pretty-prints string [s]. *)
 let pp_string s = "\"" ^ s ^ "\""
 
-(** [pp_string s] pretty-prints float [s]. *)
+(** [pp_float s] pretty-prints float [s]. *)
 let pp_float s = "\"" ^ string_of_float s ^ "\""
 
-(** [pp_string s] pretty-prints float * float [s]. *)
+(** [pp_float_float s] pretty-prints float * float [s]. *)
 let pp_float_float s =
   "\"" ^ string_of_float (fst s) ^ ", " ^ string_of_float (snd s) ^ "\""
+
+(** [pp_float_int s] pretty-prints float * int [s]. *)
+let pp_float_int s =
+  "\"" ^ string_of_float (fst s) ^ ", " ^ string_of_int (snd s) ^ "\""
 
 (** [pp_list pp_elt lst] pretty-prints list [lst], using [pp_elt] to
     pretty-print each element of [lst]. *)
@@ -163,7 +168,63 @@ let rsi_tests =
       44.];
   ]
 
-[@@@ocamlformat "disable=true"]
+[@@@ocamlformat "disable=false"]
+
+let obv_test
+    (name : string)
+    (prev_obv : int)
+    (prev_close : float)
+    (vol : int)
+    (close : float)
+    (coin : string)
+    (expected_output : float * int) =
+  name >:: fun _ ->
+  assert_equal ~printer:pp_float_int expected_output
+    (Obv.update_val prev_obv prev_close vol close coin)
+
+let obv_tests =
+  [
+    obv_test
+      "OBV Test of Day 1: closing price equals $10, volume equals \
+       25,200 shares; Expected OBV = 0"
+      0 0. 25200 10. "ETH" (10., 0);
+    obv_test
+      "OBV Test of Day 2: closing price equals $10.15, volume equals \
+       30,000 shares; Expected OBV = 30,000"
+      0 0. 25200 10. "ETH" (10., 0);
+    obv_test
+      "OBV Test of Day 3: closing price equals $10.17, volume equals \
+       25,600 shares; Expected OBV = 55,600"
+      0 0. 25200 10. "ETH" (10., 0);
+    obv_test
+      "OBV Test of Day 4: closing price equals $10.13, volume equals \
+       32,000 shares; Expected OBV = 23,600"
+      0 0. 25200 10. "ETH" (10., 0);
+    obv_test
+      "OBV Test of Day 5: closing price equals $10.11, volume equals \
+       23,000 shares; Expected OBV = 600"
+      0 0. 25200 10. "ETH" (10., 0);
+    obv_test
+      "OBV Test of Day 6: closing price equals $10.15, volume equals \
+       40,000 shares; Expected OBV = 40,600"
+      0 0. 25200 10. "ETH" (10., 0);
+    obv_test
+      "OBV Test of Day 7: closing price equals $10.20, volume equals \
+       36,000 shares; Expected OBV = 76,600"
+      0 0. 25200 10. "ETH" (10., 0);
+    obv_test
+      "OBV Test of Day 8: closing price equals $10.20, volume equals \
+       20,500 shares; Expected OBV = 76,600"
+      0 0. 25200 10. "ETH" (10., 0);
+    obv_test
+      "OBV Test of Day 9: closing price equals $10.22, volume equals \
+       23,000 shares; Expected OBV = 99,600"
+      0 0. 25200 10. "ETH" (10., 0);
+    obv_test
+      "OBV Test of Day 10: closing price equals $10.21, volume equals \
+       27,500 shares; Expected OBV = 72,100"
+      0 0. 25200 10. "ETH" (10., 0);
+  ]
 
 (********************************************************************
   Testing State
@@ -249,6 +310,6 @@ let state_tests =
 
 let suite =
   "test suite for indicators"
-  >::: List.flatten [ ma_tests; state_tests ]
+  >::: List.flatten [ ma_tests; state_tests; obv_tests ]
 
 let _ = run_test_tt_main suite
