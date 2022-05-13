@@ -418,3 +418,31 @@ let decision_action st = function
 let all_time_profit st coin_name start_position_size =
   start_position_size
   *. (price_close st coin_name -. !initial_coin_price)
+
+  (* higher order programming with pattern? *)
+let rec get_rsi st = 
+  let indicators = indicator_values st in 
+  let rec helper = function
+  | [] -> failwith "couldn't find RSI"
+  | h::t -> match h with 
+    | RSI (v, _, _, _, _) -> v 
+    | _ -> helper t
+  in helper indicators
+
+let rec get_macd st = 
+  let indicators = indicator_values st in 
+  let rec helper = function
+  | [] -> failwith "couldn't find MACD"
+  | h::t -> match h with 
+    | MACD (v, _, _, _) -> v 
+    | _ -> helper t
+  in helper indicators
+
+let rec get_obv st = 
+    let indicators = indicator_values st in 
+    let rec helper = function
+    | [] -> failwith "couldn't find OBV"
+    | h::t -> match h with 
+      | OBV (v, _) -> float_of_int v 
+      | _ -> helper t
+    in helper indicators

@@ -1,6 +1,8 @@
 include Feeder
 include Maths
 
+(* TODO: add obv to trend lines along with momentum *)
+
 (* ==========HYPERPARAMETERS========== *)
 let spread_hyperparam = 7.0
 let tanh_range_hyperparam = 5.0

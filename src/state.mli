@@ -55,6 +55,10 @@ val decision_action : t -> decision -> t * float
 
 val crit_points : t -> Trend.crit_point list
 
+val get_rsi : t -> float 
+val get_macd : t -> float 
+val get_obv : t -> float
+
 val price_high : t -> string -> float
 (** [price_high st coin_name] returns high price of [coin_name] in [st]*)
 
