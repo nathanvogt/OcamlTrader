@@ -38,6 +38,18 @@ let pp_float s = "\"" ^ string_of_float s ^ "\""
 let pp_float_float s =
   "\"" ^ string_of_float (fst s) ^ ", " ^ string_of_float (snd s) ^ "\""
 
+(** [pp_five_float s] pretty-prints float * float * float * float *
+    float [s]. *)
+let pp_five_float (s1, s2, s3, s4, s5) =
+  "\"" ^ string_of_float s1 ^ ", " ^ string_of_float s2 ^ ", "
+  ^ string_of_float s3 ^ ", " ^ string_of_float s4 ^ ", "
+  ^ string_of_float s5 ^ "\""
+
+(** [pp_four_float s] pretty-prints float * float * float * float [s]. *)
+let pp_four_float (s1, s2, s3, s4) =
+  "\"" ^ string_of_float s1 ^ ", " ^ string_of_float s2 ^ ", "
+  ^ string_of_float s3 ^ ", " ^ string_of_float s4 ^ "\""
+
 (** [pp_float_int s] pretty-prints float * int [s]. *)
 let pp_float_int s =
   "\"" ^ string_of_float (fst s) ^ ", " ^ string_of_int (snd s) ^ "\""
@@ -170,6 +182,7 @@ let rsi_tests =
 
 [@@@ocamlformat "disable=false"]
 
+(** [obv_test] tests Obv.update_val *)
 let obv_test
     (name : string)
     (prev_obv : int)
@@ -226,6 +239,74 @@ let obv_tests =
       "OBV Test of Day 10: closing price equals $10.21, volume equals \
        27,500 shares; Expected OBV = 72,100"
       99600 10.22 27500 10.21 "ETH" (10.21, 72100);
+    obv_test
+      "OBV Test of Day 11: closing price equals $10.24, volume equals \
+       32,500 shares; Expected OBV = 104,600"
+      72100 10.21 32500 10.24 "ETH" (10.24, 104600);
+    obv_test
+      "OBV Test of Day 12: closing price equals $10.26, volume equals \
+       18,500 shares; Expected OBV = 123100"
+      104600 10.24 18500 10.26 "ETH" (10.26, 123100);
+    obv_test
+      "OBV Test of Day 13: closing price equals $10.14, volume equals \
+       22,500 shares; Expected OBV = 100600"
+      123100 10.26 22500 10.14 "ETH" (10.14, 100600);
+    obv_test
+      "OBV Test of Day 14: closing price equals $10.12, volume equals  \
+       12,500 shares; Expected OBV = 88100"
+      100600 10.14 12500 10.12 "ETH" (10.12, 88100);
+    obv_test
+      "OBV Test of Day 15: closing price equals $10.24, volume equals \
+       26,500 shares; Expected OBV = 72,100"
+      88100 10.12 26500 10.24 "ETH" (10.24, 114600);
+  ]
+
+(** [rsi_update_val_test] tests Rsi.update_val *)
+let rsi_update_val_test
+    (name : string)
+    (prev_rsi : float)
+    (price_close : float)
+    (prev_price_close : float)
+    (prev_avg_gain : float)
+    (prev_avg_loss : float)
+    (coin : string)
+    (expected_output : float * float * float * float * float) =
+  name >:: fun _ ->
+  assert_equal (* ~printer:pp_five_float *) expected_output
+    (Rsi.update_val prev_rsi price_close prev_price_close prev_avg_gain
+       prev_avg_loss coin)
+
+let rsi_update_val_tests =
+  [ (* rsi_update_val_test "RSI [update_val] test for day 1" 70.53 46.28
+       46. .24 .1 "ETH" (5., 5., 5., 5., 5.) *) ]
+
+(* helper function to truncate floats *)
+let truncatef x = snd (modf (x *. 1000.)) /. 1000.
+
+(* helper function to truncate float tuples *)
+let truncate4 (x1, x2, x3, x4) =
+  (truncatef x1, truncatef x2, truncatef x3, truncatef x4)
+
+(** [macd_update_val_test] tests Macd.update_val *)
+let macd_update_val_test
+    (name : string)
+    (prev_close : float)
+    (prev_macd : float)
+    (ema_12 : float)
+    (ema_26 : float)
+    (coin : string)
+    (expected_output : float * float * float * float) =
+  name >:: fun _ ->
+  assert_equal ~printer:pp_four_float expected_output
+    (Macd.update_val prev_close prev_macd ema_12 ema_26 coin
+    |> truncate4)
+
+let macd_update_val_tests =
+  [
+    macd_update_val_test
+      "MACD Day 1: Expected tuple of (-37., 0., 366., 404.)" 426.21
+      (-5.108084059) 434.4544168 437.0762591 "ETH"
+      (-37.492, 0., 366.829, 404.321);
   ]
 
 (********************************************************************
@@ -325,7 +406,8 @@ let multiple_next_day n =
 let suite =
   let _ = Feeder.init_reader () in
   "test suite for indicators"
-  >::: List.flatten [ ma_tests; obv_tests (* rsi_tests; *) ]
+  >::: List.flatten
+         [ ma_tests; obv_tests; macd_update_val_tests (* rsi_tests *) ]
 
 let feeder_lookback_test name n expected =
   let n = List.length @@ multiple_next_day n in
