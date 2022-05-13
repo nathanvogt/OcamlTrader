@@ -340,16 +340,18 @@ let num_feedback_tests = ref 0
 
 let feeder_lookback_test name n expected =
   let n = List.length @@ multiple_next_day n in
+  num_feedback_tests := !num_feedback_tests + 1;
   if n <> expected then
     print_endline @@ "F"
-  else num_feedback_tests := !num_feedback_tests + 1;
+  else
    print_string "."
 
 let multiple_next_day_test name n expected =
   let n = List.length @@ multiple_next_day n in
+  num_feedback_tests := !num_feedback_tests + 1;
   if n <> expected then
     print_endline @@ "F"
-  else num_feedback_tests := !num_feedback_tests + 1; print_string "."
+  else  print_string "."
 
 let run_feeder_tests f tests = List.iter f tests
 
@@ -363,8 +365,8 @@ let lookback_tests =
     ("lookback large amount odd", 305, 305);
     ("lookback max amount", 365, 365);
     ("lookback edge case 0", 0, 0);
-    ("lookback edge case 1", 1, 1)
-    (* ("lookback throw error", 400, -1); *);
+    ("lookback edge case 1", 1, 1);
+    (* ("lookback throw error", 400, -1); *)
   ]
 
 let next_day_quantity_tests =
@@ -404,7 +406,8 @@ let validate_feeder = function
         then true
         else false
       in
-      if low_valid && high_valid then (num_feedback_tests := !num_feedback_tests + 1; print_string ".")
+      num_feedback_tests := !num_feedback_tests + 1;
+      if low_valid && high_valid then print_string "."
       else
         print_endline @@ "F"
 
