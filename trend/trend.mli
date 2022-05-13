@@ -3,8 +3,8 @@ open Feeder
 type crit_point
 
 val crit_points_days : float list -> crit_point list
-(** [crit_points_days l ] takes list of floats and returns the critical points
-that correspond to local minima and local maxima *)
+(** [crit_points_days l ] takes list of floats and returns the critical
+    points that correspond to local minima and local maxima *)
 
 val filter_crit_points : crit_point list -> float -> crit_point list
 (** [filter_crit_points cps p] takes in a list of critical points
