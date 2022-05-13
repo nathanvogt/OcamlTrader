@@ -303,10 +303,67 @@ let macd_update_val_test
 
 let macd_update_val_tests =
   [
+    (* 15-day period MACD Test*)
     macd_update_val_test
       "MACD Day 1: Expected tuple of (-37., 0., 366., 404.)" 426.21
       (-5.108084059) 434.4544168 437.0762591 "ETH"
       (-37.492, 0., 366.829, 404.321);
+    macd_update_val_test
+      "MACD Day 2: Expected tuple of (-37.19, 0., 367.079, 404.269)"
+      426.98 (-4.527494558) 434.6445065 436.9735732 "ETH"
+      (-37.19, 0., 367.079, 404.269);
+    macd_update_val_test
+      "MACD Day 3: Expected tuple of (-36.958, 0., 367.213, 404.172)"
+      435.69 (-3.387775176) 434.5961209 436.777753 "ETH"
+      (-36.958, 0., 367.213, 404.172);
+    macd_update_val_test
+      "MACD Day 4: Expected tuple of (-37.041, 0., 366.712, 403.753)"
+      434.33 (-2.59227244) 433.8582561 436.2608824 "ETH"
+      (-37.041, 0., 366.712, 403.753);
+    macd_update_val_test
+      "MACD Day 5: Expected tuple of (-37.711, 0., 364.941, 402.652)"
+      429.8 (-2.250613279) 431.7031398 435.0452615 "ETH"
+      (-37.711, 0., 364.941, 402.652);
+    macd_update_val_test
+      "MACD Day 6: Expected tuple of (-37.843, 0., 364.183, 402.026)"
+      419.85 (-2.55208695) 430.8626568 434.3930199 "ETH"
+      (-37.843, 0., 364.183, 402.026);
+    macd_update_val_test
+      "MACD Day 7: Expected tuple of (-39.3, 0., 360.585, 399.886)"
+      402.8 (-2.192262723) 426.5453249 432.0527962 "ETH"
+      (-39.3, 0., 360.585, 399.886);
+    macd_update_val_test
+      "MACD Day 8: Expected tuple of (-41.138, 0., 355.919, 397.058)"
+      392.05 (-3.335496669) 421.2383519 429.0896261 "ETH"
+      (-41.138, 0., 355.919, 397.058);
+    macd_update_val_test
+      "MACD Day 9: Expected tuple of (-42.588, 0., 351.735, 394.323)"
+      390.53 (-4.543439719) 416.51399 426.2333575 "ETH"
+      (-42.588, 0., 351.735, 394.323);
+    macd_update_val_test
+      "MACD Day 10: Expected tuple of (-43.067, 0., 349.322, 392.39)"
+      398.67 (-5.129226357) 413.7687608 424.1916273 "ETH"
+      (-43.067, 0., 349.322, 392.39);
+    macd_update_val_test
+      "MACD Day 11: Expected tuple of (-42.785, 0., 348.399, 391.185)"
+      406.13 (-4.666180327) 412.5935668 422.853729 "ETH"
+      (-42.785, 0., 348.399, 391.185);
+    macd_update_val_test
+      "MACD Day 12: Expected tuple of (-42.436, 0., 347.634, 390.071)"
+      408.38 (-3.602780783) 411.496095 421.5653046 "ETH"
+      (-42.436, 0., 347.634, 390.071);
+    macd_update_val_test
+      "MACD Day 13: Expected tuple of (-41.868, 0., 347.363, 389.231)"
+      417.2 (-2.729462587) 411.0166958 420.5886154 "ETH"
+      (-41.868, 0., 347.363, 389.231);
+    macd_update_val_test
+      "MACD Day 14: Expected tuple of (-40.755, 0., 348.313, 389.069)"
+      430.12 (-1.785738071) 411.9679734 420.3376068 "ETH"
+      (-40.755, 0., 348.313, 389.069);
+    macd_update_val_test
+      "MACD Day 15: Expected tuple of (-38.958, 0., 350.879, 389.837)"
+      442.78 (-0.466761561) 414.7605928 421.0622286 "ETH"
+      (-38.958, 0., 350.879, 389.837);
   ]
 
 (********************************************************************
@@ -403,14 +460,17 @@ let multiple_next_day n =
          | None -> false
          | _ -> true)
 
-let bad_test_1 = [
-  "bad test 1" >:: (fun _ -> assert_equal 
-  (List.length @@ Feeder.lookback "ETH" 34) (34));
-]
-let bad_test_2 = [
-  "bad test 2" >:: (fun _ -> assert_equal 
-  (List.length @@ Feeder.lookback "ETH" 52) (52));
-]
+let bad_test_1 =
+  [
+    ( "bad test 1" >:: fun _ ->
+      assert_equal (List.length @@ Feeder.lookback "ETH" 34) 34 );
+  ]
+
+let bad_test_2 =
+  [
+    ( "bad test 2" >:: fun _ ->
+      assert_equal (List.length @@ Feeder.lookback "ETH" 52) 52 );
+  ]
 
 let suite =
   let _ = Feeder.init_reader () in
@@ -422,16 +482,15 @@ let num_feedback_tests = ref 0
 
 let feeder_lookback_test name n expected =
   let n = List.length @@ multiple_next_day n in
-  if n <> expected then
-    print_endline @@ "F"
+  if n <> expected then print_endline @@ "F"
   else num_feedback_tests := !num_feedback_tests + 1;
-   print_string "."
+  print_string "."
 
 let multiple_next_day_test name n expected =
   let n = List.length @@ multiple_next_day n in
-  if n <> expected then
-    print_endline @@ "F"
-  else num_feedback_tests := !num_feedback_tests + 1; print_string "."
+  if n <> expected then print_endline @@ "F"
+  else num_feedback_tests := !num_feedback_tests + 1;
+  print_string "."
 
 let run_feeder_tests f tests = List.iter f tests
 
@@ -486,12 +545,12 @@ let validate_feeder = function
         then true
         else false
       in
-      if low_valid && high_valid then (num_feedback_tests := !num_feedback_tests + 1; print_string ".")
-      else
-        print_endline @@ "F"
+      if low_valid && high_valid then (
+        num_feedback_tests := !num_feedback_tests + 1;
+        print_string ".")
+      else print_endline @@ "F"
 
 let time_initial = Unix.gettimeofday ()
-
 let _ = multiple_next_day 366 |> List.iter validate_feeder
 
 let _ =
@@ -505,11 +564,14 @@ let _ =
     next_day_quantity_tests
 
 let time_final = Unix.gettimeofday ()
-
 let delta_time = (time_final -. time_initial) *. 100.
 
-let _ = "\nRan: "^(string_of_int !num_feedback_tests)^
-" feeder tests in: "^(string_of_float delta_time)^
-" seconds" |> print_endline
+let _ =
+  "\nRan: "
+  ^ string_of_int !num_feedback_tests
+  ^ " feeder tests in: "
+  ^ string_of_float delta_time
+  ^ " seconds"
+  |> print_endline
 
 let _ = run_test_tt_main suite
