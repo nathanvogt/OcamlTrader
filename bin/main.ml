@@ -443,7 +443,7 @@ let print_final_algorithm_profit st =
     ^ "\n"
   in
   ANSITerminal.print_string [ ANSITerminal.blue ] @@ final_message;
-  report := final_message ^ "\n\n\n\n" ^ !report;
+  report := final_message ^ "\n\n\n" ^ !report;
   final_algorithm_prof
 
 (* helper function printing final naive profit. Also adds this to
