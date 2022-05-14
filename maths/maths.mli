@@ -1,3 +1,9 @@
+(** Mathematical functionality utility library.
+
+    Provides commonly used functions throughout 
+    our trading algorithms.
+*)
+
 (* todo: add more funciton parameters *)
 val trend_proximity : float -> float -> float
 (** [trend_proximity s d] returns a float indicating

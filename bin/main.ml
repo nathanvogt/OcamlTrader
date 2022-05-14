@@ -180,6 +180,7 @@ let indicator_comb st =
 
    later need to make this smarter: don't sell when we don't have
    position sizes control the total budget it buys and sells -jun *)
+   (* extra TODO: change how much is bought or sold instead of being binary *)
 let evaluate_indicators weight =
   if weight <= 30. then State.Buy
   else if weight <= 70. then State.Wait

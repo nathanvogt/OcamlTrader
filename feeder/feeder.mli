@@ -1,3 +1,11 @@
+(** Reads raw price data
+    
+    This module is in charge of receiving raw price data.
+    It can retrieve the market data of the current day and
+    can also retrieve market data of an arbitrary number of
+    previous days.
+*)
+
 type t
 (** Representation of a day of raw historical data *)
 

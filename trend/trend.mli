@@ -1,3 +1,10 @@
+(** Extracts possible trend lines from historical data
+    
+    Uses feeder to lookback at historical price data and 
+    identify possible horizontal trend lines. Trend lines can 
+    be used to predict price trends.
+*)
+
 open Feeder
 
 type crit_point

@@ -1,3 +1,13 @@
+(** Helps main decide whether to buy or sell.
+    
+    Takes in the raw values of all the factors that are
+    used to decide whether to buy, sell, or wait on a cryptocurrency.
+    Interprets these raw values and maps them into the range [-50, 50]
+    where the more negative the number, the stronger the suggestion to sell,
+    and the more positive the number, the stronger the suggestion to buy. Also
+    combines and normalizes these mapped indicators into a final decision.
+*)
+
 open Indicator
 open State 
 
