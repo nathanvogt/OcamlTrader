@@ -21,7 +21,7 @@
    list of other students with whom we collaborated, and a brief summary of that
    collaboration:
 
-   Signed: Juntao, Michael, and Nathan
+   Signed: Juntao Ren, Michael Wei, and Nathan Vogt
 
  ************************************************************)
 

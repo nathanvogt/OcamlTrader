@@ -40,9 +40,9 @@ let ema lst n =
 
 let ema_today price days yes_price =
   let smoothing = float_of_int smoothing in
-  let days = float_of_int days in
-  (price *. (smoothing /. (1. +. days)))
-  +. (yes_price *. (1. -. (smoothing /. (1. +. days))))
+  let day_plus_one = 1. +. float_of_int days in
+  let smooth_div_day = smoothing /. day_plus_one in
+  (price *. smooth_div_day) +. (yes_price *. (1. -. smooth_div_day))
 
 let rec diff lst =
   match lst with

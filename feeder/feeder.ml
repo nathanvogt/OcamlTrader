@@ -59,8 +59,10 @@ let high d = d.high
 let low d = d.low
 let volume d = d.volume
 let date d = d.date
-let coin_name d = "ETH" (* hard coded temporarily *)
+let coin_name d = "ETH"
 
+(* helper function assiting main lookback function. returns desired list
+   of length [days]*)
 let lookback_g (days : int) : t list =
   lookback_raw days
   |> String.split_on_char ' '

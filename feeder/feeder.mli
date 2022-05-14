@@ -22,6 +22,7 @@ val next_day : unit -> t option
 (** Returuns the next day of historical data *)
 
 val to_string : t -> string
+(** Returuns the to string representatino of historical data *)
 
 val open_price : t -> float
 (** [open_price d] returns the opening price from the day of historical

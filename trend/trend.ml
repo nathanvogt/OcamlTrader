@@ -78,8 +78,8 @@ let compute_above crit price : float =
   | Maximum v -> Maths.trend_proximity spread_hyperparam (price -. v)
   | Minimum v -> Maths.trend_proximity spread_hyperparam (v -. price)
 
-(* todo: factor in momentum of price to tell if it has crossed a trend
-   line *)
+(* long-term: factor in momentum of price to tell if it has crossed a
+   trend line *)
 let trend_line_indicator (points : crit_point list) (price : float) =
   let rec helper acc points price =
     match points with

@@ -1,5 +1,3 @@
-(* Stochastic Oscillator *)
-
 (* helper function that returns the min in a given float list*)
 let sort_low lst =
   List.sort (fun a b -> (a -. b) *. 100000. |> int_of_float) lst

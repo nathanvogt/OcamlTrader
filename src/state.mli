@@ -48,8 +48,8 @@ val data_print : string -> t -> string
 (** [data_print st] returns string value representation of the data
     record in [st]*)
 
-val decision_action : t -> bool -> decision -> t * float
-(** [decision_action st suppress_print decision] takes in a type
+val decision_action : t -> decision -> t * float
+(** [decision_action st decision] takes in a type
     decision as decided by indicators from the main loops. Based on this
     decision, it returns a tuple with the first element being new state,
     and the second being a string representation of action executed.

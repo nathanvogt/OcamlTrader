@@ -258,7 +258,6 @@ let update_data st f =
     data = update_specific_coin (Feeder.coin_name f) new_data st.data;
     indicators = update_indicators st st.indicators;
   }
-(* later can add update acc_info as we buy/sell*)
 
 let indicator_values st = st.indicators
 
@@ -393,7 +392,7 @@ let valid_sell acc = acc.positions <> []
 
 (* helper function making adjustments to [st] for when algorithm decides
    to buy. *)
-let buy_decision st suppress_print =
+let buy_decision st =
   if valid_buy st.acc_info (get_closing_price coin_name_const st.data)
   then
     let buy_state =
@@ -406,15 +405,14 @@ let buy_decision st suppress_print =
     in
     (buy_state, buy_state.acc_info.p_l)
   else begin
-    if not suppress_print then
-      ANSITerminal.print_string [ ANSITerminal.yellow ]
-      @@ "Insufficient funds.\n";
+    ANSITerminal.print_string [ ANSITerminal.yellow ]
+    @@ "Insufficient funds.\n";
     (st, st.acc_info.p_l)
   end
 
 (* helper function making adjustments to [st] for when algorithm decides
    to sell. *)
-let sell_decision st suppress_print =
+let sell_decision st =
   if valid_sell st.acc_info then
     let sell_state =
       {
@@ -426,64 +424,88 @@ let sell_decision st suppress_print =
     in
     (sell_state, sell_state.acc_info.p_l)
   else begin
-    if not suppress_print then
-      ANSITerminal.print_string [ ANSITerminal.yellow ]
-      @@ "No positions to sell.\n";
+    ANSITerminal.print_string [ ANSITerminal.yellow ]
+    @@ "No positions to sell.\n";
     (st, st.acc_info.p_l)
   end
 
-let decision_action st suppress_print = function
-  | Buy -> buy_decision st suppress_print
-  | Sell -> sell_decision st suppress_print
+let decision_action st = function
+  | Buy -> buy_decision st
+  | Sell -> sell_decision st
   | Wait -> (st, st.acc_info.p_l)
 
 let all_time_profit st coin_name start_position_size =
   start_position_size
   *. (price_close st coin_name -. !initial_coin_price)
 
+(* helper function returning string value of indicator *)
+let indicator_name_to_string = function
+  | RSI _ -> "RSI"
+  | MACD _ -> "MACD"
+  | OBV _ -> "OBV"
+  | SO _ -> "SO"
+
+(* helper function abstracting code for get indicator *)
+let rec helper indicator = function
+  | [] ->
+      failwith @@ "Couldn't find "
+      ^ indicator_name_to_string indicator
+      ^ "indicator"
+  | h :: t -> begin
+      match indicator_name_to_string indicator with
+      | "RSI" -> match_rsi indicator h t
+      | "MACD" -> match_macd indicator h t
+      | "OBV" -> match_obv indicator h t
+      | "SO" -> match_so indicator h t
+      | _ ->
+          failwith @@ "Couldn't find "
+          ^ indicator_name_to_string indicator
+          ^ "indicator"
+    end
+
+(* mutually recursive helper getting matching against RSI *)
+and match_rsi indicator h t =
+  match h with
+  | RSI (v, _, _, _, _) -> v
+  | _ -> helper indicator t
+
+(* mutually recursive helper getting matching against MACD *)
+and match_macd indicator h t =
+  match h with
+  | MACD (v, _, _, _) -> v
+  | _ -> helper indicator t
+
+(* mutually recursive helper getting matching against OBV *)
+and match_obv indicator h t =
+  match h with
+  | OBV (v, _) -> float_of_int v
+  | _ -> helper indicator t
+
+(* mutually recursive helper getting matching against SO *)
+and match_so indicator h t =
+  match h with
+  | SO (v, _) -> v
+  | _ -> helper indicator t
+
 let rec get_rsi st =
   let indicators = indicator_values st in
-  let rec helper = function
-    | [] -> failwith "couldn't find RSI"
-    | h :: t -> (
-        match h with
-        | RSI (v, _, _, _, _) -> v
-        | _ -> helper t)
-  in
-  helper indicators
+  let place_holder_rsi = RSI (0., 0., 0., 0., 0.) in
+  helper place_holder_rsi indicators
 
 let rec get_macd st =
   let indicators = indicator_values st in
-  let rec helper = function
-    | [] -> failwith "couldn't find MACD"
-    | h :: t -> (
-        match h with
-        | MACD (v, _, _, _) -> v
-        | _ -> helper t)
-  in
-  helper indicators
+  let place_holder_macd = MACD (0., 0., 0., 0.) in
+  helper place_holder_macd indicators
 
 let rec get_obv st =
   let indicators = indicator_values st in
-  let rec helper = function
-    | [] -> failwith "couldn't find OBV"
-    | h :: t -> (
-        match h with
-        | OBV (v, _) -> float_of_int v
-        | _ -> helper t)
-  in
-  helper indicators
+  let place_holder_obv = OBV (0, 0.) in
+  helper place_holder_obv indicators
 
 let rec get_so st =
   let indicators = indicator_values st in
-  let rec helper = function
-    | [] -> failwith "couldn't find OBV"
-    | h :: t -> (
-        match h with
-        | SO (v, _) -> v
-        | _ -> helper t)
-  in
-  helper indicators
+  let place_holder_so = SO (0., []) in
+  helper place_holder_so indicators
 
 let get_held_profit st coin_name =
   avg_position_val st coin_name *. positions_held st coin_name

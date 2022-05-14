@@ -16,6 +16,3 @@ _build/
 .DS_Store
 
 .vscode/
-
-# report
-report.txt

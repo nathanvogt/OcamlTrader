@@ -29,7 +29,7 @@ CAMLprim value initReader()
 }
 CAMLprim value resetReader()
 {
-    if (f == NULL) 
+    if (f == NULL)
     {
         printf("can't reset uninitialized file reader");
         return Val_unit;

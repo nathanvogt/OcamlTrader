@@ -1,12 +1,14 @@
-(** [obv] is the implementation of the technical indicator on-balance
-    volume, which provides a running total of an asset's trading volume
-    and indicates whether this volume is flowing in or out of a given
-    security or currency pair. If OBV rises, this reflects positive
-    volume pressure which can lead to higher prices. If OBV falls, then
-    there is negative volume pressure which could lead to lower prices.
-    The OBV is a cumulative total of volume (positive and negative).
-    There are three rules implemented when calculating the OBV. They
-    are:
+(** On Balance Volume Indicator
+
+    The OBV module is the implementation of the technical indicator
+    on-balance volume, which provides a running total of an asset's
+    trading volume and indicates whether this volume is flowing in or
+    out of a given security or currency pair. If OBV rises, this
+    reflects positive volume pressure which can lead to higher prices.
+    If OBV falls, then there is negative volume pressure which could
+    lead to lower prices. The OBV is a cumulative total of volume
+    (positive and negative). There are three rules implemented when
+    calculating the OBV. They are:
 
     1. If today's closing price is higher than yesterday's closing
     price, then: Current OBV = Previous OBV + today's volume

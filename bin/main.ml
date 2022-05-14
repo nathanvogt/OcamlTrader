@@ -146,7 +146,6 @@ let rec accum_indication acc (indications : State.indicator_type list) =
       | MACD (macd, _, _, _) -> accum_indication (acc +. macd) t
       | OBV (obv, _) -> accum_indication (acc +. float_of_int obv) t
       | SO (so, _) -> accum_indication (acc +. so) t)
-(* place holder for now *)
 
 (* heuristic taking simple average of indicators. *)
 let weight_indicators st =
@@ -159,9 +158,7 @@ let weight_indicators st =
    indicators between 0-100. *)
 let grid_indicator price_close =
   if price_close > !grid_upper then grid_up_hyperparam
-  else if price_close < !grid_lower then
-    (* possible hyperparameter *)
-    grid_down_hyperparam
+  else if price_close < !grid_lower then grid_down_hyperparam
   else grid_neutral_hyperparam
 
 (* float list of weights for trend_line and grid, as well as indicators,
@@ -394,7 +391,7 @@ let print_report_in_loop st =
     ^ string_of_float
         (State.all_time_profit st coin_name_const !starting_pos)
   in
-  let state_action_tup = State.decision_action st true indic_decision in
+  let state_action_tup = State.decision_action st indic_decision in
   let algo_profits =
     "Algorithm profit: " ^ string_of_float (snd state_action_tup)
   in
@@ -431,7 +428,7 @@ let print_final_algorithm_profit st =
   let held_profit = State.get_held_profit st coin_name_const in
   let indic_decision = final_decision st in
   let curr_algorithm_profit =
-    snd (State.decision_action st false indic_decision)
+    snd (State.decision_action st indic_decision)
   in
   let final_algorithm_prof = held_profit +. curr_algorithm_profit in
   let final_message =
@@ -486,7 +483,6 @@ let rec main_loop wait_period st =
   in
   report := step_data ^ !report;
   pretty_print_grid st market_info_string state_action_tup;
-  (* update report *)
   match Feeder.next_day () with
   | None ->
       ANSITerminal.print_string [ ANSITerminal.yellow ]

@@ -1,5 +1,8 @@
-(** [ma] contains the moving average functions for Exponential Moving
-    Average (EMA) and Simple Moving Average (SMA) *)
+(** Moving Average Helper Module
+
+    The MA module contains the moving average functions. It calculates
+    the Exponential Moving Average (EMA) and Simple Moving Average (SMA)
+    to be used by the MACD and RSI modules*)
 
 val smoothing : int
 (** [smoothing] is the integer value 2; the commonly accepeted smoothing

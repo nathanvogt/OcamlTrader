@@ -1,5 +1,6 @@
-(** [ema_multiplier observations] takes in [observations], the number of
-    days for an EMA period, and returns the corresponding EMA multiplier *)
+(* [ema_multiplier observations] is a helper function that takes in
+   [observations], the number of days for an EMA period, and returns the
+   corresponding EMA multiplier *)
 let ema_multiplier observations = 2. /. (float_of_int observations +. 1.)
 
 let update_val prev_macd price_close prev_ema_12 prev_ema_26 coin =
