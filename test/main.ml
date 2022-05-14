@@ -465,6 +465,9 @@ let state_tests =
       "testing buy on average of 2 positions with higher price" 10. 2.
       40. 20.;
     state_market_value_buy_test
+      "testing buy on average of 2 positions with same price" 10. 2. 10.
+      10.;
+    state_market_value_buy_test
       "testing buy on average of 4 positions with lower price" 10. 4. 0.
       8.;
     state_market_value_buy_test
@@ -481,28 +484,36 @@ let state_tests =
       positions_list_two 5.;
   ]
 
+(********************************************************************
+  Testing ______
+  ********************************************************************)
+
+(* gets the closing prices from the past 360 days *)
 let closes =
   Feeder.init_reader ();
   Feeder.lookback "ETH" 360
-let crits = Trend.crit_points_days closes 
-let filter_test name param expected = 
-  (name >:: (fun _ ->
-    assert_equal
-    (Trend.filter_crit_points crits param 
-  |> List.length)
-  (expected)))
 
-let filter_tests = [
-  filter_test "filter everyting"
-  99999. 1;
-  filter_test "filter nothing"
-  0. (List.length crits);
-  filter_test "filter light"
-  30. 111;
-  filter_test "heavy filter"
-  300. 31;
-]
+(* computes the critical points from the 360 days of historical closing prices *)
+  let crits = Trend.crit_points_days closes
 
+(* helper function that creates an OUnit test to check whether the 
+  filter function with parameter [param] leaves
+  the [expected] number of critical points. *)
+let filter_test name param expected =
+  name >:: fun _ ->
+  assert_equal
+    (Trend.filter_crit_points crits param |> List.length)
+    expected
+
+let filter_tests =
+  [
+    filter_test "filter everyting" 99999. 1;
+    filter_test "filter nothing" 0. (List.length crits);
+    filter_test "filter light" 30. 111;
+    filter_test "heavy filter" 300. 31;
+  ]
+
+(* returns [n] number of sequential days of price data. *)
 let multiple_next_day n =
   let _ = Feeder.reset_reader () in
   let rec aux acc count =
@@ -515,7 +526,9 @@ let multiple_next_day n =
          | None -> false
          | _ -> true)
 
-let bad_test_1 =
+(* Calling any Feeder functions from within an OUnit test causes bugs.contents
+  Someting to do with OUnits environment *)
+         let bad_test_1 =
   [
     ( "bad test 1" >:: fun _ ->
       assert_equal (List.length @@ Feeder.lookback "ETH" 34) 34 );
@@ -540,24 +553,26 @@ let suite =
            filter_tests;
          ]
 
+(* keep track of the number of feedback tests completed *)
 let num_feedback_tests = ref 0
 
+(* test whether feeder succesfully retrieves [expected] days 
+  of historical price data *)
 let feeder_lookback_test name n expected =
   let n = List.length @@ multiple_next_day n in
   num_feedback_tests := !num_feedback_tests + 1;
   if n <> expected then print_endline @@ "F" else print_string "."
 
-let multiple_next_day_test name n expected =
+(* tests whether feeder succesfully retrieves [expected]
+  sequential days of current price data *)
+  let multiple_next_day_test name n expected =
   let n = List.length @@ multiple_next_day n in
   num_feedback_tests := !num_feedback_tests + 1;
   if n <> expected then print_endline @@ "F" else print_string "."
 
-let multiple_next_day_test name n expected =
-  let n = List.length @@ multiple_next_day n in
-  if n <> expected then print_endline @@ "F"
-  else num_feedback_tests := !num_feedback_tests + 1;
-  print_string "."
 
+(* helper function to factor out iterating over lists and dispatching
+  to the correct feeder test *)
 let run_feeder_tests f tests = List.iter f tests
 
 let lookback_tests =
@@ -615,9 +630,12 @@ let validate_feeder = function
       if low_valid && high_valid then print_string "."
       else print_endline @@ "F"
 
+(* start time of running curstom feeder tests *)
 let time_initial = Unix.gettimeofday ()
+(* validate price data on entire historical price data *)
 let _ = multiple_next_day 366 |> List.iter validate_feeder
 
+(* start feeder tests *)
 let _ =
   run_feeder_tests
     (fun (name, n, expect) -> feeder_lookback_test name n expect)
@@ -629,8 +647,10 @@ let _ =
     next_day_quantity_tests
 
 let time_final = Unix.gettimeofday ()
+(* time taken to run custom feedback tests *)
 let delta_time = (time_final -. time_initial) *. 100.
 
+(* print results of custom feedback tests *)
 let _ =
   "\nRan: "
   ^ string_of_int !num_feedback_tests

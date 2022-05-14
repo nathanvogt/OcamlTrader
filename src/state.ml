@@ -2,7 +2,6 @@ include Feeder
 include ANSITerminal
 include Trend
 
-(* hardcoded: TODO, to be fixed later *)
 let coin_name_const = "ETH"
 
 (* subtype containing data from feeder *)
@@ -19,6 +18,7 @@ type indicator_type =
   | RSI of float * float * float * float * float
   | MACD of float * float * float * float
   | OBV of int * float
+  | SO of float * float list
 
 type decision =
   | Buy
@@ -75,14 +75,15 @@ exception InvalidIndicator of string
 let initialize = function
   | RSI (0., 0., 0., 0., 0.) ->
       let prev_avg_gain, prev_avg_loss =
-        Feeder.lookback "ETH" 14 |> Ma.gain_loss (0., 0.)
+        Feeder.lookback coin_name_const 14 |> Ma.gain_loss (0., 0.)
       in
       RSI (0., 0., 0., prev_avg_gain, prev_avg_loss)
   | MACD (0., 0., 0., 0.) ->
-      let ema_26 = Feeder.lookback "ETH" 26 |> Ma.avg in
-      let ema_12 = Feeder.lookback "ETH" 12 |> Ma.avg in
+      let ema_26 = Feeder.lookback coin_name_const 26 |> Ma.avg in
+      let ema_12 = Feeder.lookback coin_name_const 12 |> Ma.avg in
       MACD (0., 0., ema_12, ema_26)
   | OBV (0, 0.) as obv -> obv
+  | SO (0., []) -> SO (0., Feeder.lookback coin_name_const 14)
   | _ -> raise (Failure "Indicator initialization error")
 
 (* recursive helpfer function to initiate indicators *)
@@ -96,6 +97,8 @@ let rec initiate_indicators_aux = function
         initialize (MACD (0., 0., 0., 0.)) :: initiate_indicators_aux t
       else if h = "OBV" then
         initialize (OBV (0, 0.)) :: initiate_indicators_aux t
+      else if h = "SO" then
+        initialize (SO (0., [])) :: initiate_indicators_aux t
       else raise (InvalidIndicator h)
 
 (* helper function taking in string list of indicators and returning
@@ -111,18 +114,12 @@ let rec update_specific_coin coin_name new_data = function
   | [] -> []
   | (k, v) :: t ->
       if k = coin_name then (k, new_data) :: t
-        (* TODO: assumes that no duplicates exist -- should have sorting
-           function to check for this later, everytime we update data *)
       else (k, v) :: update_specific_coin coin_name new_data t
 
 (* helper function creating initial state of our trader *)
-(* TODO: could be edited later to not be reset everytime program is
-   run *)
 let init_account budget =
   {
     market_value = [ (coin_name_const, 0.0, 0.0) ];
-    (* TODO: to be added functionality later where this is mutable type
-       and updated real time / every interval *)
     cash_balance = budget;
     positions = [];
     p_l = 0.0;
@@ -195,33 +192,58 @@ let positions_held st coin_name =
   get_market_val_aux coin_name false st.acc_info.market_value
 
 (* ------- functions to be used by main ------- *)
+(* helper function to return updated RSI *)
+let return_new_rsi
+    st
+    prev_rsi
+    prev_price_close
+    prev_avg_gain
+    prev_avg_loss =
+  let curr_rsi, curr_price, prev_price, curr_avg_gain, curr_avg_loss =
+    Rsi.update_val prev_rsi
+      (price_close st coin_name_const)
+      prev_price_close prev_avg_gain prev_avg_loss coin_name_const
+  in
+  RSI (curr_rsi, curr_price, prev_price, curr_avg_gain, curr_avg_loss)
+
+(* helper funciton to return updated MACD *)
+let return_new_macd st prev_macd ema_12 ema_26 =
+  let curr_macd, curr_price, curr_avg_gain, curr_avg_loss =
+    Macd.update_val prev_macd
+      (price_close st coin_name_const)
+      ema_12 ema_26 coin_name_const
+  in
+  MACD (curr_macd, curr_price, curr_avg_gain, curr_avg_loss)
+
+(* helper function returning updated obv *)
+let return_new_obv st prev_obv prev_close =
+  let vol = int_of_float (price_vol st coin_name_const) in
+  let close = price_close st coin_name_const in
+  let curr_obv, curr_close =
+    Obv.update_val prev_obv prev_close vol close coin_name_const
+  in
+  OBV (curr_obv, curr_close)
+
+(* helper function returning updated so *)
+let return_new_so prev_so =
+  let curr_so, _ =
+    So.update_val prev_so
+      (Feeder.lookback coin_name_const 14)
+      coin_name_const
+  in
+  SO (curr_so, Feeder.lookback coin_name_const 14)
+
 (* helper function pattern matching against indic_list and calling
    expressions from other indicator modules. Passes in state as
    parameter so getters and setters can be used. *)
 let new_indic_val (st : t) = function
   | RSI (prev_rsi, prev_price_close, _, prev_avg_gain, prev_avg_loss) ->
-      let curr_rsi, curr_price, prev_price, curr_avg_gain, curr_avg_loss
-          =
-        Rsi.update_val prev_rsi
-          (price_close st coin_name_const)
-          prev_price_close prev_avg_gain prev_avg_loss coin_name_const
-      in
-      RSI
-        (curr_rsi, curr_price, prev_price, curr_avg_gain, curr_avg_loss)
+      return_new_rsi st prev_rsi prev_price_close prev_avg_gain
+        prev_avg_loss
   | MACD (prev_macd, _, ema_12, ema_26) ->
-      let curr_macd, curr_price, curr_avg_gain, curr_avg_loss =
-        Macd.update_val prev_macd
-          (price_close st coin_name_const)
-          ema_12 ema_26 coin_name_const
-      in
-      MACD (curr_macd, curr_price, curr_avg_gain, curr_avg_loss)
-  | OBV (prev_obv, prev_close) ->
-      let vol = int_of_float (price_vol st coin_name_const) in
-      let close = price_close st coin_name_const in
-      let curr_obv, curr_close =
-        Obv.update_val prev_obv prev_close vol close coin_name_const
-      in
-      OBV (curr_obv, curr_close)
+      return_new_macd st prev_macd ema_12 ema_26
+  | OBV (prev_obv, prev_close) -> return_new_obv st prev_obv prev_close
+  | SO (prev_so, _) -> return_new_so prev_so
 
 (* helper function receiving new data and calling indicator functions to
    update indicator field *)
@@ -291,8 +313,6 @@ let rec get_closing_price coin_name = function
   | (k, v) :: t ->
       if k = coin_name then v.close else get_closing_price coin_name t
 
-(* TODO the 1. that is hard coded into the denom can be changed later if
-   fractional shares are involed *)
 (* helper function updating market_value with buy order *)
 let rec market_value_buy coin_name buy_price = function
   | [] -> []
@@ -373,7 +393,7 @@ let valid_sell acc = acc.positions <> []
 
 (* helper function making adjustments to [st] for when algorithm decides
    to buy. *)
-let buy_decision st =
+let buy_decision st suppress_print =
   if valid_buy st.acc_info (get_closing_price coin_name_const st.data)
   then
     let buy_state =
@@ -386,14 +406,15 @@ let buy_decision st =
     in
     (buy_state, buy_state.acc_info.p_l)
   else begin
-    ANSITerminal.print_string [ ANSITerminal.yellow ]
-    @@ "Insufficient funds.\n";
+    if not suppress_print then
+      ANSITerminal.print_string [ ANSITerminal.yellow ]
+      @@ "Insufficient funds.\n";
     (st, st.acc_info.p_l)
   end
 
 (* helper function making adjustments to [st] for when algorithm decides
    to sell. *)
-let sell_decision st =
+let sell_decision st suppress_print =
   if valid_sell st.acc_info then
     let sell_state =
       {
@@ -405,44 +426,64 @@ let sell_decision st =
     in
     (sell_state, sell_state.acc_info.p_l)
   else begin
-    ANSITerminal.print_string [ ANSITerminal.yellow ]
-    @@ "No positions to sell.\n";
+    if not suppress_print then
+      ANSITerminal.print_string [ ANSITerminal.yellow ]
+      @@ "No positions to sell.\n";
     (st, st.acc_info.p_l)
   end
 
-let decision_action st = function
-  | Buy -> buy_decision st
-  | Sell -> sell_decision st
+let decision_action st suppress_print = function
+  | Buy -> buy_decision st suppress_print
+  | Sell -> sell_decision st suppress_print
   | Wait -> (st, st.acc_info.p_l)
 
 let all_time_profit st coin_name start_position_size =
   start_position_size
   *. (price_close st coin_name -. !initial_coin_price)
 
-  (* higher order programming with pattern? *)
-let rec get_rsi st = 
-  let indicators = indicator_values st in 
+let rec get_rsi st =
+  let indicators = indicator_values st in
   let rec helper = function
-  | [] -> failwith "couldn't find RSI"
-  | h::t -> match h with 
-    | RSI (v, _, _, _, _) -> v 
-    | _ -> helper t
-  in helper indicators
+    | [] -> failwith "couldn't find RSI"
+    | h :: t -> (
+        match h with
+        | RSI (v, _, _, _, _) -> v
+        | _ -> helper t)
+  in
+  helper indicators
 
-let rec get_macd st = 
-  let indicators = indicator_values st in 
+let rec get_macd st =
+  let indicators = indicator_values st in
   let rec helper = function
-  | [] -> failwith "couldn't find MACD"
-  | h::t -> match h with 
-    | MACD (v, _, _, _) -> v 
-    | _ -> helper t
-  in helper indicators
+    | [] -> failwith "couldn't find MACD"
+    | h :: t -> (
+        match h with
+        | MACD (v, _, _, _) -> v
+        | _ -> helper t)
+  in
+  helper indicators
 
-let rec get_obv st = 
-    let indicators = indicator_values st in 
-    let rec helper = function
+let rec get_obv st =
+  let indicators = indicator_values st in
+  let rec helper = function
     | [] -> failwith "couldn't find OBV"
-    | h::t -> match h with 
-      | OBV (v, _) -> float_of_int v 
-      | _ -> helper t
-    in helper indicators
+    | h :: t -> (
+        match h with
+        | OBV (v, _) -> float_of_int v
+        | _ -> helper t)
+  in
+  helper indicators
+
+let rec get_so st =
+  let indicators = indicator_values st in
+  let rec helper = function
+    | [] -> failwith "couldn't find OBV"
+    | h :: t -> (
+        match h with
+        | SO (v, _) -> v
+        | _ -> helper t)
+  in
+  helper indicators
+
+let get_held_profit st coin_name =
+  avg_position_val st coin_name *. positions_held st coin_name

@@ -1,3 +1,10 @@
+Our algorithm beat the naive heuristic by earning an extra $24478.546266
+Final naive profit: 3385.236205
+Final algorithm profit: 27863.782471
+
+
+
+
 Coin: ETH
 Date: 2022-03-14
 Open: 2515.524902

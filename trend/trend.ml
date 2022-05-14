@@ -1,8 +1,6 @@
 include Feeder
 include Maths
 
-(* TODO: add obv to trend lines along with momentum *)
-
 (* ==========HYPERPARAMETERS========== *)
 let spread_hyperparam = 7.0
 
@@ -16,7 +14,7 @@ let float_of_crit crit =
   match crit with
   | Maximum f
   | Minimum f ->
-   f
+      f
 
 let rec crit_points_aux acc = function
   | prev :: curr :: next :: t ->
