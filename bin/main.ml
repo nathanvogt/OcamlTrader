@@ -79,7 +79,7 @@ indicate the suggestion to buy and lower negative numbers
 indicate the suggestion to sell  *)
 
 (* ======= HYPERPARAMS ========= *)
-let grid_up_hyperparam = 5.
+let grid_up_hyperparam = 3.
 (* buy influence associated with crossing the grid above *)
 let grid_down_hyperparam = Float.neg 10.
 (* sell influence associated with crossing the grid below *)
@@ -95,25 +95,25 @@ let tanh_spread_hyperparam = 15.0
 
 let trend_lines_weight = 1.
 (* influence of trend lines in final decision *)
-let trend_lines_bias = 0.
+let trend_lines_bias =  Float.neg 30.
 (* offset of trend line influence in final decision *)
 let grid_line_weight = 1.
 (* influence of grid lines in final decision *)
-let grid_line_bias = 0.
+let grid_line_bias =  Float.neg 20.
 (* offset of grid line influence in final decision *)
-let rsi_weight = 0.
-(* influence of rsi indicator in final decision *)
+let rsi_weight = Float.neg 0.
+(* influence of rsi indicator in 01final decision *)
 let rsi_bias = 0.
 (* offset of rsi indicator influence in final decision *)
-let macd_weight = 0.
+let macd_weight = Float.neg 0.
 (* influence of macd indicator in final decision *)
 let macd_bias = 0.
 (* offset of macd indicator influence in final decision *)
-let obv_weight = 0.
+let obv_weight = Float.neg 0.
 (* influence of obv indicator in final decision *)
 let obv_bias = 0.
 (* offset of obv indicator influence in final decision *)
-let so_weight = 0.
+let so_weight = Float.neg 0.
 (* influence of so indicator in final decision *)
 let so_bias = 0.
 (* offset of so indicator influence in final decision *)
@@ -151,16 +151,17 @@ let grid_indicator price_close =
     grid_down_hyperparam
   else grid_neutral_hyperparam
 
+let weights_biases = [
+  (trend_lines_weight, trend_lines_bias); (* trend lines *)
+  (grid_line_weight, grid_line_bias); (* grid indicators *)
+  (rsi_weight, rsi_bias);
+  (macd_weight, macd_bias);
+  (obv_weight, obv_bias);
+]
+
 (* main function returning a combination of various indicators for a
    final decision *)
 let indicator_comb st =
-  let weights_biases = [
-    (trend_lines_weight, trend_lines_bias); (* trend lines *)
-    (grid_line_weight, grid_line_bias); (* grid indicators *)
-    (rsi_weight, rsi_bias);
-    (macd_weight, macd_bias);
-    (obv_weight, obv_bias);
-  ] in 
   let price = State.price_close st "ETH" in
   let values = [
     Trend.trend_line_indicator (State.crit_points st) price;

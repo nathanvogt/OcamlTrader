@@ -21,6 +21,3 @@ let tanh r s x =
 (e ** (Float.neg (x /. s))))) /. 
 ((e ** (x /. s)) +. 
 (e ** (Float.neg (x /. s))))
-
-let abs x = 
-  if x < 0. then Float.neg x else x

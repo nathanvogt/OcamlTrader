@@ -20,6 +20,3 @@ val sigmoid : float -> float
 val tanh : float -> float -> float -> float
 (** [tanh r s x] applies tanh to x
 with range [r] and spread [s]. *)
-
-val abs : float -> float
-(** [abs x] takes the absolute value of x. *)
