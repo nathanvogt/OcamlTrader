@@ -58,14 +58,18 @@ val decision_action : t -> decision -> t * float
 
 val crit_points : t -> Trend.crit_point list
 (** [crit_points st] returns the critical points stored in [st]. *)
+
 val get_rsi : t -> float
 (** [get_rsi st] returns the current RSI value in [st]. *)
+
 val get_macd : t -> float
 (** [get_macd st] returns the current MACD value in [st]. *)
+
 val get_obv : t -> float
 (** [get_obv st] returns the current OBV value in [st]. *)
+
 val get_so : t -> float
-(** [get)=_so st] returns the current SO value in [st]. *)
+(** [get_so st] returns the current SO value in [st]. *)
 
 val price_high : t -> string -> float
 (** [price_high st coin_name] returns high price of [coin_name] in [st]*)
