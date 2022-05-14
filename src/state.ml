@@ -393,7 +393,7 @@ let valid_sell acc = acc.positions <> []
 
 (* helper function making adjustments to [st] for when algorithm decides
    to buy. *)
-let buy_decision st =
+let buy_decision st suppress_print =
   if valid_buy st.acc_info (get_closing_price coin_name_const st.data)
   then
     let buy_state =
@@ -406,14 +406,15 @@ let buy_decision st =
     in
     (buy_state, buy_state.acc_info.p_l)
   else begin
-    ANSITerminal.print_string [ ANSITerminal.yellow ]
-    @@ "Insufficient funds.\n";
+    if not suppress_print then
+      ANSITerminal.print_string [ ANSITerminal.yellow ]
+      @@ "Insufficient funds.\n";
     (st, st.acc_info.p_l)
   end
 
 (* helper function making adjustments to [st] for when algorithm decides
    to sell. *)
-let sell_decision st =
+let sell_decision st suppress_print =
   if valid_sell st.acc_info then
     let sell_state =
       {
@@ -425,14 +426,15 @@ let sell_decision st =
     in
     (sell_state, sell_state.acc_info.p_l)
   else begin
-    ANSITerminal.print_string [ ANSITerminal.yellow ]
-    @@ "No positions to sell.\n";
+    if not suppress_print then
+      ANSITerminal.print_string [ ANSITerminal.yellow ]
+      @@ "No positions to sell.\n";
     (st, st.acc_info.p_l)
   end
 
 let decision_action st suppress_print = function
-  | Buy -> buy_decision st
-  | Sell -> sell_decision st
+  | Buy -> buy_decision st suppress_print
+  | Sell -> sell_decision st suppress_print
   | Wait -> (st, st.acc_info.p_l)
 
 let all_time_profit st coin_name start_position_size =

@@ -132,20 +132,6 @@ let obv_weight = Float.neg 0.
 (* influence of so indicator in final decision *)
 let so_weight = Float.neg 0.
 
-(* float list of weights for trend_line and grid, as well as indicators,
-   where weight and bias are initialized to 0 for indicators. *)
-let weights_biases =
-  [
-    (trend_lines_weight, trend_lines_bias);
-    (* trend lines *)
-    (grid_line_weight, grid_line_bias);
-    (* grid indicators *)
-    (0., 0.);
-    (0., 0.);
-    (0., 0.);
-    (0., 0.);
-  ]
-
 (* ============================= *)
 (* helper function taking average based on pipeline ordering *)
 let average den num = num /. den
@@ -181,6 +167,8 @@ let grid_indicator price_close =
     grid_down_hyperparam
   else grid_neutral_hyperparam
 
+(* float list of weights for trend_line and grid, as well as indicators,
+   where weight and bias are initialized to 0 for indicators. *)
 let weights_biases =
   [
     (trend_lines_weight, trend_lines_bias);
@@ -449,10 +437,13 @@ let print_final_algorithm_profit st =
     snd (State.decision_action st false indic_decision)
   in
   let final_algorithm_prof = held_profit +. curr_algorithm_profit in
-  ANSITerminal.print_string [ ANSITerminal.blue ]
-  @@ "Final algorithm profit: "
-  ^ string_of_float (held_profit +. curr_algorithm_profit)
-  ^ "\n";
+  let final_message =
+    "Final algorithm profit: "
+    ^ string_of_float (held_profit +. curr_algorithm_profit)
+    ^ "\n"
+  in
+  ANSITerminal.print_string [ ANSITerminal.blue ] @@ final_message;
+  report := final_message ^ "\n\n\n\n" ^ !report;
   final_algorithm_prof
 
 (* helper function printing final naive profit. Also adds this to
@@ -461,25 +452,32 @@ let print_final_naive_profit st =
   let naive_profit =
     State.all_time_profit st coin_name_const !starting_pos
   in
-  ANSITerminal.print_string [ ANSITerminal.blue ]
-  @@ "Final naive profit: "
-  ^ string_of_float naive_profit
-  ^ "\n";
+  let final_message =
+    "Final naive profit: " ^ string_of_float naive_profit ^ "\n"
+  in
+  ANSITerminal.print_string [ ANSITerminal.blue ] @@ final_message;
+  report := final_message ^ !report;
   naive_profit
 
 (* helper function printing winner between our algorithm and naive
    algorithm. Also adds this to report.txt *)
 let print_trade_winner final_algorithm_prof final_naive_prof =
   let diff = final_algorithm_prof -. final_naive_prof in
-  if final_algorithm_prof > final_naive_prof then
-    ANSITerminal.print_string [ ANSITerminal.green ]
-    @@ "Our algorithm beat the naive heuristic by earning an extra $"
-    ^ string_of_float diff ^ "\n"
+  if final_algorithm_prof > final_naive_prof then (
+    let final_message =
+      "Our algorithm beat the naive heuristic by earning an extra $"
+      ^ string_of_float diff ^ "\n"
+    in
+    ANSITerminal.print_string [ ANSITerminal.green ] @@ final_message;
+    report := final_message ^ !report)
   else
-    ANSITerminal.print_string [ ANSITerminal.green ]
-    @@ "Our algorithm was beat by the naive heuristic by an extra $"
-    ^ string_of_float (Float.neg diff)
-    ^ "\n"
+    let final_message =
+      "Our algorithm was beat by the naive heuristic by an extra $"
+      ^ string_of_float (Float.neg diff)
+      ^ "\n"
+    in
+    ANSITerminal.print_string [ ANSITerminal.green ] @@ final_message;
+    report := final_message ^ !report
 
 (** [main_loop state] is the repeating loop of our program that takes
     [state] from previous timestep and makes a decision, then receives
@@ -499,6 +497,7 @@ let rec main_loop wait_period st =
       let final_algorithm_prof = print_final_algorithm_profit st in
       let final_naive_prof = print_final_naive_profit st in
       print_trade_winner final_algorithm_prof final_naive_prof;
+      update_file report_file !report;
       exit 0
   | Some new_data ->
       Stdlib.flush Stdlib.stdout;
