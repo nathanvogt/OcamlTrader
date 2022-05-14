@@ -49,12 +49,11 @@ val data_print : string -> t -> string
     record in [st]*)
 
 val decision_action : t -> decision -> t * float
-(** [decision_action st decision] takes in a type
-    decision as decided by indicators from the main loops. Based on this
-    decision, it returns a tuple with the first element being new state,
-    and the second being a string representation of action executed.
-    [suppress_print] is used in the final iteration, when print is no
-    longer needed *)
+(** [decision_action st decision] takes in a type decision as decided by
+    indicators from the main loops. Based on this decision, it returns a
+    tuple with the first element being new state, and the second being a
+    string representation of action executed. [suppress_print] is used
+    in the final iteration, when print is no longer needed *)
 
 val crit_points : t -> Trend.crit_point list
 (** [crit_points st] returns the critical points stored in [st]. *)
@@ -84,8 +83,7 @@ val price_close : t -> string -> float
 (** [price_close st coin_name] returns high price of [coin_name] in [st]*)
 
 val price_vol : t -> string -> float
-(** [price_volume st coin_name] returns high price of [coin_name] in
-    [st]*)
+(** [price_vol st coin_name] returns high price of [coin_name] in [st]*)
 
 val curr_date : t -> string -> string
 (** [curr_date st coin_name] returns current date of [coin_name] in [st]*)

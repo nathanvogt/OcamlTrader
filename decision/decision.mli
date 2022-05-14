@@ -26,7 +26,7 @@ val interp_macd : float -> float
     to buy. *)
 
 val interp_obv : float -> float
-(** [intero_obv obv] maps [obv] to a buy/sell indicator where a very
+(** [interp_obv obv] maps [obv] to a buy/sell indicator where a very
     negative value suggests to sell and a very positive number suggests
     to buy. *)
 

@@ -19,10 +19,11 @@ external reset_reader : unit -> unit = "resetReader"
     data. Checks: reader must already be initialized *)
 
 val next_day : unit -> t option
-(** Returuns the next day of historical data *)
+(** [next_day ()] returuns the next day of historical data *)
 
 val to_string : t -> string
-(** Returuns the to string representatino of historical data *)
+(** [to_string t] returuns the to string representatino of historical
+    data *)
 
 val open_price : t -> float
 (** [open_price d] returns the opening price from the day of historical
