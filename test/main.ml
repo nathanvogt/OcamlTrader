@@ -498,9 +498,9 @@ let filter_tests = [
   filter_test "filter nothing"
   0. (List.length crits);
   filter_test "filter light"
-  30. 79;
+  30. 111;
   filter_test "heavy filter"
-  300. 32;
+  300. 31;
 ]
 
 let multiple_next_day n =

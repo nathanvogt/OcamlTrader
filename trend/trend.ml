@@ -21,9 +21,9 @@ let float_of_crit crit =
 let rec crit_points_aux acc = function
   | prev :: curr :: next :: t ->
       if prev > curr && curr < next then
-        crit_points_aux (Minimum curr :: acc) (next :: t)
+        crit_points_aux (Minimum curr :: acc) (curr :: next :: t)
       else if prev < curr && curr > next then
-        crit_points_aux (Maximum curr :: acc) (next :: t)
+        crit_points_aux (Maximum curr :: acc) (curr :: next :: t)
       else crit_points_aux acc (next :: t)
   | _ -> acc
 
