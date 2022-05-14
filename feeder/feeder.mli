@@ -1,10 +1,8 @@
 (** Reads raw price data
-    
-    This module is in charge of receiving raw price data.
-    It can retrieve the market data of the current day and
-    can also retrieve market data of an arbitrary number of
-    previous days.
-*)
+
+    This module is in charge of receiving raw price data. It can
+    retrieve the market data of the current day and can also retrieve
+    market data of an arbitrary number of previous days. *)
 
 type t
 (** Representation of a day of raw historical data *)
@@ -17,8 +15,8 @@ external init_reader : unit -> unit = "initReader"
 (** Initializes the file reader that reads raw historical data *)
 
 external reset_reader : unit -> unit = "resetReader"
-(** [reset_reader] resets file reader back to the start of historical data.
-    Checks: reader must already be initialized *)
+(** [reset_reader] resets file reader back to the start of historical
+    data. Checks: reader must already be initialized *)
 
 val next_day : unit -> t option
 (** Returuns the next day of historical data *)

@@ -13,5 +13,3 @@ let update_val
   let rs = avg_gain /. avg_loss in
   let today_rsi = 100. -. (100. /. (1. +. rs)) in
   (today_rsi, price_close, 0., avg_gain, avg_loss)
-
-(* Unused variables in [update_val]: [prev_rsi], [coin] *)

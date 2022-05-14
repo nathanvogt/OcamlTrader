@@ -16,7 +16,7 @@
 
     3. If today's closing price equals yesterday's closing price, then:
     Current OBV = Previous OBV; Source:
-    https://www.investopedia.com/terms/o/onbalancevolume.asp. *)
+    {{:https://www.investopedia.com/terms/o/onbalancevolume.asp} here}. *)
 
 val update_val : int -> float -> int -> float -> string -> int * float
 (** [update_val prev_obv prev_close vol close coin] takes in the
