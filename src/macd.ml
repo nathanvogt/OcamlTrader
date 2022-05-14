@@ -13,5 +13,3 @@ let update_val prev_macd price_close prev_ema_12 prev_ema_26 coin =
   in
   let new_macd = ema_12 -. ema_26 in
   (new_macd, 0., ema_12, ema_26)
-
-(* Unused in [update_val]: [prev_macd], [coin] *)
