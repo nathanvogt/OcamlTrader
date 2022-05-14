@@ -465,6 +465,9 @@ let state_tests =
       "testing buy on average of 2 positions with higher price" 10. 2.
       40. 20.;
     state_market_value_buy_test
+      "testing buy on average of 2 positions with same price" 10. 2. 10.
+      10.;
+    state_market_value_buy_test
       "testing buy on average of 4 positions with lower price" 10. 4. 0.
       8.;
     state_market_value_buy_test
@@ -481,27 +484,29 @@ let state_tests =
       positions_list_two 5.;
   ]
 
+(********************************************************************
+  Testing ______
+  ********************************************************************)
+
 let closes =
   Feeder.init_reader ();
   Feeder.lookback "ETH" 360
-let crits = Trend.crit_points_days closes 
-let filter_test name param expected = 
-  (name >:: (fun _ ->
-    assert_equal
-    (Trend.filter_crit_points crits param 
-  |> List.length)
-  (expected)))
 
-let filter_tests = [
-  filter_test "filter everyting"
-  99999. 1;
-  filter_test "filter nothing"
-  0. (List.length crits);
-  filter_test "filter light"
-  30. 79;
-  filter_test "heavy filter"
-  300. 32;
-]
+let crits = Trend.crit_points_days closes
+
+let filter_test name param expected =
+  name >:: fun _ ->
+  assert_equal
+    (Trend.filter_crit_points crits param |> List.length)
+    expected
+
+let filter_tests =
+  [
+    filter_test "filter everyting" 99999. 1;
+    filter_test "filter nothing" 0. (List.length crits);
+    filter_test "filter light" 30. 79;
+    filter_test "heavy filter" 300. 32;
+  ]
 
 let multiple_next_day n =
   let _ = Feeder.reset_reader () in

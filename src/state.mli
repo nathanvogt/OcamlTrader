@@ -11,6 +11,7 @@ type indicator_type =
   | RSI of float * float * float * float * float
   | MACD of float * float * float * float
   | OBV of int * float
+  | SO of float * float list
 
 (** Deicsion type to be passed after evaluation on training metrics, and
     for account to be updated accordingly. This is exposed by the state
@@ -47,17 +48,19 @@ val data_print : string -> t -> string
 (** [data_print st] returns string value representation of the data
     record in [st]*)
 
-val decision_action : t -> decision -> t * float
-(** [decision_action st decision] takes in a type decision as decided by
-    indicators from the main loops. Based on this decision, it returns a
-    tuple with the first element being new state, and the second being a
-    string representation of action executed *)
+val decision_action : t -> bool -> decision -> t * float
+(** [decision_action st suppress_print decision] takes in a type
+    decision as decided by indicators from the main loops. Based on this
+    decision, it returns a tuple with the first element being new state,
+    and the second being a string representation of action executed.
+    [suppress_print] is used in the final iteration, when print is no
+    longer needed *)
 
 val crit_points : t -> Trend.crit_point list
-
-val get_rsi : t -> float 
-val get_macd : t -> float 
+val get_rsi : t -> float
+val get_macd : t -> float
 val get_obv : t -> float
+val get_so : t -> float
 
 val price_high : t -> string -> float
 (** [price_high st coin_name] returns high price of [coin_name] in [st]*)
@@ -91,3 +94,7 @@ val all_time_profit : t -> string -> float -> float
     would make assuming we bought [position_size] [coin_name]'s from the
     point the bot is initiated, until current time assumign we do not
     sell. It can be used to gauge the effectiveness of our algorithm. *)
+
+val get_held_profit : t -> string -> float
+(** [get_held_profit st] returns the average position size multiplied by
+    positions held *)

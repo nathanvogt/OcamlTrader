@@ -6,12 +6,11 @@ include Trend
 include Maths
 include Decision
 
-
 (* ------ initializing global variables ------ *)
 
 (** Global list of indicators. Requires that indicators spelled
     correctly. Some, like coin_name, are hard coded for now *)
-let indicators = [ "RSI"; "MACD"; "OBV"; ]
+let indicators = [ "RSI"; "MACD"; "OBV"; "SO" ]
 
 let coin_name_const = "ETH"
 let budget = 10000.00
@@ -28,10 +27,20 @@ let grid_lower = ref 0.
 
 (* string representation of report meant to be printed to file *)
 let report = ref @@ "Report of " ^ coin_name_const ^ " purchases: \n"
+
+(* file where real time updates are sent *)
 let report_file = "report.txt"
+
+(* number of grid lines to draw *)
 let num_splits = 14
+
+(* mutable reference to the highest price of grid *)
 let grid_upper_limit = ref 0.
+
+(* mutable reference to the lowest price of grid *)
 let grid_lower_limit = ref 0.
+
+(* mutable reference to the size of drawn grid *)
 let grid_size = ref 0.
 
 (* formatting *)
@@ -74,49 +83,68 @@ let pause_message =
     Indicator/Decision Functions
  ********************************************************************)
 (* Each indicator input into the decision formula should be normalized
-into the range [-50, 50] where higher positive numbers
-indicate the suggestion to buy and lower negative numbers 
-indicate the suggestion to sell  *)
+   into the range [-50, 50] where higher positive numbers indicate the
+   suggestion to buy and lower negative numbers indicate the suggestion
+   to sell *)
 
 (* ======= HYPERPARAMS ========= *)
-let grid_up_hyperparam = 5.
 (* buy influence associated with crossing the grid above *)
-let grid_down_hyperparam = Float.neg 10.
+let grid_up_hyperparam = 3.
+
 (* sell influence associated with crossing the grid below *)
-let grid_neutral_hyperparam = 0.
+let grid_down_hyperparam = Float.neg 10.
+
 (* buy or sell influence associated with not crossing a grid *)
-let spread_hyperparam = 7.0
+let grid_neutral_hyperparam = 0.
+
 (* range of proximity effect of trend lines *)
+let spread_hyperparam = 7.0
 
-let tanh_range_hyperparam = 50.0
 (* scales output range of tanh *)
-let tanh_spread_hyperparam = 15.0
-(* scales the steepness of the tanh function *)
+let tanh_range_hyperparam = 50.0
 
-let trend_lines_weight = 1.
+(* scales the steepness of the tanh function *)
+let tanh_spread_hyperparam = 15.0
+
 (* influence of trend lines in final decision *)
-let trend_lines_bias = 0.
-(* offset of trend line influence in final decision *)
-let grid_line_weight = 1.
+let trend_lines_weight = 1.
+
+(* offseting of trend lines in final decision. offset is where the
+   influence "starts from". *)
+let trend_lines_bias = Float.neg 30.
+
 (* influence of grid lines in final decision *)
-let grid_line_bias = 0.
-(* offset of grid line influence in final decision *)
-let rsi_weight = 0.
+let grid_line_weight = 1.
+
+(* offsetting of grid lines in final decision *)
+let grid_line_bias = Float.neg 20.
+
 (* influence of rsi indicator in final decision *)
-let rsi_bias = 0.
-(* offset of rsi indicator influence in final decision *)
-let macd_weight = 0.
+let rsi_weight = 0.00001
+
 (* influence of macd indicator in final decision *)
-let macd_bias = 0.
-(* offset of macd indicator influence in final decision *)
-let obv_weight = 0.
+let macd_weight = 0.004
+
 (* influence of obv indicator in final decision *)
-let obv_bias = 0.
-(* offset of obv indicator influence in final decision *)
-let so_weight = 0.
+let obv_weight = 0.004
+
 (* influence of so indicator in final decision *)
-let so_bias = 0.
-(* offset of so indicator influence in final decision *)
+let so_weight = 0.00001
+
+(* float list of weights for trend_line and grid, as well as indicators,
+   where weight and bias are initialized to 0 for indicators. *)
+let weights_biases =
+  [
+    (trend_lines_weight, trend_lines_bias);
+    (* trend lines *)
+    (grid_line_weight, grid_line_bias);
+    (* grid indicators *)
+    (0., 0.);
+    (0., 0.);
+    (0., 0.);
+    (0., 0.);
+  ]
+
 (* ============================= *)
 (* helper function taking average based on pipeline ordering *)
 let average den num = num /. den
@@ -132,7 +160,8 @@ let rec accum_indication acc (indications : State.indicator_type list) =
       match h with
       | RSI (rsi, _, _, _, _) -> accum_indication (acc +. rsi) t
       | MACD (macd, _, _, _) -> accum_indication (acc +. macd) t
-      | OBV (obv, _) -> accum_indication (acc +. 0.) t)
+      | OBV (obv, _) -> accum_indication (acc +. float_of_int obv) t
+      | SO (so, _) -> accum_indication (acc +. so) t)
 (* place holder for now *)
 
 (* heuristic taking simple average of indicators. *)
@@ -154,33 +183,23 @@ let grid_indicator price_close =
 (* main function returning a combination of various indicators for a
    final decision *)
 let indicator_comb st =
-  let weights_biases = [
-    (trend_lines_weight, trend_lines_bias); (* trend lines *)
-    (grid_line_weight, grid_line_bias); (* grid indicators *)
-    (rsi_weight, rsi_bias);
-    (macd_weight, macd_bias);
-    (obv_weight, obv_bias);
-  ] in 
   let price = State.price_close st "ETH" in
-  let values = [
-    Trend.trend_line_indicator (State.crit_points st) price;
-    grid_indicator (State.price_close st coin_name_const);
-    Decision.interp_rsi @@ State.get_rsi st;
-    Decision.interp_macd @@ State.get_macd st;
-    Decision.interp_obv @@ State.get_obv st;
-  ] in 
+  let values =
+    [
+      Trend.trend_line_indicator (State.crit_points st) price;
+      grid_indicator (State.price_close st coin_name_const);
+      Decision.interp_rsi @@ State.get_rsi st;
+      Decision.interp_macd @@ State.get_macd st;
+      Decision.interp_obv @@ State.get_obv st;
+      Decision.interp_so @@ State.get_so st;
+    ]
+  in
   Decision.scale_values weights_biases values
   |> List.fold_left (fun acc x -> acc +. x) 0.
   |> Maths.tanh tanh_range_hyperparam tanh_spread_hyperparam
   |> ( +. ) tanh_range_hyperparam
-(* weight_indicators st +. grid_indicator (State.price_close st
-   coin_name_const) *)
 
-(* helper function receiving decision and taking corresponding action
-
-   later need to make this smarter: don't sell when we don't have
-   position sizes control the total budget it buys and sells -jun *)
-   (* extra TODO: change how much is bought or sold instead of being binary *)
+(* helper function receiving decision and taking corresponding action *)
 let evaluate_indicators weight =
   if weight <= 30. then State.Buy
   else if weight <= 70. then State.Wait
@@ -377,7 +396,7 @@ let print_report_in_loop st =
     ^ string_of_float
         (State.all_time_profit st coin_name_const !starting_pos)
   in
-  let state_action_tup = State.decision_action st indic_decision in
+  let state_action_tup = State.decision_action st true indic_decision in
   let algo_profits =
     "Algorithm profit: " ^ string_of_float (snd state_action_tup)
   in
@@ -408,6 +427,47 @@ let pretty_print_grid st market_info_string state_action_tup =
     !grid_upper_limit
     (State.price_close st coin_name_const < !grid_upper_limit)
 
+(* helper function printing final algorithm profits. Also adds this to
+   report.txt *)
+let print_final_algorithm_profit st =
+  let held_profit = State.get_held_profit st coin_name_const in
+  let indic_decision = final_decision st in
+  let curr_algorithm_profit =
+    snd (State.decision_action st false indic_decision)
+  in
+  let final_algorithm_prof = held_profit +. curr_algorithm_profit in
+  ANSITerminal.print_string [ ANSITerminal.blue ]
+  @@ "Final algorithm profit: "
+  ^ string_of_float (held_profit +. curr_algorithm_profit)
+  ^ "\n";
+  final_algorithm_prof
+
+(* helper function printing final naive profit. Also adds this to
+   report.txt *)
+let print_final_naive_profit st =
+  let naive_profit =
+    State.all_time_profit st coin_name_const !starting_pos
+  in
+  ANSITerminal.print_string [ ANSITerminal.blue ]
+  @@ "Final naive profit: "
+  ^ string_of_float naive_profit
+  ^ "\n";
+  naive_profit
+
+(* helper function printing winner between our algorithm and naive
+   algorithm. Also adds this to report.txt *)
+let print_trade_winner final_algorithm_prof final_naive_prof =
+  let diff = final_algorithm_prof -. final_naive_prof in
+  if final_algorithm_prof > final_naive_prof then
+    ANSITerminal.print_string [ ANSITerminal.green ]
+    @@ "Our algorithm beat the naive heuristic by earning an extra $"
+    ^ string_of_float diff ^ "\n"
+  else
+    ANSITerminal.print_string [ ANSITerminal.green ]
+    @@ "Our algorithm was beat by the naive heuristic by an extra $"
+    ^ string_of_float (Float.neg diff)
+    ^ "\n"
+
 (** [main_loop state] is the repeating loop of our program that takes
     [state] from previous timestep and makes a decision, then receives
     new data from feeder and passes new state *)
@@ -422,7 +482,10 @@ let rec main_loop wait_period st =
   match Feeder.next_day () with
   | None ->
       ANSITerminal.print_string [ ANSITerminal.yellow ]
-        "This is the end of the file. \n";
+        "This is the end of the file.\n";
+      let final_algorithm_prof = print_final_algorithm_profit st in
+      let final_naive_prof = print_final_naive_profit st in
+      print_trade_winner final_algorithm_prof final_naive_prof;
       exit 0
   | Some new_data ->
       Stdlib.flush Stdlib.stdout;
