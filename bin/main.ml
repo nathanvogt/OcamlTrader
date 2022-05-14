@@ -88,6 +88,7 @@ let pause_message =
    to sell *)
 
 (* ======= HYPERPARAMS ========= *)
+
 (* buy influence associated with crossing the grid above *)
 let grid_up_hyperparam = 3.
 
@@ -120,16 +121,16 @@ let grid_line_weight = 1.
 let grid_line_bias = Float.neg 20.
 
 (* influence of rsi indicator in final decision *)
-let rsi_weight = 0.00001
+let rsi_weight = Float.neg 0.
 
 (* influence of macd indicator in final decision *)
-let macd_weight = 0.004
+let macd_weight = Float.neg 0.
 
 (* influence of obv indicator in final decision *)
-let obv_weight = 0.004
+let obv_weight = Float.neg 0.
 
 (* influence of so indicator in final decision *)
-let so_weight = 0.00001
+let so_weight = Float.neg 0.
 
 (* float list of weights for trend_line and grid, as well as indicators,
    where weight and bias are initialized to 0 for indicators. *)
@@ -179,6 +180,18 @@ let grid_indicator price_close =
     (* possible hyperparameter *)
     grid_down_hyperparam
   else grid_neutral_hyperparam
+
+let weights_biases =
+  [
+    (trend_lines_weight, trend_lines_bias);
+    (* trend lines *)
+    (grid_line_weight, grid_line_bias);
+    (* grid indicators *)
+    (rsi_weight, 0.);
+    (macd_weight, 0.);
+    (obv_weight, 0.);
+    (so_weight, 0.);
+  ]
 
 (* main function returning a combination of various indicators for a
    final decision *)

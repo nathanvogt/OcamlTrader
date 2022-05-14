@@ -56,7 +56,7 @@ let filter_crit_points cps p =
     | h :: t ->
         let curr_point = float_of_crit h in
         let acc' =
-          if Maths.abs (curr_point -. prev_point) < p then
+          if Float.abs (curr_point -. prev_point) < p then
             push (clean_pop acc) h
           else push acc h
         in

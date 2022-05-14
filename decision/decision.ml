@@ -7,10 +7,6 @@ include Indicator
 include State
 include Maths
 
-(* ======= HYPERPARAMS ========= *)
-
-(* ============================= *)
-
 let package_weights_values weights_biases values =
   if List.length weights_biases <> List.length values then
     failwith "weights and values must map one to one"
@@ -26,11 +22,12 @@ let scale_values weights_biases values =
     packaged
 
 (* TODO: improve momentum in state *)
-let interp_rsi rsi = (rsi -. 50.) ** (1. /. 3.)
-let interp_macd macd = Maths.tanh 50. 50. macd
+let interp_rsi rsi = (rsi +. 0.5) ** (1. /. 3.)
+let interp_macd macd = 5.
 
+(* (Maths.tanh 50. 10. macd) *)
 let interp_obv obv =
   let momentum = 1. in
-  obv *. momentum
+  Float.abs obv *. momentum
 
-let interp_so so = (so -. 50.) ** 3.
+let interp_so so = (so +. 0.5) ** 3.
